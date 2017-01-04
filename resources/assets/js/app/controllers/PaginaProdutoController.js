@@ -68,12 +68,16 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
 
         $scope.entity = {
             pagina_id: $scope.pagina,
+            retranca: '',
             titulo: '',
+            resumo: '',
             texto: '',
             credito: 'Divulgação',
             legenda: '',
             imagem_capa: '',
-            imagem_pagina: ''
+            imagem_pagina: '',
+            destaque: '',
+            status: ''
         };
     };
 

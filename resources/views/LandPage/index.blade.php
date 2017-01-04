@@ -103,7 +103,7 @@
 <!--End of Feature Area-->
 
 <!--Start of Segments -->
-@include('LandPage.segmento')
+@include('LandPage.produtos')
 <!--End of Segments -->
 
 <!--Video Area Start-->

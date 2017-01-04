@@ -14,6 +14,18 @@
             <div class="box-body">
                 <input type="hidden" name="_token" value="{{ token }}"/>
                 <input type="hidden" name="pagina" value="{{ pagina }}"/>
+                <div class="form-group" ng-class="{'has-error': form.retranca.$touched && form.retranca.$error.required }">
+                    <label for="retranca">
+                        <i ng-class="{'fa fa-times-circle-o': form.retranca.$touched && form.retranca.$error.required }"></i>
+                        Retranca:
+                    </label>
+                    <input type="text" name="retranca" class="form-control" ng-model="entity.retranca" required/>
+                    <div class="help-block" ng-show="form.$submitted || form.retranca.$touched">
+                        <div ng-show="form.retranca.$error.required">
+                            <i class="fa fa-exclamation-circle"></i> O campo Retranca é obrigatório
+                        </div>
+                    </div>
+                </div>
                 <div class="form-group" ng-class="{'has-error': form.titulo.$touched && form.titulo.$error.required }">
                     <label for="titulo">
                         <i ng-class="{'fa fa-times-circle-o': form.titulo.$touched && form.titulo.$error.required }"></i>
@@ -23,6 +35,20 @@
                     <div class="help-block" ng-show="form.$submitted || form.titulo.$touched">
                         <div ng-show="form.titulo.$error.required">
                             <i class="fa fa-exclamation-circle"></i> O campo Título é obrigatório
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{'has-error': form.resumo.$touched && form.resumo.$error.required}">
+                    <label for="resumo">
+                        <i ng-class="{'fa fa-times-circle-o': form.resumo.$touched && form.resumo.$error.required}"></i> Resumo:
+                    </label>
+                    <textarea name="resumo" class="form-control" maxlength="133" rows="3" ng-model="entity.resumo" required></textarea>
+                    <div class="help-block" ng-show="form.$submitted || form.resumo.$touched || form.resumo.$error.maxlength">
+                        <div ng-show="form.resumo.$error.required">
+                            <i class="fa fa-exclamation-circle"></i> O campo Resumo é obrigatório
+                        </div>
+                        <div ng-show="form.resumo.$error.maxlength">
+                            <i class="fa fa-exclamation-circle"></i> Qunatidade máxima de caractéres permitido é 133 nesse campo
                         </div>
                     </div>
                 </div>
@@ -90,6 +116,15 @@
                         <div ng-show="form.legenda.$error.required">
                             <i class="fa fa-exclamation-circle"></i> O campo Legenda da Foto é obrigatório
                         </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="destaque">Destaque da Página:</label>
+                    <div class="radio">
+                        <label><input type="radio" name="destaque" value="0" ng-model="entity.destaque">Não</label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="radio" name="destaque" value="1" ng-model="entity.destaque">Sim</label>
                     </div>
                 </div>
             </div>

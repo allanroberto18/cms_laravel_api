@@ -5,8 +5,8 @@
                 <div class="video_box">
                     <a class="box_video fancybox.iframe" href="https://www.youtube.com/embed/{{ $video->link }}?autoplay=1">
                         <img id="image" src="http://img.youtube.com/vi/{{ $video->link }}/0.jpg" alt="">
+                        <div id="play"></div>
                     </a>
-                    <div id="play"></div>
                 </div>
             </div>
         </div>

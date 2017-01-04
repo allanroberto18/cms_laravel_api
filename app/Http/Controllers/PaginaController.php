@@ -92,7 +92,7 @@ class PaginaController extends Controller
 
             $video = $this->videoRepository->findByField('pagina_id', $pagina->id)->last();
 
-            $segmentos = $this->paginaProdutoRepository->scopeQuery(function($q) use ($pagina) {
+            $produtos = $this->paginaProdutoRepository->scopeQuery(function($q) use ($pagina) {
                 return $q->where(['pagina_id' => $pagina->id])->orderBy('created_at', 'DESC');
             })->paginate(3);
 
@@ -103,7 +103,7 @@ class PaginaController extends Controller
             $banners = $this->bannerRepository->findWhere(['status' => 1]);
 
             return view('LandPage.index', compact(
-                'sobreNos', 'config', 'pagina', 'caracteristicas', 'totalCaracteristicas', 'segmentos', 'noticias',
+                'sobreNos', 'config', 'pagina', 'caracteristicas', 'totalCaracteristicas', 'produtos', 'noticias',
                 'video', 'menu', 'banners'
             ));
         } catch (\Exception $ex) {
