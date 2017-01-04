@@ -35,4 +35,9 @@ class Pagina extends Model implements Transformable
         return $this->hasMany(PaginaVideo::class, 'pagina_id', 'id');
     }
 
+    public function clientes()
+    {
+        return $this->hasMany(PaginaCliente::class,'pagina_id', 'id');
+    }
+
 }

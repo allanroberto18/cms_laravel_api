@@ -60,23 +60,23 @@
 <div class="feature-area section-light-text" id="feature">
     <div class="container">
         <div class="row">
-            <div class="col-lg-4 col-md-4 col-sm-5 col-xs-12">
+            <div class="col-xs-12 col-sm-5 col-md-4 col-lg-4">
                 <div class="feature-text">
                     <p class="p-title">
-                        {{ $pagina->retranca }}
+                        {{ $destaque->retranca }}
                     </p>
-                    <h2>{{ $pagina->titulo }}</h2>
+                    <h2>{{ $destaque->titulo }}</h2>
                     {{--<h1>Features</h1>--}}
-                    <p>{{ $pagina->resumo }}</p>
-                    <a href="{{ route('pagina.show',[ 'slug' => $pagina->slug ]) }}" class="button">Leia Mais</a>
+                    <p>{{ $destaque->resumo }}</p>
+                    <a href="{{ route('produto.show',[ 'slug' => $destaque->slug ]) }}" class="button">Leia Mais</a>
                 </div>
             </div>
-            <div class="hidden-xs hidden-sm col-md-3 col-lg-4">
+            <div class="hidden-xs hidden-sm col-md-4 col-lg-4">
                 <div class="app-image">
-                    <img src="/img/pagina/{{$pagina->imagem}}" alt="{{ $pagina->legenda }} - {{ $pagina->credito }}">
+                    <img src="/img/pagina/produto/{{$destaque->imagem_pagina}}" alt="{{ $destaque->legenda }} - {{ $destaque->credito }}">
                 </div>
             </div>
-            <div class="col-lg-3 col-md-5 col-sm-7 col-xs-12">
+            <div class="col-xs-12 col-sm-7 col-md-4 col-lg-4">
                 <div class="feature-list">
                     @foreach($pagina->caracteristicas as $item)
                         @if ($loop->index < 4)
@@ -102,26 +102,30 @@
 </div>
 <!--End of Feature Area-->
 
+<!--Video Area Start-->
+@include('LandPage.movie')
+<!--End of Video Area-->
+
+
+
 <!--Start of Segments -->
 @include('LandPage.produtos')
 <!--End of Segments -->
 
-<!--Video Area Start-->
-@include('LandPage.movie')
-<!--End of Video Area-->
+<!--Service Area Start-->
+@include('LandPage.about')
+<!--End of Service Area-->
+
 <!--Features Carousel Area Start-->
 {{--@include('LandPage.screenshots')--}}
 <!--End of Features Carousel Area-->
 <!--Pricing Taable Area Start-->
 {{--@include('LandPage.prices')--}}
 <!--End of Pricing Taable Area-->
-<!-- Clients Area Start-->
-{{--@include('LandPage.testimonial')--}}
-<!--End of Clients Area-->
 
-<!--Service Area Start-->
-@include('LandPage.about')
-<!--End of Service Area-->
+<!-- Clients Area Start-->
+@include('LandPage.testimonial')
+<!--End of Clients Area-->
 
 <!--Blog Area Start-->
 @include('LandPage.news')

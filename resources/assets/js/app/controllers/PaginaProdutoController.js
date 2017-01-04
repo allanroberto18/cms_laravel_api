@@ -2,7 +2,7 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
 
     $scope.modulo = {
         title: 'Gerenciar Módulo',
-        subtitle: 'Produtos'
+        subtitle: 'Produtos do Segmento'
     };
 
     $scope.title = '';

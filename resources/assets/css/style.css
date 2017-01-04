@@ -330,8 +330,8 @@ body {
 }
 
 .banner-content .banner-button a:hover, a.button:hover {
-    background-color: #009FDD;
-    border: 1px solid #009FDD;
+    background-color: #c9634c;
+    border: 1px solid #c9634c;
     color: #ffffff;
 }
 
@@ -342,18 +342,18 @@ body {
 /*----------------------------------------*/
 /*  4. Feature Area
 /*----------------------------------------*/
-.feature-area {
+.feature-area, .pagina-area {
     padding-bottom: 86px;
     padding-top: 88px;
 }
 
-.feature-text .p-title {
+.feature-text .p-title, .pagina-text .p-title {
     color: #959595;
     line-height: 14px;
     font-weight: bold;
 }
 
-.feature-text > h2 {
+.feature-text > h2, .pagina-text > h2 {
     color: #ffffff;
     /*font-family: "montserratultra_light";*/
     font-family: "Segoe UI Light";
@@ -363,7 +363,7 @@ body {
     margin: 0;
 }
 
-.feature-text > h1 {
+.feature-text > h1, .pagina-text > h1 {
     color: #ffffff;
     display: block;
     font-family: "Segoe UI";
@@ -372,7 +372,7 @@ body {
     margin-bottom: 23px;
 }
 
-.feature-text a.button {
+.feature-text a.button, .pagina-text a.button {
     margin-top: 25px
 }
 
@@ -571,7 +571,7 @@ body {
     text-align: right;
 }
 
-.features-list > h1 {
+.features-list > h1, .pagina-list > h1 {
     color: #ffffff;
     font-family: "Segoe UI";
     font-size: 48px;
@@ -583,20 +583,20 @@ body {
     margin-bottom: 10px;
 }
 
-.feature-list-text > h4 {
+.feature-list-text > h4, .pagina-list-text > h4 {
     color: #ffffff;
     font-size: 16px;
     margin-bottom: 3px;
 }
 
-.feature-list-img {
+.feature-list-img, .pagina-list-img {
     display: inline-block;
     float: right;
     margin-left: 20px;
     width: 34px;
 }
 
-.feature-list-text {
+.feature-list-text, .pagina-list-text {
     display: inline-block;
     margin-top: 4px;
 }
@@ -728,8 +728,8 @@ body {
 
 .price-list .button:hover {
     color: #fff;
-    background: #009FDD;
-    border-color: #009FDD;
+    background: #c9634c;
+    border-color: #c9634c;
 }
 
 .single-price-package.dark {
@@ -748,9 +748,9 @@ body {
 }
 
 .single-price-package.dark .price-list .button, .blog-area button {
-    background: #009FDD;
-    border-color: #009FDD;
-    color: #fff
+    /*background: #c9634c;*/
+    /*border-color: #c9634c;*/
+    /*color: #fff*/
 }
 
 .single-price-package.dark .price-list .button:hover, .blog-area button:hover {
@@ -763,7 +763,7 @@ body {
 	9. Clients Area
 ----------------------------------------*/
 .clients-area {
-    padding-top: 206px
+    /*padding-top: 206px*/
 }
 
 .testimonial-image-slider {
@@ -997,7 +997,7 @@ a.blog-button {
 }
 
 .single-blog .blog-text a.blog-button:hover, .single-blog:hover .blog-text > h3 a:hover, .blog-area.section-light-blog .single-blog .blog-text a.blog-button:hover {
-    color: #009FDD
+    color: #c9634c
 }
 
 a.blog-button i {
@@ -1173,8 +1173,8 @@ textarea.yourmessage.form-control:focus {
 
 .submit-form .button:hover, .blog-area.section-light-blog .button:hover {
     background: transparent;
-    border-color: #009FDD;
-    color: #009FDD;
+    border-color: #c9634c;
+    color: #c9634c;
 }
 
 /*--------------------------------------
@@ -1233,18 +1233,18 @@ footer {
 }
 
 .banner-content.static-text.image-text .text-content .banner-button a:hover {
-    border-color: #009FDD
+    border-color: #c9634c
 }
 
 .slider-area.solid-color {
-    background: #009FDD;
+    background: #c9634c;
     height: 493px
 }
 
 .slider-area.solid-color .banner-content .banner-button a:hover, .slider-area.transparent-color .banner-content .banner-button a:hover {
     background-color: #fff;
     border: 1px solid #fff;
-    color: #009FDD;
+    color: #c9634c;
 }
 
 .transparent-overlay {
@@ -1263,7 +1263,7 @@ footer {
 }
 
 .video-overlay.solid-color:after {
-    background: #009FDD;
+    background: #c9634c;
     opacity: 1
 }
 
@@ -1279,7 +1279,7 @@ footer {
 }
 
 .download-area.solid-color {
-    background: #009FDD
+    background: #c9634c
 }
 
 #slider .video-banner .banner-content h1 span {
@@ -1571,4 +1571,36 @@ footer {
     height: 128px;
     position: relative;
     z-index: 10;
+}
+
+/*----------------------------------------*/
+/*  4. Pagina Area
+/*----------------------------------------*/
+
+.pagina-text > h2 {
+    font-size: 35px;
+    line-height: 42px;
+    color: #959595;
+}
+
+.pagina-text > i {
+    font-size: 16px;
+    line-height: 23px;
+    font-style: italic;
+}
+
+.pagina-text {
+    color: #3c3c3c
+}
+
+.pagina-text > h1 {
+    color: #959595;
+}
+
+.single-feature-text > h5 {
+    color: #252830;
+}
+
+.single-feature-text > p {
+    color: #888888;
 }

@@ -6,20 +6,20 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\UploadRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
-use App\Http\Requests\Admin\PaginaProdutoRequest;
-use App\Repositories\PaginaProdutoRepository;
+use App\Http\Requests\Admin\PaginaClienteRequest;
+use App\Repositories\PaginaClienteRepository;
 
-class PaginaProdutoController extends Controller
+class PaginaClienteController extends Controller
 {
     /**
-     * @var PaginaProdutoRepository
+     * @var PaginaClienteRepository
      */
     private $repository;
 
     /**
      * PaginaController constructor.
      */
-    public function __construct(PaginaProdutoRepository $repository)
+    public function __construct(PaginaClienteRepository $repository)
     {
         $this->repository = $repository;
     }
@@ -49,7 +49,7 @@ class PaginaProdutoController extends Controller
         );
     }
 
-    public function update(PaginaProdutoRequest $request, $id)
+    public function update(PaginaClienteRequest $request, $id)
     {
         $entity = $this->repository->find($id);
 
@@ -65,7 +65,7 @@ class PaginaProdutoController extends Controller
         );
     }
 
-    public function create(PaginaProdutoRequest $request)
+    public function create(PaginaClienteRequest $request)
     {
         $data = $request->all();
 
@@ -83,7 +83,7 @@ class PaginaProdutoController extends Controller
     {
         $file = $request->file('file');
 
-        $path = "img/pagina/produto";
+        $path = "img/pagina/cliente";
 
         $ext = $file->getClientOriginalExtension();
         $fileName = random_int(1111,9999) .'.'.$ext;

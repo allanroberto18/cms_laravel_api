@@ -2,7 +2,6 @@
 
 namespace App\Providers;
 
-use App\Models\PaginaVideo;
 use App\Repositories\BannerRepository;
 use App\Repositories\BannerRepositoryEloquent;
 use App\Repositories\ConfigRepository;
@@ -19,6 +18,8 @@ use App\Repositories\NoticiaRepository;
 use App\Repositories\NoticiaRepositoryEloquent;
 use App\Repositories\PaginaCaracteristicaRepository;
 use App\Repositories\PaginaCaracteristicaRepositoryEloquent;
+use App\Repositories\PaginaClienteRepository;
+use App\Repositories\PaginaClienteRepositoryEloquent;
 use App\Repositories\PaginaDepoimentoRepository;
 use App\Repositories\PaginaDepoimentoRepositoryEloquent;
 use App\Repositories\PaginaGaleriaFotoRepository;
@@ -72,6 +73,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             DownloadRepository::class,
             DownloadRepositoryEloquent::class
+        );
+        $this->app->bind(
+            PaginaClienteRepository::class,
+            PaginaClienteRepositoryEloquent::class
         );
         $this->app->bind(
             FaleConoscoRepository::class,

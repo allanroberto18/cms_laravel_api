@@ -74,6 +74,14 @@ Route::group(['prefix' => 'angular', 'middleware' => 'cors', 'as' => 'angular.',
             Route::put('atualizar/{id}', 'PaginaCaracteristicaController@update')->name('update');
         });
 
+        Route::group(['prefix' => 'cliente', 'as' => 'cliente.'], function(){
+            Route::get('{paginaId}', 'PaginaClienteController@index')->name('index');
+            Route::post('remover', 'PaginaClienteController@removeSelected')->name('removeSelected');
+            Route::post('salvar', 'PaginaClienteController@create')->name('create');
+            Route::post('upload', 'PaginaClienteController@upload')->name('upload');
+            Route::put('atualizar/{id}', 'PaginaClienteController@update')->name('update');
+        });
+
         Route::group(['prefix' => 'produto', 'as' => 'produto.'], function(){
             Route::get('{paginaId}', 'PaginaProdutoController@index')->name('index');
             Route::post('remover', 'PaginaProdutoController@removeSelected')->name('removeSelected');

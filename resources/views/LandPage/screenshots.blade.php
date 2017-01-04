@@ -5,7 +5,7 @@
                 <div class="features-list">
                     <h1>Telas do Sistema</h1>
                     <div class="feature-list-carousel">
-                        @for($i = 0; $i < $totalCaracteristicas; $i++)
+                        @for($i = 0; $i < count($caracteristicas); $i++)
                             <div class="feature-list-carousel-item">
                                 @foreach($caracteristicas[$i] as $item)
                                     <div class="single-features-list">

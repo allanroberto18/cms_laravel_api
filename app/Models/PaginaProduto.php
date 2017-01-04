@@ -11,7 +11,7 @@ class PaginaProduto extends Model implements Transformable
     use TransformableTrait;
 
     protected $fillable = [
-        'pagina_id', 'retranca', 'titulo', 'slug', 'resumo', 'texto', 'credito', 'legenda', 'imagem_capa', 'imagem_pagina', 'destaque','status'
+        'pagina_id', 'retranca', 'titulo', 'slug', 'resumo', 'texto', 'credito', 'legenda', 'imagem_capa', 'imagem_pagina', 'destaque', 'status'
     ];
 
     public function setTituloAttribute($value)

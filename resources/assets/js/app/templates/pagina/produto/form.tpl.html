@@ -71,7 +71,7 @@
                     </label>
                     <input type="file" name="file" onchange="angular.element(this).scope().upload(files, 1)" accept="image/*"/>
                     <div class="mt mb" ng-if="entity.imagem_capa" ng-class="thumbnail">
-                        <img src="img/pagina/segmento/{{entity.imagem_capa}}" class="img-responsive">
+                        <img src="img/pagina/produto/{{entity.imagem_capa}}" class="img-responsive">
                     </div>
                     <div class="help-block" ng-show="errors.imagem[0]">
                         <div ng-show="errors.imagem[0]">
@@ -86,7 +86,7 @@
                     </label>
                     <input type="file" name="file" onchange="angular.element(this).scope().upload(files, 2)" accept="image/*"/>
                     <div class="mt mb" ng-if="entity.imagem_pagina" ng-class="thumbnail">
-                        <img src="img/pagina/segmento/{{entity.imagem_pagina}}" class="img-responsive">
+                        <img src="img/pagina/produto/{{entity.imagem_pagina}}" class="img-responsive">
                     </div>
                     <div class="help-block" ng-show="errors.imagem[0]">
                         <div ng-show="errors.imagem[0]">

@@ -6,6 +6,7 @@ use App\Repositories\BannerRepository;
 use App\Repositories\ConfigRepository;
 use App\Repositories\MenuRepository;
 use App\Repositories\NoticiaRepository;
+use App\Repositories\PaginaClienteRepository;
 use App\Repositories\PaginaRepository;
 use App\Repositories\PaginaProdutoRepository;
 use App\Repositories\PaginaVideoRepository;
@@ -16,11 +17,16 @@ class LandPageController extends Controller
 {
     private $sobreNosRepository, $configRepository, $paginaRepository, $videoRepository, $paginaProdutoRepository,
         $noticiaRepository, $menuRepository, $bannerRepository;
+    /**
+     * @var PaginaClienteRepository
+     */
+    private $clienteRepository;
 
     public function __construct(SobreNosRepository $sobreNosRepository, ConfigRepository $configRepository,
                                 PaginaRepository $paginaRepository, PaginaVideoRepository $videoRepository,
                                 PaginaProdutoRepository $paginaProdutoRepository, NoticiaRepository $noticiaRepository,
-                                MenuRepository $menuRepository, BannerRepository $bannerRepository
+                                MenuRepository $menuRepository, BannerRepository $bannerRepository,
+                                PaginaClienteRepository $clienteRepository
     )
     {
         $this->sobreNosRepository = $sobreNosRepository;
@@ -31,6 +37,7 @@ class LandPageController extends Controller
         $this->noticiaRepository = $noticiaRepository;
         $this->menuRepository = $menuRepository;
         $this->bannerRepository = $bannerRepository;
+        $this->clienteRepository = $clienteRepository;
     }
 
     public function index()
@@ -54,12 +61,14 @@ class LandPageController extends Controller
 
             $caracteristicas = $this->makeSlider($this->processCaracteristicas($pagina));
 
-            $totalCaracteristicas = count($caracteristicas);
-
             $video = $this->videoRepository->findByField('pagina_id', $pagina->id)->last();
 
+            $destaque = $this->paginaProdutoRepository->findWhere(['pagina_id' => $pagina->id, 'destaque' => 1])->last();
+
+            $clientes = $this->clienteRepository->findWhere(['status' => 1]);
+
             $produtos = $this->paginaProdutoRepository->scopeQuery(function ($q) use ($pagina) {
-                return $q->where(['pagina_id' => $pagina->id])->orderBy('created_at', 'DESC');
+                return $q->where(['pagina_id' => $pagina->id, 'destaque' => 0])->orderBy('created_at', 'DESC');
             })->paginate(3);
 
             $noticias = $this->noticiaRepository->scopeQuery(function ($q) use ($pagina) {
@@ -73,12 +82,13 @@ class LandPageController extends Controller
                 'config',
                 'pagina',
                 'caracteristicas',
-                'totalCaracteristicas',
+                'destaque',
                 'produtos',
                 'noticias',
                 'video',
                 'menu',
-                'banners'
+                'banners',
+                'clientes'
             ));
         } catch (\Exception $ex) {
             return view('LandPage.construcao');
@@ -102,13 +112,15 @@ class LandPageController extends Controller
 
             $caracteristicas = $this->makeSlider($this->processCaracteristicas($pagina));
 
-            $totalCaracteristicas = count($caracteristicas);
-
             $video = $this->videoRepository->findByField('pagina_id', $pagina->id)->last();
 
+            $destaque = $this->paginaProdutoRepository->findWhere(['pagina_id' => $pagina->id, 'destaque' => 1])->last();
+
             $produtos = $this->paginaProdutoRepository->scopeQuery(function ($q) use ($pagina) {
-                return $q->where(['pagina_id' => $pagina->id])->orderBy('created_at', 'DESC');
+                return $q->where(['pagina_id' => $pagina->id, 'destaque' => 0])->orderBy('created_at', 'DESC');
             })->paginate(3);
+
+            $clientes = $this->clienteRepository->findWhere(['status' => 1]);
 
             $noticias = $this->noticiaRepository->scopeQuery(function ($q) use ($pagina) {
                 return $q->where(['status' => 1])->orderBy('created_at', 'DESC');
@@ -121,12 +133,13 @@ class LandPageController extends Controller
                 'config',
                 'pagina',
                 'caracteristicas',
-                'totalCaracteristicas',
+                'destaque',
                 'produtos',
                 'noticias',
                 'video',
                 'menu',
-                'banners'
+                'banners',
+                'clientes'
             ));
         } catch (\Exception $ex) {
             dd($ex->getMessage());
@@ -156,6 +169,6 @@ class LandPageController extends Controller
         if ($total == 0) {
             return;
         }
-        return array_chunk($caracteristicas, 3);
+        return array_chunk($caracteristicas, 4);
     }
 }

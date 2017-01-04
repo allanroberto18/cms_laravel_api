@@ -62,7 +62,7 @@
             </li>
             <li ng-class="{ active: isActive('/pagina')}">
                 <a ng-click="go('/pagina')">
-                    <i class="fa fa-file-text-o"></i> <span>Página de Conteúdo</span>
+                    <i class="fa fa-file-text-o"></i> <span>Páginas dos Segmentos</span>
                 </a>
             </li>
             <li>

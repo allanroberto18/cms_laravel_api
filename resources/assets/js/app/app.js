@@ -35,6 +35,7 @@ var NoticiaController = require('./controllers/NoticiaController');
 var PaginaController = require('./controllers/PaginaController');
 var PaginaCaracteristicaController = require('./controllers/PaginaCaracteristicaController');
 var PaginaProdutoController = require('./controllers/PaginaProdutoController');
+var PaginaClienteController = require('./controllers/PaginaClienteController');
 var PaginaProdutoCaracteristicaController = require('./controllers/PaginaProdutoCaracteristicaController');
 var PaginaVideoController = require('./controllers/PaginaVideoController');
 var SobreNosController = require('./controllers/SobreNosController');
@@ -196,6 +197,7 @@ angular.module('app').controller('NoticiaController', ['$scope', '$log', '$uibMo
 angular.module('app').controller('PaginaController', ['$scope', '$log', '$uibModal', 'ClientAPIService', 'ImageService', PaginaController]);
 angular.module('app').controller('PaginaCaracteristicaController', ['$scope', '$log', '$uibModal', 'ClientAPIService', PaginaCaracteristicaController]);
 angular.module('app').controller('PaginaProdutoController', ['$scope', '$log', '$uibModal', 'ClientAPIService', 'ImageService', PaginaProdutoController]);
+angular.module('app').controller('PaginaClienteController', ['$scope', '$log', '$uibModal', 'ClientAPIService', 'ImageService', PaginaClienteController]);
 angular.module('app').controller('PaginaProdutoCaracteristicaController', ['$scope', '$log', '$uibModal', 'ClientAPIService', PaginaProdutoCaracteristicaController]);
 angular.module('app').controller('PaginaVideoController', ['$scope', '$log', '$uibModal', 'ClientAPIService', PaginaVideoController]);
 angular.module('app').controller('SobreNosController', ['$scope', '$log', '$uibModal', 'ClientAPIService', SobreNosController]);

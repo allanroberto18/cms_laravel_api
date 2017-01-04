@@ -88,13 +88,15 @@ class PaginaController extends Controller
 
             $caracteristicas = $this->makeSlider($this->processCaracteristicas($pagina));
 
-            $totalCaracteristicas = count($caracteristicas);
-
             $video = $this->videoRepository->findByField('pagina_id', $pagina->id)->last();
 
-            $produtos = $this->paginaProdutoRepository->scopeQuery(function($q) use ($pagina) {
-                return $q->where(['pagina_id' => $pagina->id])->orderBy('created_at', 'DESC');
+            $destaque = $this->paginaProdutoRepository->findWhere(['pagina_id' => $pagina->id, 'destaque' => 1])->last();
+
+            $produtos = $this->paginaProdutoRepository->scopeQuery(function ($q) use ($pagina) {
+                return $q->where(['pagina_id' => $pagina->id, 'destaque' => 0])->orderBy('created_at', 'DESC');
             })->paginate(3);
+
+            $clientes = $this->clienteRepository->findWhere(['status' => 1]);
 
             $noticias = $this->noticiaRepository->scopeQuery(function($q) use ($pagina) {
                 return $q->where(['status' => 1])->orderBy('created_at', 'DESC');
@@ -103,8 +105,8 @@ class PaginaController extends Controller
             $banners = $this->bannerRepository->findWhere(['status' => 1]);
 
             return view('LandPage.index', compact(
-                'sobreNos', 'config', 'pagina', 'caracteristicas', 'totalCaracteristicas', 'produtos', 'noticias',
-                'video', 'menu', 'banners'
+                'sobreNos', 'config', 'pagina', 'caracteristicas', 'destaque', 'produtos', 'noticias',
+                'video', 'menu', 'banners', 'clientes'
             ));
         } catch (\Exception $ex) {
             return view('LandPage.construcao');

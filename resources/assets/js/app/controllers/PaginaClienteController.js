@@ -2,7 +2,7 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
 
     $scope.modulo = {
         title: 'Gerenciar Módulo',
-        subtitle: 'Páginas dos Segmentos'
+        subtitle: 'Clientes do Segmento'
     };
 
     $scope.title = '';
@@ -12,39 +12,28 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
     $scope.loadForm = false;
 
     $scope.items = {};
-    $scope.total = 0;
-    $scope.perPage = 10;
-    $scope.pagination = {
-        current: 1
-    };
-
     $scope.itemsSelectedAll = false;
 
     $scope.errors = '';
     $scope.message = '';
 
     $scope.token = '';
-    $scope.imagem = '';
+    $scope.pagina = '';
     $scope.entity = {};
     $scope.animationsEnabled = true;
 
-    $scope.pageChanged = function (page) {
-        list(page);
-    };
-
-    var list = function (page) {
+    var list = function () {
         $scope.loadList = true;
-        ClientAPIService.getList('pagina', page)
+        ClientAPIService.getLoad('pagina/cliente/' + $scope.pagina)
             .then(function (result) {
                 $scope.items = result.data;
-
-                $scope.total = result.data.meta.pagination.total;
             })
         $scope.loadList = false;
     };
 
-    $scope.init = function () {
-        list(1);
+    $scope.init = function (pagina) {
+        $scope.pagina = pagina;
+        list();
     }
 
     $scope.getToken = function () {
@@ -70,7 +59,6 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
 
             return;
         }
-        $scope.imagem = '';
     };
 
     $scope.new = function () {
@@ -79,24 +67,21 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
         $scope.edit(true);
 
         $scope.entity = {
-            retranca: '',
-            titulo: '',
-            resumo: '',
-            texto: '',
-            credito: 'Divulgação',
-            legenda: '',
-            imagem: ''
+            pagina_id: $scope.pagina,
+            nome: '',
+            imagem: '',
+            status: ''
         };
     };
 
     $scope.load = function (entity) {
         $scope.title = 'Alterar Registro #' + entity.id;
 
+        $log.info(entity);
+
         $scope.entity = entity;
 
         $scope.edit(true);
-
-        $scope.imagem = entity.imagem;
     };
 
     $scope.closeMessage = function () {
@@ -131,7 +116,7 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
     };
 
     $scope.delete = function (key, entity) {
-        var modulo = 'pagina/remover';
+        var modulo = 'pagina/cliente/remover';
 
         var modalInstance = $uibModal.open({
             animation: true,
@@ -209,7 +194,7 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
             });
 
             if (selecteds.length > 0) {
-                ClientAPIService.getDelete('pagina/remover', selecteds)
+                ClientAPIService.getDelete('pagina/cliente/remover', selecteds)
                     .then(function (data, status) {
                         $scope.itemsSelectedAll = false;
                         $scope.message = data.data;
@@ -223,10 +208,8 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
     $scope.save = function (entity) {
         $scope.loadForm = true;
 
-        entity.imagem = $scope.imagem;
-
         if (entity.id) {
-            ClientAPIService.getPut('pagina/atualizar/' + entity.id, entity)
+            ClientAPIService.getPut('pagina/cliente/atualizar/' + entity.id, entity)
                 .then(function (data, status) {
                     $scope.message = data.data;
 
@@ -243,7 +226,7 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
             return;
         }
 
-        ClientAPIService.getPost('pagina/salvar', entity)
+        ClientAPIService.getPost('pagina/cliente/salvar', entity)
             .then(function (data, status) {
                 entity.id = data.id;
 
@@ -268,7 +251,7 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
         var fd = new FormData();
         fd.append('file', imagem[0]);
 
-        ImageService.post(fd, 'pagina/upload')
+        ImageService.post(fd, 'pagina/cliente/upload')
             .then(function (data) {
                 $scope.imagem = data.data;
             });

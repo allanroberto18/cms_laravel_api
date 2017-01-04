@@ -119,3 +119,10 @@ $factory->define(\App\Models\Menu::class, function(Faker\Generator $faker){
         'status' => 1
     ];
 });
+
+$factory->define(\App\Models\PaginaCliente::class, function(Faker\Generator $faker){
+    return [
+        'nome' => $faker->word,
+        'imagem' => 'logo.png',
+    ];
+});
