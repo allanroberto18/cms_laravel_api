@@ -85,6 +85,7 @@ elixir(function (mix) {
             tema + 'main.js'
         ], 'public/js/tema.js');
 
+    mix.copy(assets + 'css/nivo-slider/img', 'public/img');
     mix.copy(admin + 'dist/img', 'public/dist/img');
     mix.copy(node + 'fancybox/dist/img', 'public/img');
     mix.copy(assets + 'fonts', 'public/fonts');

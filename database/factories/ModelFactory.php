@@ -75,17 +75,20 @@ $factory->define(\App\Models\PaginaVideo::class, function (Faker\Generator $fake
     ];
 });
 
-$factory->define(\App\Models\PaginaSegmento::class, function (Faker\Generator $faker) {
+$factory->define(\App\Models\PaginaProduto::class, function (Faker\Generator $faker) {
     $titulo = $faker->sentence;
 
     return [
+        'retranca' => $faker->word,
         'titulo' => $titulo,
         'slug' => str_slug($titulo),
+        'resumo' => $faker->paragraph,
         'texto' => $faker->text,
         'credito' => 'Divulgação',
         'legenda' => $faker->sentence,
         'imagem_capa' => '3007.png',
         'imagem_pagina' => '1832.png',
+        'destaque'  => 0,
     ];
 });
 

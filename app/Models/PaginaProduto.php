@@ -6,12 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
-class PaginaSegmento extends Model implements Transformable
+class PaginaProduto extends Model implements Transformable
 {
     use TransformableTrait;
 
     protected $fillable = [
-        'pagina_id', 'titulo', 'slug', 'texto', 'credito', 'legenda', 'imagem_capa', 'imagem_pagina', 'status'
+        'pagina_id', 'retranca', 'titulo', 'slug', 'resumo', 'texto', 'credito', 'legenda', 'imagem_capa', 'imagem_pagina', 'destaque','status'
     ];
 
     public function setTituloAttribute($value)
@@ -27,6 +27,6 @@ class PaginaSegmento extends Model implements Transformable
 
     public function caracteristicas()
     {
-        return $this->hasMany(PaginaSegmentoCaracteristica::class, 'pagina_segmento_id', 'id');
+        return $this->hasMany(PaginaProdutoCaracteristica::class, 'pagina_produto_id', 'id');
     }
 }

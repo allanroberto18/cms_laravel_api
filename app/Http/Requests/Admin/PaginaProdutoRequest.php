@@ -4,7 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PaginaSegmentoCaracteristicaRequest extends FormRequest
+class PaginaProdutoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,19 +24,22 @@ class PaginaSegmentoCaracteristicaRequest extends FormRequest
     public function rules()
     {
         return [
-            'icone' => 'required',
-            'titulo' => 'required|max:50',
-            'descricao' => 'required|max:130',
+            'retranca' => 'required',
+            'titulo' => 'required',
+            'texto' => 'required',
+            'credito' => 'required',
+            'legenda' => 'required',
         ];
     }
 
     public function attributes()
     {
-        return
-        [
-            'icone' => 'Icone',
+        return [
+            'retranca' => 'Retranca',
             'titulo' => 'Título',
-            'descricao' => 'Nome',
+            'texto' => 'Texto',
+            'credito' => 'Crédito da Foto',
+            'legenda' => 'Legenda da Foto',
         ];
     }
 }

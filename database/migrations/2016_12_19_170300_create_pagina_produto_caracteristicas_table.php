@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePaginaSegmentoCaracteristicasTable extends Migration
+class CreatePaginaProdutoCaracteristicasTable extends Migration
 {
 
 	/**
@@ -13,10 +13,10 @@ class CreatePaginaSegmentoCaracteristicasTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('pagina_segmento_caracteristicas', function(Blueprint $table) {
+		Schema::create('pagina_produto_caracteristicas', function(Blueprint $table) {
             $table->increments('id');
-            $table->integer('pagina_segmento_id')->unsigned();
-            $table->foreign('pagina_segmento_id')->references('id')->on('pagina_segmentos');
+            $table->integer('pagina_produto_id')->unsigned();
+            $table->foreign('pagina_produto_id')->references('id')->on('pagina_produtos');
             $table->string('icone');
             $table->string('titulo', 50);
             $table->string('descricao', 130);
@@ -32,7 +32,7 @@ class CreatePaginaSegmentoCaracteristicasTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::drop('pagina_segmento_caracteristicas');
+		Schema::drop('pagina_produto_caracteristicas');
 	}
 
 }

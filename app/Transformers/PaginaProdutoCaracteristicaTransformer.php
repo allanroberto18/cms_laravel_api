@@ -3,22 +3,22 @@
 namespace App\Transformers;
 
 use League\Fractal\TransformerAbstract;
-use App\Models\PaginaSegmentoCaracteristica;
+use App\Models\PaginaProdutoCaracteristica;
 
 /**
- * Class PaginaSegmentoCaracteristicaTransformer
+ * Class PaginaProdutoCaracteristicaTransformer
  * @package namespace App\Transformers;
  */
-class PaginaSegmentoCaracteristicaTransformer extends TransformerAbstract
+class PaginaProdutoCaracteristicaTransformer extends TransformerAbstract
 {
 
     /**
-     * Transform the \PaginaSegmentoCaracteristica entity
-     * @param \PaginaSegmentoCaracteristica $model
+     * Transform the \PaginaProdutoCaracteristica entity
+     * @param \PaginaProdutoCaracteristica $model
      *
      * @return array
      */
-    public function transform(PaginaSegmentoCaracteristica $model)
+    public function transform(PaginaProdutoCaracteristica $model)
     {
         return [
             'id' => (int)$model->id,

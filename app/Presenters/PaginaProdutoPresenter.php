@@ -2,15 +2,15 @@
 
 namespace App\Presenters;
 
-use App\Transformers\PaginaSegmentoTransformer;
+use App\Transformers\PaginaProdutoTransformer;
 use Prettus\Repository\Presenter\FractalPresenter;
 
 /**
- * Class PaginaSegmentoPresenter
+ * Class PaginaProdutoPresenter
  *
  * @package namespace App\Presenters;
  */
-class PaginaSegmentoPresenter extends FractalPresenter
+class PaginaProdutoPresenter extends FractalPresenter
 {
     /**
      * Transformer
@@ -19,6 +19,6 @@ class PaginaSegmentoPresenter extends FractalPresenter
      */
     public function getTransformer()
     {
-        return new PaginaSegmentoTransformer();
+        return new PaginaProdutoTransformer();
     }
 }

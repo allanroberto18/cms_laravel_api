@@ -27,10 +27,10 @@ use App\Repositories\PaginaGaleriaRepository;
 use App\Repositories\PaginaGaleriaRepositoryEloquent;
 use App\Repositories\PaginaRepository;
 use App\Repositories\PaginaRepositoryEloquent;
-use App\Repositories\PaginaSegmentoCaracteristicaRepository;
-use App\Repositories\PaginaSegmentoCaracteristicaRepositoryEloquent;
-use App\Repositories\PaginaSegmentoRepository;
-use App\Repositories\PaginaSegmentoRepositoryEloquent;
+use App\Repositories\PaginaProdutoCaracteristicaRepository;
+use App\Repositories\PaginaProdutoCaracteristicaRepositoryEloquent;
+use App\Repositories\PaginaProdutoRepository;
+use App\Repositories\PaginaProdutoRepositoryEloquent;
 use App\Repositories\PaginaVideoRepository;
 use App\Repositories\PaginaVideoRepositoryEloquent;
 use App\Repositories\SobreNosRepository;
@@ -106,12 +106,12 @@ class AppServiceProvider extends ServiceProvider
             PaginaGaleriaFotoRepositoryEloquent::class
         );
         $this->app->bind(
-            PaginaSegmentoRepository::class,
-            PaginaSegmentoRepositoryEloquent::class
+            PaginaProdutoRepository::class,
+            PaginaProdutoRepositoryEloquent::class
         );
         $this->app->bind(
-            PaginaSegmentoCaracteristicaRepository::class,
-            PaginaSegmentoCaracteristicaRepositoryEloquent::class
+            PaginaProdutoCaracteristicaRepository::class,
+            PaginaProdutoCaracteristicaRepositoryEloquent::class
         );
         $this->app->bind(
             PaginaVideoRepository::class,

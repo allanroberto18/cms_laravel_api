@@ -3,32 +3,31 @@
 namespace App\Http\Controllers\Angular;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\UploadRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
-use App\Http\Requests\Admin\PaginaSegmentoRequest;
-use App\Repositories\PaginaSegmentoRepository;
+use App\Http\Requests\Admin\PaginaProdutoCaracteristicaRequest;
+use App\Repositories\PaginaProdutoCaracteristicaRepository;
 
-class PaginaSegmentoController extends Controller
+class PaginaProdutoCaracteristicaController extends Controller
 {
     /**
-     * @var PaginaSegmentoRepository
+     * @var PaginaProdutoCaracteristicaRepository
      */
     private $repository;
 
     /**
      * PaginaController constructor.
      */
-    public function __construct(PaginaSegmentoRepository $repository)
+    public function __construct(PaginaProdutoCaracteristicaRepository $repository)
     {
         $this->repository = $repository;
     }
 
-    public function index($paginaId)
+    public function index($paginaProdutoId)
     {
-        return $this->repository->scopeQuery(function ($q) use ($paginaId) {
+        return $this->repository->scopeQuery(function ($q) use ($paginaProdutoId) {
             return $q->where([
-                'pagina_id' => $paginaId,
+                'pagina_segmento_id' => $paginaProdutoId,
                 'status' => 1
             ])->orderBy('id', 'desc');
         })->skipPresenter(false)->all();
@@ -49,7 +48,7 @@ class PaginaSegmentoController extends Controller
         );
     }
 
-    public function update(PaginaSegmentoRequest $request, $id)
+    public function update(PaginaProdutoCaracteristicaRequest $request, $id)
     {
         $entity = $this->repository->find($id);
 
@@ -65,7 +64,7 @@ class PaginaSegmentoController extends Controller
         );
     }
 
-    public function create(PaginaSegmentoRequest $request)
+    public function create(PaginaProdutoCaracteristicaRequest $request)
     {
         $data = $request->all();
 
@@ -77,19 +76,6 @@ class PaginaSegmentoController extends Controller
                 "id" => $entity->id
             ]
         );
-    }
-
-    public function upload(UploadRequest $request)
-    {
-        $file = $request->file('file');
-
-        $path = "img/pagina/segmento";
-
-        $ext = $file->getClientOriginalExtension();
-        $fileName = random_int(1111,9999) .'.'.$ext;
-        $file->move($path, $fileName);
-
-        return $fileName;
     }
 
     public function removeSelected(Request $request)

@@ -1,4 +1,4 @@
-<div ng-controller="PaginaSegmentoController" ng-init="init(item.id)">
+<div ng-controller="PaginaProdutoCaracteristicaController" ng-init="init(item.id)">
     <script type="text/ng-template" id="modal.tpl.html">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -26,6 +26,6 @@
     <alert-msg ng-show="message" ng-click="closeMessage()" title="Mensagem:">
         {{ message.data }}
     </alert-msg>
-    <div ng-include="'js/app/templates/pagina/segmento/form.tpl.html'"></div>
-    <div ng-include="'js/app/templates/pagina/segmento/list.tpl.html'"></div>
+    <div ng-include="'js/app/templates/pagina/produto/caracteristica/form.tpl.html'"></div>
+    <div ng-include="'js/app/templates/pagina/produto/caracteristica/list.tpl.html'"></div>
 </div>

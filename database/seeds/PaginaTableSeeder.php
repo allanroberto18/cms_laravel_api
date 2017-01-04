@@ -30,7 +30,12 @@ class PaginaTableSeeder extends Seeder
             'pagina_id' => $pagina->id
         ]);
 
-        factory(\App\Models\PaginaSegmento::class, 3)->create([
+        factory(\App\Models\PaginaProduto::class, 1)->create([
+            'pagina_id' => $pagina->id,
+            'destaque' => 1
+        ]);
+
+        factory(\App\Models\PaginaProduto::class, 3)->create([
             'pagina_id' => $pagina->id
         ]);
 

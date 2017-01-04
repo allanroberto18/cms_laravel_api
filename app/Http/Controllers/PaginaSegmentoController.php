@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\ConfigRepository;
-use App\Repositories\PaginaSegmentoRepository;
+use App\Repositories\PaginaProdutoRepository;
 use Illuminate\Http\Request;
 
-class PaginaSegmentoController extends Controller
+class PaginaProdutoController extends Controller
 {
     /**
      * @var ConfigRepository
@@ -16,9 +16,9 @@ class PaginaSegmentoController extends Controller
     private $noticiaRepository;
 
     /**
-     * SegmentoController constructor.
+     * ProdutoController constructor.
      */
-    public function __construct(PaginaSegmentoRepository $noticiaRepository, ConfigRepository $configRepository)
+    public function __construct(PaginaProdutoRepository $noticiaRepository, ConfigRepository $configRepository)
     {
         $this->noticiaRepository = $noticiaRepository;
         $this->configRepository = $configRepository;

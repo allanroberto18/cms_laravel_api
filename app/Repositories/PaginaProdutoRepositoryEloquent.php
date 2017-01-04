@@ -2,17 +2,17 @@
 
 namespace App\Repositories;
 
-use App\Presenters\PaginaSegmentoPresenter;
+use App\Presenters\PaginaProdutoPresenter;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use App\Models\PaginaSegmento;
-use App\Validators\PaginaSegmentoValidator;
+use App\Models\PaginaProduto;
+use App\Validators\PaginaProdutoValidator;
 
 /**
- * Class PaginaSegmentoRepositoryEloquent
+ * Class PaginaProdutoRepositoryEloquent
  * @package namespace App\Repositories;
  */
-class PaginaSegmentoRepositoryEloquent extends BaseRepository implements PaginaSegmentoRepository
+class PaginaProdutoRepositoryEloquent extends BaseRepository implements PaginaProdutoRepository
 {
     protected $skipPresenter = true;
 
@@ -23,12 +23,12 @@ class PaginaSegmentoRepositoryEloquent extends BaseRepository implements PaginaS
      */
     public function model()
     {
-        return PaginaSegmento::class;
+        return PaginaProduto::class;
     }
 
     public function presenter()
     {
-        return PaginaSegmentoPresenter::class;
+        return PaginaProdutoPresenter::class;
     }
 
     /**

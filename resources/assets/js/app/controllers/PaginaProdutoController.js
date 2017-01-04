@@ -1,8 +1,8 @@
-module.exports = function ($scope, $log, $uibModal, ClientAPIService) {
+module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageService) {
 
     $scope.modulo = {
         title: 'Gerenciar Módulo',
-        subtitle: 'Características do Segmento'
+        subtitle: 'Produtos'
     };
 
     $scope.title = '';
@@ -10,43 +10,29 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService) {
     $scope.loadList = '';
     $scope.showForm = false;
     $scope.loadForm = false;
-    $scope.segmento = '';
-    $scope.items = {};
 
+    $scope.items = {};
     $scope.itemsSelectedAll = false;
 
     $scope.errors = '';
     $scope.message = '';
 
     $scope.token = '';
-    $scope.icones = {};
+    $scope.pagina = '';
     $scope.entity = {};
     $scope.animationsEnabled = true;
 
     var list = function () {
         $scope.loadList = true;
-        ClientAPIService.getLoad('pagina/segmento/caracteristica/' + $scope.segmento)
+        ClientAPIService.getLoad('pagina/produto/' + $scope.pagina)
             .then(function (result) {
                 $scope.items = result.data;
-            });
+            })
         $scope.loadList = false;
     };
 
-    $scope.all = function () {
-        list();
-    };
-
-    $scope.getIcones = function () {
-        ClientAPIService.getLoad('sobre_nos/icones')
-            .then(function (result, status) {
-                $scope.icones = result.data;
-            });
-    };
-
-    $scope.init = function (segmento) {
-        $scope.segmento = segmento;
-        $scope.getIcones();
-
+    $scope.init = function (pagina) {
+        $scope.pagina = pagina;
         list();
     }
 
@@ -70,25 +56,31 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService) {
             $scope.column = 'col-xs-12 col-sm-12 col-md-6 col-lg-6';
 
             $scope.getToken();
+
+            return;
         }
-        return;
     };
 
     $scope.new = function () {
         $scope.title = 'Novo Registro';
 
-        $scope.entity = {
-            pagina_segmento_id: $scope.segmento,
-            icone: '',
-            titulo: '',
-            descricao: ''
-        };
-
         $scope.edit(true);
+
+        $scope.entity = {
+            pagina_id: $scope.pagina,
+            titulo: '',
+            texto: '',
+            credito: 'Divulgação',
+            legenda: '',
+            imagem_capa: '',
+            imagem_pagina: ''
+        };
     };
 
     $scope.load = function (entity) {
         $scope.title = 'Alterar Registro #' + entity.id;
+
+        $log.info(entity);
 
         $scope.entity = entity;
 
@@ -127,7 +119,7 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService) {
     };
 
     $scope.delete = function (key, entity) {
-        var modulo = 'pagina/segmento/caracteristica/remover';
+        var modulo = 'pagina/produto/remover';
 
         var modalInstance = $uibModal.open({
             animation: true,
@@ -161,17 +153,16 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService) {
                     $scope.loadList = false;
 
                     if ($scope.items.data.length == 0) {
-                        list($scope.items.data.meta.segmentotion.current_page);
+                        list($scope.items.data.meta.pagination.current_page);
                     }
 
                     $scope.entity = {};
                 })
                 .then(function (data, status) {
-                        if (status == 422) {
-                            $scope.errors = data.data;
-                        }
+                    if (status == 422) {
+                        $scope.errors = data.data;
                     }
-                );
+                });
         });
     };
 
@@ -206,12 +197,12 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService) {
             });
 
             if (selecteds.length > 0) {
-                ClientAPIService.getDelete('pagina/segmento/caracteristica/remover', selecteds)
+                ClientAPIService.getDelete('pagina/produto/remover', selecteds)
                     .then(function (data, status) {
                         $scope.itemsSelectedAll = false;
                         $scope.message = data.data;
 
-                        list($scope.items.data.meta.segmentotion.current_page);
+                        list($scope.items.data.meta.pagination.current_page);
                     });
             }
         });
@@ -221,7 +212,7 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService) {
         $scope.loadForm = true;
 
         if (entity.id) {
-            ClientAPIService.getPut('pagina/segmento/caracteristica/atualizar/' + entity.id, entity)
+            ClientAPIService.getPut('pagina/produto/atualizar/' + entity.id, entity)
                 .then(function (data, status) {
                     $scope.message = data.data;
 
@@ -237,9 +228,9 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService) {
             $scope.loadForm = false;
             return;
         }
-        ClientAPIService.getPost('pagina/segmento/caracteristica/salvar', entity)
-            .then(function (data, status) {
 
+        ClientAPIService.getPost('pagina/produto/salvar', entity)
+            .then(function (data, status) {
                 entity.id = data.id;
 
                 $scope.message = data.data;
@@ -258,4 +249,18 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService) {
         $scope.loadForm = false;
         return;
     };
+
+    $scope.upload = function (imagem, tipo) {
+        var fd = new FormData();
+        fd.append('file', imagem[0]);
+
+        ImageService.post(fd, 'pagina/produto/upload')
+            .then(function (data) {
+                if (tipo === 1) {
+                    $scope.entity.imagem_capa = data.data;
+                    return;
+                }
+                $scope.entity.imagem_pagina = data.data;
+            });
+    }
 };

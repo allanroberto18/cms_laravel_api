@@ -7,19 +7,19 @@ use App\Repositories\ConfigRepository;
 use App\Repositories\MenuRepository;
 use App\Repositories\NoticiaRepository;
 use App\Repositories\PaginaRepository;
-use App\Repositories\PaginaSegmentoRepository;
+use App\Repositories\PaginaProdutoRepository;
 use App\Repositories\PaginaVideoRepository;
 use App\Repositories\SobreNosRepository;
 use Illuminate\Http\Request;
 
 class LandPageController extends Controller
 {
-    private $sobreNosRepository, $configRepository, $paginaRepository, $videoRepository, $paginaSegmentoRepository,
+    private $sobreNosRepository, $configRepository, $paginaRepository, $videoRepository, $paginaProdutoRepository,
         $noticiaRepository, $menuRepository, $bannerRepository;
 
     public function __construct(SobreNosRepository $sobreNosRepository, ConfigRepository $configRepository,
                                 PaginaRepository $paginaRepository, PaginaVideoRepository $videoRepository,
-                                PaginaSegmentoRepository $paginaSegmentoRepository, NoticiaRepository $noticiaRepository,
+                                PaginaProdutoRepository $paginaProdutoRepository, NoticiaRepository $noticiaRepository,
                                 MenuRepository $menuRepository, BannerRepository $bannerRepository
     )
     {
@@ -27,7 +27,7 @@ class LandPageController extends Controller
         $this->configRepository = $configRepository;
         $this->paginaRepository = $paginaRepository;
         $this->videoRepository = $videoRepository;
-        $this->paginaSegmentoRepository = $paginaSegmentoRepository;
+        $this->paginaProdutoRepository = $paginaProdutoRepository;
         $this->noticiaRepository = $noticiaRepository;
         $this->menuRepository = $menuRepository;
         $this->bannerRepository = $bannerRepository;
@@ -58,7 +58,7 @@ class LandPageController extends Controller
 
             $video = $this->videoRepository->findByField('pagina_id', $pagina->id)->last();
 
-            $segmentos = $this->paginaSegmentoRepository->scopeQuery(function ($q) use ($pagina) {
+            $segmentos = $this->paginaProdutoRepository->scopeQuery(function ($q) use ($pagina) {
                 return $q->where(['pagina_id' => $pagina->id])->orderBy('created_at', 'DESC');
             })->paginate(3);
 
@@ -106,7 +106,7 @@ class LandPageController extends Controller
 
             $video = $this->videoRepository->findByField('pagina_id', $pagina->id)->last();
 
-            $segmentos = $this->paginaSegmentoRepository->scopeQuery(function ($q) use ($pagina) {
+            $segmentos = $this->paginaProdutoRepository->scopeQuery(function ($q) use ($pagina) {
                 return $q->where(['pagina_id' => $pagina->id])->orderBy('created_at', 'DESC');
             })->paginate(3);
 

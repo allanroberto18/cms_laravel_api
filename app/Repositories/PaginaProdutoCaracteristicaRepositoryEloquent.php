@@ -2,17 +2,17 @@
 
 namespace App\Repositories;
 
-use App\Presenters\PaginaSegmentoCaracteristicaPresenter;
+use App\Presenters\PaginaProdutoCaracteristicaPresenter;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use App\Models\PaginaSegmentoCaracteristica;
-use App\Validators\PaginaSegmentoCaracteristicaValidator;
+use App\Models\PaginaProdutoCaracteristica;
+use App\Validators\PaginaProdutoCaracteristicaValidator;
 
 /**
- * Class PaginaSegmentoCaracteristicaRepositoryEloquent
+ * Class PaginaProdutoCaracteristicaRepositoryEloquent
  * @package namespace App\Repositories;
  */
-class PaginaSegmentoCaracteristicaRepositoryEloquent extends BaseRepository implements PaginaSegmentoCaracteristicaRepository
+class PaginaProdutoCaracteristicaRepositoryEloquent extends BaseRepository implements PaginaProdutoCaracteristicaRepository
 {
     protected $skipPresenter = true;
 
@@ -23,12 +23,12 @@ class PaginaSegmentoCaracteristicaRepositoryEloquent extends BaseRepository impl
      */
     public function model()
     {
-        return PaginaSegmentoCaracteristica::class;
+        return PaginaProdutoCaracteristica::class;
     }
 
     public function presenter()
     {
-        return PaginaSegmentoCaracteristicaPresenter::class;
+        return PaginaProdutoCaracteristicaPresenter::class;
     }
 
     /**

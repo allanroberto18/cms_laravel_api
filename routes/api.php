@@ -74,12 +74,12 @@ Route::group(['prefix' => 'angular', 'middleware' => 'cors', 'as' => 'angular.',
             Route::put('atualizar/{id}', 'PaginaCaracteristicaController@update')->name('update');
         });
 
-        Route::group(['prefix' => 'segmento', 'as' => 'segmento.'], function(){
-            Route::get('{paginaId}', 'PaginaSegmentoController@index')->name('index');
-            Route::post('remover', 'PaginaSegmentoController@removeSelected')->name('removeSelected');
-            Route::post('salvar', 'PaginaSegmentoController@create')->name('create');
-            Route::post('upload', 'PaginaSegmentoController@upload')->name('upload');
-            Route::put('atualizar/{id}', 'PaginaSegmentoController@update')->name('update');
+        Route::group(['prefix' => 'produto', 'as' => 'produto.'], function(){
+            Route::get('{paginaId}', 'PaginaProdutoController@index')->name('index');
+            Route::post('remover', 'PaginaProdutoController@removeSelected')->name('removeSelected');
+            Route::post('salvar', 'PaginaProdutoController@create')->name('create');
+            Route::post('upload', 'PaginaProdutoController@upload')->name('upload');
+            Route::put('atualizar/{id}', 'PaginaProdutoController@update')->name('update');
 
             Route::group(['prefix' => 'caracteristica', 'as' => 'caracteristica.'], function(){
                 Route::get('{paginaId}', 'PaginaSegmentoCaracteristicaController@index')->name('index');

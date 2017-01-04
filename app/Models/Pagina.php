@@ -25,9 +25,9 @@ class Pagina extends Model implements Transformable
         return $this->hasMany(PaginaCaracteristica::class, 'pagina_id', 'id');
     }
 
-    public function segmentos()
+    public function produtos()
     {
-        return $this->hasMany(PaginaSegmento::class, 'pagina_id', 'id');
+        return $this->hasMany(PaginaProdutoSegmento::class, 'pagina_id', 'id');
     }
 
     public function videos()

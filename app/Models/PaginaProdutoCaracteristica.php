@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
-class PaginaSegmentoCaracteristica extends Model implements Transformable
+class PaginaProdutoCaracteristica extends Model implements Transformable
 {
     use TransformableTrait;
 
@@ -16,6 +16,6 @@ class PaginaSegmentoCaracteristica extends Model implements Transformable
 
     public function pagina()
     {
-        return $this->belongsTo(PaginaSegmento::class, 'pagina_segmento_id', 'id');
+        return $this->belongsTo(PaginaProduto::class, 'pagina_produto_id', 'id');
     }
 }
