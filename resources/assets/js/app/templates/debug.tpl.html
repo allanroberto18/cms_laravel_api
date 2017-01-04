@@ -1,0 +1,5 @@
+<li ng-repeat="(key, errors) in form.$error track by $index"> <strong>{{ key }}</strong> errors
+    <ul>
+        <li ng-repeat="e in errors">{{ e.$name }} has an error: <strong>{{ key }}</strong>.</li>
+    </ul>
+</li>

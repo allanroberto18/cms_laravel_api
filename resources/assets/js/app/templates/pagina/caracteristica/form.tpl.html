@@ -1,0 +1,70 @@
+<div ng-show="showForm">
+    <form name="form" novalidate ng-submit="form.$valid && save(entity)">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">
+                    {{ title }}
+                </h3>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" ng-click="close(form)">
+                        <i class="fa fa-close"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="box-body">
+                <input type="hidden" name="_token" value="{{ token }}"/>
+                <input type="hidden" name="pagina" value="{{ pagina }}"/>
+                <div class="form-group" ng-class="{'has-error': form.icone.$touched && form.icone.$error.required }">
+                    <label for="icone">
+                        <i ng-class="{'fa fa-times-circle-o': form.icone.$touched && form.icone.$error.required}"></i>
+                        Icone: <i class="fa" ng-class="entity.icone"></i>
+                    </label>
+                    <select name="icone" class="form-control" ng-model="entity.icone" required>
+                        <option ng-repeat="(key, value) in icones" value="{{key}}">{{value}}</option>
+                    </select>
+                    <div class="help-block" ng-show="form.$submitted || form.icone.$touched">
+                        <div ng-show="form.icone.$error.required">
+                            <i class="fa fa-exclamation-circle"></i> O campo ícone é obrigatório
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{'has-error': form.titulo.$touched && form.titulo.$error.required }">
+                    <label for="titulo">
+                        <i ng-class="{'fa fa-times-circle-o': form.titulo.$touched && form.titulo.$error.required }"></i>
+                        Título:
+                    </label>
+                    <input type="text" name="titulo" class="form-control" ng-model="entity.titulo" required/>
+                    <div class="help-block" ng-show="form.$submitted || form.titulo.$touched">
+                        <div ng-show="form.titulo.$error.required">
+                            <i class="fa fa-exclamation-circle"></i> O campo Título é obrigatório
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{'has-error': form.descricao.$touched && form.descricao.$error.required}">
+                    <label for="descricao">
+                        <i ng-class="{'fa fa-times-circle-o': form.descricao.$touched && form.descricao.$error.required}"></i> Descrição:
+                    </label>
+                    <textarea name="descricao" class="form-control" maxlength="133" rows="3" ng-model="entity.descricao" required></textarea>
+                    <div class="help-block" ng-show="form.$submitted || form.descricao.$touched">
+                        <div ng-show="form.descricao.$error.required">
+                            <i class="fa fa-exclamation-circle"></i> O campo Descrição é obrigatório
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="overlay" ng-show="loadForm">
+                <i class="fa fa-refresh fa-spin"></i>
+            </div>
+            <div class="box-footer">
+                <button type="submit" class="btn btn-primary btn-flat" >
+                    <i class="fa fa-check"></i>
+                    Salvar Registro
+                </button>
+                <button class="btn btn-warning btn-flat" ng-click="cancel(form)">
+                    <i class="fa fa-eraser"></i>
+                    Limpar Formulário
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

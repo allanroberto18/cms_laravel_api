@@ -1,0 +1,105 @@
+<div ng-class="column" ng-show="showForm">
+    <form name="form" novalidate ng-submit="form.$valid && save(entity)">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">
+                    {{ title }}
+                </h3>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" ng-click="close(form)">
+                        <i class="fa fa-close"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="box-body">
+                <input type="hidden" name="_token" value="{{ token }}"/>
+                <input type="hidden" name="pagina" value="{{ pagina }}"/>
+                <div class="form-group" ng-class="{'has-error': form.retranca.$touched && form.retranca.$error.required }">
+                    <label for="retranca">
+                        <i ng-class="{'fa fa-times-circle-o': form.retranca.$touched && form.retranca.$error.required }"></i>
+                        Retranca:
+                    </label>
+                    <input type="text" name="retranca" class="form-control" ng-model="entity.retranca" required/>
+                    <div class="help-block" ng-show="form.$submitted || form.retranca.$touched">
+                        <div ng-show="form.retranca.$error.required">
+                            <i class="fa fa-exclamation-circle"></i> O campo Retranca é obrigatório
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{'has-error': form.titulo.$touched && form.titulo.$error.required }">
+                    <label for="titulo">
+                        <i ng-class="{'fa fa-times-circle-o': form.titulo.$touched && form.titulo.$error.required }"></i>
+                        Título:
+                    </label>
+                    <input type="text" name="titulo" class="form-control" ng-model="entity.titulo" required/>
+                    <div class="help-block" ng-show="form.$submitted || form.titulo.$touched">
+                        <div ng-show="form.titulo.$error.required">
+                            <i class="fa fa-exclamation-circle"></i> O campo Título é obrigatório
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="resumo">
+                        Resumo:
+                    </label>
+                    <textarea name="resumo" class="form-control" maxlength="133" rows="3" ng-model="entity.resumo"></textarea>
+                </div>
+                <div class="form-group" ng-class="{'has-error': form.link.$touched && form.link.$error.required }">
+                    <label for="link">
+                        <i ng-class="{'fa fa-times-circle-o': form.link.$touched && form.link.$error.required }"></i>
+                        Link:
+                    </label>
+                    <input type="text" name="link" class="form-control" ng-model="entity.link" required/>
+                    <div class="help-block" ng-show="form.$submitted || form.link.$touched">
+                        <div ng-show="form.link.$error.required">
+                            <i class="fa fa-exclamation-circle"></i> O campo Link é obrigatório
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{'has-error': errors.imagem[0] }">
+                    <label for="imagem">
+                        <i ng-class="{'fa fa-times-circle-o': errors.imagem[0] }"></i>
+                        Imagem de Destaque:
+                    </label>
+                    <input type="file" name="file" onchange="angular.element(this).scope().upload(files, 1)" accept="image/*"/>
+                    <div class="mt mb" ng-if="entity.imagem_destaque" ng-class="thumbnail">
+                        <img src="img/banner/{{entity.imagem_destaque}}" class="img-responsive">
+                    </div>
+                    <div class="help-block" ng-show="errors.imagem[0]">
+                        <div ng-show="errors.imagem[0]">
+                            <i class="fa fa-exclamation-circle"></i> {{ errors.imagem[0] }}
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{'has-error': errors.imagem[0] }">
+                    <label for="imagem">
+                        <i ng-class="{'fa fa-times-circle-o': errors.imagem[0] }"></i>
+                        Imagem de Fundo:
+                    </label>
+                    <input type="file" name="file" onchange="angular.element(this).scope().upload(files, 2)" accept="image/*"/>
+                    <div class="mt mb" ng-if="entity.imagem_fundo" ng-class="thumbnail">
+                        <img src="img/banner/{{entity.imagem_fundo}}" class="img-responsive">
+                    </div>
+                    <div class="help-block" ng-show="errors.imagem[0]">
+                        <div ng-show="errors.imagem[0]">
+                            <i class="fa fa-exclamation-circle"></i> {{ errors.imagem[0] }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="overlay" ng-show="loadForm">
+                <i class="fa fa-refresh fa-spin"></i>
+            </div>
+            <div class="box-footer">
+                <button type="submit" class="btn btn-primary btn-flat" >
+                    <i class="fa fa-check"></i>
+                    Salvar Registro
+                </button>
+                <button class="btn btn-warning btn-flat" ng-click="cancel(form)">
+                    <i class="fa fa-eraser"></i>
+                    Limpar Formulário
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

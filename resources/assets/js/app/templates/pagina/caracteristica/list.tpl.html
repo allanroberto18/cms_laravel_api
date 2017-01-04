@@ -1,0 +1,71 @@
+<button class="btn btn-primary btn-flat" ng-click="new()">
+    <i class="fa fa-plus"></i> Novo Registro
+</button>
+<button class="btn btn-primary btn-flat" ng-click="all()">
+    <i class="fa fa-th-list"></i> Carregar Registros
+</button>
+<div class="form-group has-feedback mt2">
+    <label for="search">Filtrar Items:</label>
+    <input type="text" name="search" class="form-control" ng-model="search.$"
+           placeholder="Informe o nome da categoria"
+    />
+    <span class="fa fa-search form-control-feedback" aria-hidden="true"></span>
+</div>
+<div ng-if="items.data.length > 0">
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th width="10%">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" ng-model="itemsSelectedAll" ng-click="checkAll()"/>
+                    </label>
+                </div>
+            </th>
+            <th width="30%">Opções</th>
+            <th width="60%">Titulo</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr dir-paginate="item in items.data | filter: search | itemsPerPage:perPage">
+            <td>
+                <label>
+                    <input type="checkbox" ng-model="item.Selected"/>
+                </label>
+            </td>
+            <td>
+                <div class="dropdown">
+                    <button class="btn btn-default btn-flat dropdown-toggle" type="button" id="dropdownMenu1"
+                            data-toggle="dropdown">
+                        <i class="fa fa-cogs"></i> Opções
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                        <li role="presentation">
+                            <a role="menuitem" tabindex="-1" ng-click="load(item)">
+                                <i class="fa fa-pencil-square-o"></i> Editar
+                            </a>
+                        </li>
+                        <li role="presentation">
+                            <a role="menuitem" tabindex="-1" ng-click="delete($index, item)">
+                                <i class="fa fa-times"></i> Excluir
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </td>
+            <td><i class='fa' ng-class="item.icone"></i> {{ item.titulo }}</td>
+        </tr>
+        </tbody>
+        <tfooter>
+            <tr>
+                <td colspan="4">
+                    <button class="btn btn-danger btn-flat mt" ng-click="deleteSelected()">
+                        <i class="fa fa-trash-o"></i>
+                        Excluir Registros Selecionados
+                    </button>
+                </td>
+            </tr>
+        </tfooter>
+    </table>
+</div>

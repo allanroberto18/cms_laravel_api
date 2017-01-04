@@ -1,0 +1,71 @@
+<div ng-class="column" ng-show="showForm">
+    <form name="form" novalidate ng-submit="form.$valid && save(entity)">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">
+                    {{ title }}
+                </h3>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" ng-click="close(form)">
+                        <i class="fa fa-close"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="box-body">
+                <input type="hidden" name="_token" value="{{ token }}"/>
+                <div class="form-group" ng-class="{'has-error': form.link.$touched && form.link.$error.required }">
+                    <label for="link">
+                        <i ng-class="{'fa fa-times-circle-o': form.link.$touched && form.link.$error.required }"></i>
+                        Link:
+                    </label>
+                    <input type="text" name="link" class="form-control" ng-model="entity.link" required/>
+                    <div class="help-block" ng-show="form.$submitted || form.link.$touched">
+                        <div ng-show="form.link.$error.required">
+                            <i class="fa fa-exclamation-circle"></i> O campo Link é obrigatório
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{'has-error': form.altura.$touched && form.altura.$error.required }">
+                    <label for="altura">
+                        <i ng-class="{'fa fa-times-circle-o': form.altura.$touched && form.altura.$error.required }"></i>
+                        Altura:
+                    </label>
+                    <input type="number" name="altura" class="form-control" ng-model="entity.altura" required/>
+                    <div class="help-block" ng-show="form.$submitted || form.altura.$touched">
+                        <div ng-show="form.altura.$error.required">
+                            <i class="fa fa-exclamation-circle"></i> O campo Altura é obrigatório
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{'has-error': form.largura.$touched && form.largura.$error.required }">
+                    <label for="largura">
+                        <i ng-class="{'fa fa-times-circle-o': form.largura.$touched && form.largura.$error.required }"></i>
+                        Largura:
+                    </label>
+                    <input type="number" name="largura" class="form-control" ng-model="entity.largura" required/>
+                    <div class="help-block" ng-show="form.$submitted || form.largura.$touched">
+                        <div ng-show="form.largura.$error.required">
+                            <i class="fa fa-exclamation-circle"></i> O campo Largura é obrigatório
+                        </div>
+                    </div>
+                </div>
+                <div class="embed-responsive embed-responsive-16by9">
+                    <youtube-video class="embed-responsive-item" video-url="entity.link" player-width="'entity.largura'" player-height="'entity.largura'"></youtube-video>
+                </div>
+            </div>
+            <div class="overlay" ng-show="loadForm">
+                <i class="fa fa-refresh fa-spin"></i>
+            </div>
+            <div class="box-footer">
+                <button type="submit" class="btn btn-primary btn-flat" >
+                    <i class="fa fa-check"></i>
+                    Salvar Registro
+                </button>
+                <button class="btn btn-warning btn-flat" ng-click="cancel(form)">
+                    <i class="fa fa-eraser"></i>
+                    Limpar Formulário
+                </button>
+            </div>
+        </div>
+    </form>
+</div>

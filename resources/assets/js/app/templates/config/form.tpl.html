@@ -1,0 +1,170 @@
+<div ng-class="column" ng-show="showForm">
+    <form name="form" novalidate ng-submit="form.$valid && save(entity)" enctype="multipart/form-data">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">
+                    {{ title }}
+
+                </h3>
+                <!--debug errors -->
+                <!--<div ng-include="'js/app/templates/debug.tpl.html'">-->
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" ng-click="close(form)">
+                        <i class="fa fa-close"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="box-body">
+                <input type="hidden" name="_token" value="{{ token }}"/>
+                <div class="form-group" ng-class="{'has-error': form.nome.$touched && form.nome.$error.required }">
+                    <label for="nome">
+                        <i ng-class="{'fa fa-times-circle-o': form.nome.$touched && form.nome.$error.required }"></i>
+                        Nome:
+                    </label>
+                    <input type="text" name="nome" class="form-control" ng-model="entity.nome" required/>
+                    <div class="help-block" ng-show="form.$submitted || form.nome.$touched">
+                        <div ng-show="form.nome.$error.required">
+                            <i class="fa fa-exclamation-circle"></i> O campo Nome é obrigatório
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{'has-error': form.telefone.$touched && form.telefone.$error.required }">
+                    <label for="telefone">
+                        <i ng-class="{'fa fa-times-circle-o': form.telefone.$touched && form.telefone.$error.required }"></i>
+                        Telefone:
+                    </label>
+                    <input type="text" name="telefone" class="form-control" ng-model="entity.telefone" telefone required/>
+                    <div class="help-block" ng-show="form.$submitted || form.telefone.$touched">
+                        <div ng-show="form.telefone.$error.required">
+                            <i class="fa fa-exclamation-circle"></i> O campo Telefone é obrigatório
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{'has-error': form.email.$touched && form.email.$error.required }">
+                    <label for="email">
+                        <i ng-class="{'fa fa-times-circle-o': form.email.$touched && form.email.$error.required }"></i>
+                        E-mail:
+                    </label>
+                    <input type="email" name="email" class="form-control" ng-model="entity.email" required/>
+                    <div class="help-block" ng-show="form.$submitted || form.email.$touched">
+                        <div ng-show="form.email.$error.required">
+                            <i class="fa fa-exclamation-circle"></i> O campo E-mail é obrigatório
+                        </div>
+                        <div ng-show="form.email.$error.email">
+                            <i class="fa fa-exclamation-circle"></i> E-mail inválido
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{'has-error': form.cep.$touched && form.cep.$error.required }">
+                    <label for="cep">
+                        <i ng-class="{'fa fa-times-circle-o': form.cep.$touched && form.cep.$error.required }"></i>
+                        CEP:
+                    </label>
+                    <input type="text" name="cep" class="form-control" ng-model="entity.cep" ng-blur="getCep(entity.cep)" ui-mask="99999-999" required/>
+                    <div class="help-block" ng-show="form.$submitted || form.cep.$touched">
+                        <div ng-show="form.cep.$error.required">
+                            <i class="fa fa-exclamation-circle"></i> O campo CEP é obrigatório
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{'has-error': form.logradouro.$touched && form.logradouro.$error.required }">
+                    <label for="logradouro">
+                        <i ng-class="{'fa fa-times-circle-o': form.logradouro.$touched && form.logradouro.$error.required }"></i>
+                        Endereço:
+                    </label>
+                    <input type="text" name="logradouro" class="form-control" ng-model="entity.logradouro" readonly required/>
+                    <div class="help-block" ng-show="form.$submitted || form.logradouro.$touched">
+                        <div ng-show="form.logradouro.$error.required">
+                            <i class="fa fa-exclamation-circle"></i> O campo Endereço é obrigatório
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="complemento">
+                        Complemento:
+                    </label>
+                    <input type="text" name="complemento" class="form-control" ng-model="entity.complemento" />
+                </div>
+                <div class="form-group">
+                    <label for="numero">
+                        Número:
+                    </label>
+                    <input type="text" name="numero" class="form-control" ng-model="entity.numero" />
+                </div>
+                <div class="form-group" ng-class="{'has-error': form.bairro.$touched && form.bairro.$error.required }">
+                    <label for="bairro">
+                        <i ng-class="{'fa fa-times-circle-o': form.bairro.$touched && form.bairro.$error.required }"></i>
+                        Bairro:
+                    </label>
+                    <input type="text" name="bairro" class="form-control" ng-model="entity.bairro" readonly required/>
+                    <div class="help-block" ng-show="form.$submitted || form.bairro.$touched">
+                        <div ng-show="form.bairro.$error.required">
+                            <i class="fa fa-exclamation-circle"></i> O campo Bairro é obrigatório
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{'has-error': form.localidade.$touched && form.localidade.$error.required }">
+                    <label for="localidade">
+                        <i ng-class="{'fa fa-times-circle-o': form.localidade.$touched && form.localidade.$error.required }"></i>
+                        Cidade:
+                    </label>
+                    <input type="text" name="localidade" class="form-control" ng-model="entity.localidade" readonly required/>
+                    <div class="help-block" ng-show="form.$submitted || form.localidade.$touched">
+                        <div ng-show="form.localidade.$error.required">
+                            <i class="fa fa-exclamation-circle"></i> O campo Cidade é obrigatório
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{'has-error': form.uf.$touched && form.uf.$error.required }">
+                    <label for="uf">
+                        <i ng-class="{'fa fa-times-circle-o': form.uf.$touched && form.uf.$error.required }"></i>
+                        UF:
+                    </label>
+                    <input type="text" name="uf" class="form-control" ng-model="entity.uf" readonly required/>
+                    <div class="help-block" ng-show="form.$submitted || form.uf.$touched">
+                        <div ng-show="form.uf.$error.required">
+                            <i class="fa fa-exclamation-circle"></i> O campo UF é obrigatório
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{'has-error': errors.imagem[0] }">
+                    <label for="logo">
+                        <i ng-class="{'fa fa-times-circle-o': errors.imagem[0] }"></i>
+                        Logo:
+                    </label>
+                    <input type="file" name="file" onchange="angular.element(this).scope().upload(files)" accept="image/*"/>
+                    <div class="mt mb" ng-if="imagem" ng-class="thumbnail">
+                        <img src="img/config/{{imagem}}" class="img-responsive">
+                    </div>
+                    <div class="help-block" ng-show="errors.imagem[0]">
+                        <div ng-show="errors.imagem[0]">
+                            <i class="fa fa-exclamation-circle"></i> {{ errors.imagem[0] }}
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="status">Situação do Site:</label>
+                    <div class="radio">
+                        <label><input type="radio" name="status" value="0" ng-model="entity.status">Manutenção</label>
+                    </div>
+                    <div class="radio">
+                        <label><input type="radio" name="status" value="1" ng-model="entity.status">Liberado</label>
+                    </div>
+                </div>
+            </div>
+            <div class="overlay" ng-show="loadForm">
+                <i class="fa fa-refresh fa-spin"></i>
+            </div>
+            <div class="box-footer">
+                <button type="submit" class="btn btn-primary btn-flat" >
+                    <i class="fa fa-check"></i>
+                    Salvar Registro
+                </button>
+                <button class="btn btn-warning btn-flat" ng-click="cancel(form)">
+                    <i class="fa fa-eraser"></i>
+                    Limpar Formulário
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
