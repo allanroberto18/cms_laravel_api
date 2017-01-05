@@ -11,7 +11,7 @@ class PaginaProdutoCaracteristica extends Model implements Transformable
     use TransformableTrait;
 
     protected $fillable = [
-        'pagina_segmento_id', 'icone', 'titulo', 'descricao', 'status'
+        'pagina_produto_id', 'icone', 'titulo', 'descricao', 'status'
     ];
 
     public function pagina()

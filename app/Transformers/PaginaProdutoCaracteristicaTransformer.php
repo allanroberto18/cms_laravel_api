@@ -22,7 +22,7 @@ class PaginaProdutoCaracteristicaTransformer extends TransformerAbstract
     {
         return [
             'id' => (int)$model->id,
-            'pagina_segmento_id' => (string)$model->pagina_id,
+            'pagina_produto_id' => (string)$model->pagina_id,
             'icone' => (string)$model->icone,
             'titulo' => (string)$model->titulo,
             'descricao' => (string)$model->descricao,

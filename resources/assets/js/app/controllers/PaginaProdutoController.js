@@ -76,8 +76,8 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
             legenda: '',
             imagem_capa: '',
             imagem_pagina: '',
-            destaque: '',
-            status: ''
+            destaque: 0,
+            status: 1
         };
     };
 

@@ -56,8 +56,6 @@
 
 @yield('body')
 
-
-
 <!--Download App Area Start-->
 {{--@include('LandPage.downloads')--}}
 <!--Download App Area Start-->

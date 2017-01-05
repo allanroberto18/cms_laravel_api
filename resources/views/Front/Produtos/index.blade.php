@@ -1,6 +1,6 @@
 @extends('Front.Base.internas')
 @section('body')
-    @if(count($noticias) > 0)
+    @if(count($produtos) > 0)
         <div class="blog-area1 section-light-blog" id="blog" style="margin-top: 120px;">
             <div class="container">
                 <div class="row">
@@ -13,11 +13,16 @@
                 </div>
             </div>
             <div class="container">
-                @foreach($noticias as $item)
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        {!! Breadcrumbs::render('produtos') !!}
+                    </div>
+                </div>
+                @foreach($produtos as $item)
                     <div class="row ">
                         <div class="news">
                             <div class="col-md-4 mt mb">
-                                <img src="/img/noticia/{{ $item->imagem }}" class="img-responsive"
+                                <img src="/img/pagina/produto/{{ $item->imagem_capa }}" class="img-responsive"
                                      alt="{{ $item->titulo }}">
                             </div>
                             <div class="col-md-8 mt mb">
@@ -26,7 +31,7 @@
                                     {{ $item->titulo }}
                                 </h1>
                                 <p>{{ $item->resumo }}</p>
-                                <a href="{{ route('noticia.show', [ 'slug' => $item->slug ]) }}"
+                                <a href="{{ route('produto.show', [ 'slug' => $item->slug ]) }}"
                                    class="button mt">
                                     Leia Mais <i class="fa fa-caret-right"></i>
                                 </a>
@@ -35,7 +40,7 @@
                     </div>
                 @endforeach
                 <div class="mb6 page">
-                    {!! $noticias->links() !!}
+                    {!! $produtos->links() !!}
                 </div>
             </div>
         </div>

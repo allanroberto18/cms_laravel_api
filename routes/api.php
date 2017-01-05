@@ -90,10 +90,10 @@ Route::group(['prefix' => 'angular', 'middleware' => 'cors', 'as' => 'angular.',
             Route::put('atualizar/{id}', 'PaginaProdutoController@update')->name('update');
 
             Route::group(['prefix' => 'caracteristica', 'as' => 'caracteristica.'], function(){
-                Route::get('{paginaId}', 'PaginaSegmentoCaracteristicaController@index')->name('index');
-                Route::post('remover', 'PaginaSegmentoCaracteristicaController@removeSelected')->name('removeSelected');
-                Route::post('salvar', 'PaginaSegmentoCaracteristicaController@create')->name('create');
-                Route::put('atualizar/{id}', 'PaginaSegmentoCaracteristicaController@update')->name('update');
+                Route::get('{paginaId}', 'PaginaProdutoCaracteristicaController@index')->name('index');
+                Route::post('remover', 'PaginaProdutoCaracteristicaController@removeSelected')->name('removeSelected');
+                Route::post('salvar', 'PaginaProdutoCaracteristicaController@create')->name('create');
+                Route::put('atualizar/{id}', 'PaginaProdutoCaracteristicaController@update')->name('update');
             });
         });
         

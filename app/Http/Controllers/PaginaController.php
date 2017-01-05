@@ -6,6 +6,7 @@ use App\Repositories\BannerRepository;
 use App\Repositories\ConfigRepository;
 use App\Repositories\MenuRepository;
 use App\Repositories\NoticiaRepository;
+use App\Repositories\PaginaClienteRepository;
 use App\Repositories\PaginaRepository;
 use App\Repositories\PaginaProdutoRepository;
 use App\Repositories\PaginaVideoRepository;
@@ -46,6 +47,10 @@ class PaginaController extends Controller
      * @var BannerRepository
      */
     private $bannerRepository;
+    /**
+     * @var PaginaClienteRepository
+     */
+    private $clienteRepository;
 
     /**
      * PaginaController constructor.
@@ -54,7 +59,8 @@ class PaginaController extends Controller
                                 PaginaRepository $paginaRepository, PaginaVideoRepository $videoRepository,
                                 PaginaProdutoRepository $paginaProdutoRepository,
                                 NoticiaRepository $noticiaRepository,
-                                MenuRepository $menuRepository, BannerRepository $bannerRepository
+                                MenuRepository $menuRepository, BannerRepository $bannerRepository,
+                                PaginaClienteRepository $clienteRepository
     )
     {
         $this->sobreNosRepository = $sobreNosRepository;
@@ -65,6 +71,7 @@ class PaginaController extends Controller
         $this->noticiaRepository = $noticiaRepository;
         $this->menuRepository = $menuRepository;
         $this->bannerRepository = $bannerRepository;
+        $this->clienteRepository = $clienteRepository;
     }
 
     public function show($slug)

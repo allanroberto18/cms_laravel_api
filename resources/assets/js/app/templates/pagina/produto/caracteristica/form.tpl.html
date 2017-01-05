@@ -13,7 +13,7 @@
             </div>
             <div class="box-body">
                 <input type="hidden" name="_token" value="{{ token }}"/>
-                <input type="hidden" name="pagina_segmento_id" value="{{ segmento }}"/>
+                <input type="hidden" name="pagina_produto_id" value="{{ produto }}"/>
                 <div class="form-group" ng-class="{'has-error': form.icone.$touched && form.icone.$error.required }">
                     <label for="icone">
                         <i ng-class="{'fa fa-times-circle-o': form.icone.$touched && form.icone.$error.required}"></i>
@@ -51,6 +51,7 @@
                         </div>
                     </div>
                 </div>
+                <input type="hidden" name="status" value="{{ entity.status }}"/>
             </div>
             <div class="overlay" ng-show="loadForm">
                 <i class="fa fa-refresh fa-spin"></i>

@@ -27,7 +27,7 @@ class PaginaProdutoCaracteristicaController extends Controller
     {
         return $this->repository->scopeQuery(function ($q) use ($paginaProdutoId) {
             return $q->where([
-                'pagina_segmento_id' => $paginaProdutoId,
+                'pagina_produto_id' => $paginaProdutoId,
                 'status' => 1
             ])->orderBy('id', 'desc');
         })->skipPresenter(false)->all();

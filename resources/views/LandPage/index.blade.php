@@ -59,45 +59,45 @@
 <!--Feature Area Start-->
 <div class="feature-area section-light-text" id="feature">
     <div class="container">
-        <div class="row">
-            <div class="col-xs-12 col-sm-5 col-md-4 col-lg-4">
-                <div class="feature-text">
-                    <p class="p-title">
-                        {{ $destaque->retranca }}
-                    </p>
-                    <h2>{{ $destaque->titulo }}</h2>
-                    {{--<h1>Features</h1>--}}
-                    <p>{{ $destaque->resumo }}</p>
-                    <a href="{{ route('produto.show',[ 'slug' => $destaque->slug ]) }}" class="button">Leia Mais</a>
+        @if($destaque)
+            <div class="row">
+                <div class="col-xs-12 col-sm-5 col-md-4 col-lg-4">
+                    <div class="feature-text">
+                        <p class="p-title">
+                            {{ $destaque->retranca }}
+                        </p>
+                        <h2>{{ $destaque->titulo }}</h2>
+                        {{--<h1>Features</h1>--}}
+                        <p>{{ $destaque->resumo }}</p>
+                        <a href="{{ route('produto.show',[ 'slug' => $destaque->slug ]) }}" class="button">Leia Mais</a>
+                    </div>
                 </div>
-            </div>
-            <div class="hidden-xs hidden-sm col-md-4 col-lg-4">
-                <div class="app-image">
-                    <img src="/img/pagina/produto/{{$destaque->imagem_pagina}}" alt="{{ $destaque->legenda }} - {{ $destaque->credito }}">
+                <div class="hidden-xs hidden-sm col-md-4 col-lg-4">
+                    <div class="app-image">
+                        <img src="/img/pagina/produto/{{$destaque->imagem_pagina}}"
+                             alt="{{ $destaque->legenda }} - {{ $destaque->credito }}">
+                    </div>
                 </div>
-            </div>
-            <div class="col-xs-12 col-sm-7 col-md-4 col-lg-4">
-                <div class="feature-list">
-                    @foreach($pagina->caracteristicas as $item)
-                        @if ($loop->index < 4)
-
-                            <div class="single-feature">
-                                <span class="fa {{ $item->icone }} fa-2x"></span>
-                                {{--<span>--}}
+                <div class="col-xs-12 col-sm-7 col-md-4 col-lg-4">
+                    <div class="feature-list">
+                        @foreach($destaque->caracteristicas as $item)
+                                <div class="single-feature">
+                                    <span class="fa {{ $item->icone }} fa-2x"></span>
+                                    {{--<span>--}}
                                     {{--<span class="fa {{ $item->icone }} fa-2x"></span>--}}
-                                {{--</span>--}}
-                                <div class="single-feature-text">
-                                    <h5>{{ $item->titulo }}</h5>
-                                    <p>
-                                        {{ $item->descricao }}
-                                    </p>
+                                    {{--</span>--}}
+                                    <div class="single-feature-text">
+                                        <h5>{{ $item->titulo }}</h5>
+                                        <p>
+                                            {{ $item->descricao }}
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
-                        @endif
-                    @endforeach
+                        @endforeach
+                    </div>
                 </div>
             </div>
-        </div>
+        @endif
     </div>
 </div>
 <!--End of Feature Area-->
@@ -105,7 +105,6 @@
 <!--Video Area Start-->
 @include('LandPage.movie')
 <!--End of Video Area-->
-
 
 
 <!--Start of Segments -->

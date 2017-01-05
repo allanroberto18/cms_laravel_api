@@ -81,7 +81,8 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService) {
             pagina_produto_id: $scope.produto,
             icone: '',
             titulo: '',
-            descricao: ''
+            descricao: '',
+            status: 1
         };
 
         $scope.edit(true);
