@@ -1,3 +1,4 @@
+@if(count($clientes) > 0)
 <div class="blog-area section-light-blog" id="blog">
     <div class="container">
         <div class="row">
@@ -43,3 +44,4 @@
         </div>
     </div>
 </div>
+@endif

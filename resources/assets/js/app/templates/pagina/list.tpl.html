@@ -69,7 +69,11 @@
                         </td>
                         <td>
                             <h4><small>{{ item.retranca }}</small> {{ item.titulo }}</h4>
-                            <p>{{ item.resumo }}</p>
+                            <p>
+                                {{ item.resumo }}
+                                <br>
+                                <strong>Link: </strong> /i/{{ item.slug }}
+                            </p>
                             <a href="/i/{{ item.slug }}" class="btn btn-default mb" target="_blank"><i class="fa fa-link"></i> Testar</a>
 
                             <!-- TAB NAVIGATION -->

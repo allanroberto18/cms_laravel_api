@@ -54,7 +54,11 @@
                     </ul>
                 </div>
             </td>
-            <td><i class='fa' ng-class="item.icone"></i> {{ item.titulo }}</td>
+            <td>
+                <i class='fa' ng-class="item.icone"></i> {{ item.titulo }}
+                <br>
+                <strong>Link: </strong> /p/{{ item.slug }}
+            </td>
         </tr>
         </tbody>
         <tfooter>
