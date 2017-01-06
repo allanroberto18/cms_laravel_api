@@ -116,7 +116,7 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService) {
     };
 
     $scope.checkAll = function () {
-        if ($scope.itemsSelectedAll) {
+        if ($scope.itemsSelectedAll == false) {
             $scope.itemsSelectedAll = true;
         } else {
             $scope.itemsSelectedAll = false;
@@ -162,7 +162,7 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService) {
                     $scope.loadList = false;
 
                     if ($scope.items.data.length == 0) {
-                        list($scope.items.data.meta.produtotion.current_page);
+                        list($scope.items.meta.produtotion.current_page);
                     }
 
                     $scope.entity = {};
@@ -212,7 +212,7 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService) {
                         $scope.itemsSelectedAll = false;
                         $scope.message = data.data;
 
-                        list($scope.items.data.meta.produtotion.current_page);
+                        list($scope.items.meta.produtotion.current_page);
                     });
             }
         });

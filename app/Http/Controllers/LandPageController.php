@@ -50,7 +50,7 @@ class LandPageController extends Controller
             }
 
             $menu = $this->menuRepository->scopeQuery(function ($q) {
-                return $q->orderBy('posicao', 'ASC');
+                return $q->where(['status' => 1])->orderBy('posicao', 'ASC');
             })->findWhere(['tipo' => 1]);
 
             $sobreNos = $this->sobreNosRepository->scopeQuery(function ($q) {
@@ -100,13 +100,13 @@ class LandPageController extends Controller
         try {
             $config = $this->configRepository->find(1);
 
+            $menu = $this->menuRepository->scopeQuery(function ($q) {
+                return $q->where(['status' => 1])->orderBy('posicao', 'ASC');
+            })->findWhere(['tipo' => 1]);
+
             $sobreNos = $this->sobreNosRepository->scopeQuery(function ($q) {
                 return $q->where(['status' => 1]);
             })->skipPresenter(true)->all();
-
-            $menu = $this->menuRepository->scopeQuery(function ($q) {
-                return $q->orderBy('posicao', 'ASC');
-            })->findWhere(['tipo' => 1]);
 
             $pagina = $this->paginaRepository->find(1);
 
@@ -116,11 +116,11 @@ class LandPageController extends Controller
 
             $destaque = $this->paginaProdutoRepository->findWhere(['pagina_id' => $pagina->id, 'destaque' => 1])->last();
 
+            $clientes = $this->clienteRepository->findWhere(['status' => 1]);
+
             $produtos = $this->paginaProdutoRepository->scopeQuery(function ($q) use ($pagina) {
                 return $q->where(['pagina_id' => $pagina->id, 'destaque' => 0])->orderBy('created_at', 'DESC');
             })->paginate(3);
-
-            $clientes = $this->clienteRepository->findWhere(['status' => 1]);
 
             $noticias = $this->noticiaRepository->scopeQuery(function ($q) use ($pagina) {
                 return $q->where(['status' => 1])->orderBy('created_at', 'DESC');

@@ -13,7 +13,7 @@
                         <nav>
                             <ul>
                                 @foreach($menu as $item)
-                                    <li @if(Request::path() == $item->link)class="active"@endif><a href="{{ $item->link }}">{{$item->nome}}</a></li>
+                                    <li @if("/" . Request::path() == $item->link)class="active"@endif><a href="{{ $item->link }}">{{$item->nome}}</a></li>
                                 @endforeach
                             </ul>
                         </nav>
@@ -24,7 +24,7 @@
                         <nav>
                             <ul>
                                 @foreach($menu as $item)
-                                    <li @if(Request::path() == $item->link)class="active"@endif><a href="{{ $item->link }}">{{$item->nome}}</a></li>
+                                    <li @if("/" . Request::path() == $item->link)class="active"@endif><a href="{{ $item->link }}">{{$item->nome}}</a></li>
                                 @endforeach
                             </ul>
                         </nav>

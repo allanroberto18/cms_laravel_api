@@ -16,6 +16,12 @@ Breadcrumbs::register('home', function($breadcrumbs)
     $breadcrumbs->push('Home', route('home'));
 });
 
+Breadcrumbs::register('downloads', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Downloads', route('downloads'));
+});
+
 Breadcrumbs::register('noticias', function($breadcrumbs)
 {
     $breadcrumbs->parent('home');

@@ -224,7 +224,7 @@ body {
 }
 
 #main-menu.stick {
-    background: #c9634c none repeat scroll 0 0;
+    background: url("../img/bg_menu.png");
     box-shadow: 0 0 3px rgba(0, 0, 0, 0.15);
     padding: 10px 0;
     position: fixed;
@@ -237,7 +237,7 @@ body {
 }
 
 .main-menu nav ul li a {
-    color: #cccccc;
+    color: #FFF;
     display: block;
     font-size: 14px;
     font-weight: 800;
@@ -248,7 +248,8 @@ body {
 }
 
 .main-menu nav ul li.active a, .main-menu nav ul li a:hover {
-    color: #fff
+    /*color: #fff*/
+    color: #d6a54f;
 }
 
 /*----------------------------------------*/

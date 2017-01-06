@@ -83,15 +83,17 @@ class PaginaController extends Controller
                 return view('LandPage.construcao');
             }
 
-            $menu = $this->menuRepository->scopeQuery(function ($q) {
-                return $q->orderBy('posicao', 'ASC');
-            })->findWhere(['tipo' => 1]);
+            $menu = $this->menuRepository->scopeQuery(function($q) {
+                return $q->where(['status' => 1])->orderBy('posicao', 'ASC');
+            })->findWhere(['tipo' => 1, 'status' => 1]);
 
             $sobreNos = $this->sobreNosRepository->scopeQuery(function ($q) {
                 return $q->where(['status' => 1]);
             })->skipPresenter(true)->all();
 
-            $pagina = $this->paginaRepository->findByField('slug', $slug)->first();
+            $pagina = $this->paginaRepository->scopeQuery(function($q){
+                return $q->where(['status' => 1]);
+            })->findByField('slug', $slug)->first();
 
             $caracteristicas = $this->makeSlider($this->processCaracteristicas($pagina));
 

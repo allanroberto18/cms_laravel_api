@@ -81,6 +81,7 @@
                 <div class="col-xs-12 col-sm-7 col-md-4 col-lg-4">
                     <div class="feature-list">
                         @foreach($destaque->caracteristicas as $item)
+                            @if($item->status == 1)
                                 <div class="single-feature">
                                     <span class="fa {{ $item->icone }} fa-2x"></span>
                                     {{--<span>--}}
@@ -93,6 +94,7 @@
                                         </p>
                                     </div>
                                 </div>
+                            @endif
                         @endforeach
                     </div>
                 </div>

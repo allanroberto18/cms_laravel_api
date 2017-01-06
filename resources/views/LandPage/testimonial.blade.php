@@ -1,5 +1,5 @@
 @if(count($clientes) > 0)
-<div class="blog-area section-light-blog" id="blog">
+<div class="blog-area section-light-blog" id="cliente">
     <div class="container">
         <div class="row">
             <div class="col-md-12 text-center">
@@ -9,7 +9,7 @@
                 </div>
             </div>
         </div>
-        <div class="clients-area section-light-text" id="testimonial">
+        <div class="clients-area section-light-text" id="cliente">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1">

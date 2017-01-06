@@ -39,6 +39,8 @@ Route::group(['prefix' => 'p', 'as' => 'produto.'], function(){
     Route::get('{slug}', 'PaginaProdutoController@show')->name('show');
 });
 
+Route::get('/download', 'DownloadController@index')->name('downloads');
+
 Route::get('downloads/{filename}', function($filename)
 {
     // Check if file exists in app/storage/file folder

@@ -38,7 +38,7 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
             .then(function (result) {
                 $scope.items = result.data;
 
-                $scope.total = result.data.meta.pagination.total;
+                $scope.total = $scope.items.meta.pagination.total;
             })
         $scope.loadList = false;
     };
@@ -124,7 +124,7 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
     };
 
     $scope.checkAll = function () {
-        if ($scope.itemsSelectedAll) {
+        if ($scope.itemsSelectedAll == false) {
             $scope.itemsSelectedAll = true;
         } else {
             $scope.itemsSelectedAll = false;
@@ -170,8 +170,7 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
 
                     $scope.loadList = false;
 
-                    switch (entity.status)
-                    {
+                    switch (entity.status) {
                         case 0:
                             entity.status = 1;
                             break;
@@ -226,7 +225,7 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
                         $scope.itemsSelectedAll = false;
                         $scope.message = data.data;
 
-                        list($scope.items.data.meta.pagination.current_page);
+                        list($scope.items.meta.pagination.current_page);
                     });
             }
         });

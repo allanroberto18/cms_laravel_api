@@ -104,7 +104,7 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
     };
 
     $scope.checkAll = function () {
-        if ($scope.itemsSelectedAll) {
+        if ($scope.itemsSelectedAll == false) {
             $scope.itemsSelectedAll = true;
         } else {
             $scope.itemsSelectedAll = false;
@@ -150,7 +150,7 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
                     $scope.loadList = false;
 
                     if ($scope.items.data.length == 0) {
-                        list($scope.items.data.meta.pagination.current_page);
+                        list($scope.items.meta.pagination.current_page);
                     }
 
                     $scope.entity = {};
@@ -199,7 +199,7 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
                         $scope.itemsSelectedAll = false;
                         $scope.message = data.data;
 
-                        list($scope.items.data.meta.pagination.current_page);
+                        list($scope.items.meta.pagination.current_page);
                     });
             }
         });
@@ -253,7 +253,7 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
 
         ImageService.post(fd, 'pagina/cliente/upload')
             .then(function (data) {
-                $scope.imagem = data.data;
+                $scope.entity.imagem = data.data;
             });
     }
 };

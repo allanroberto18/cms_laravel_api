@@ -1,26 +1,26 @@
 module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageService) {
 
-  $scope.modulo = {
-    title: 'Gerenciar Módulo',
-    subtitle: 'Banners do Site'
-  };
+    $scope.modulo = {
+        title: 'Gerenciar Módulo',
+        subtitle: 'Banners do Site'
+    };
 
-  $scope.title = '';
-  $scope.column = 'col-xs-12 col-sm-12 col-md-12 col-lg-12';
-  $scope.loadList = '';
-  $scope.showForm = false;
-  $scope.loadForm = false;
+    $scope.title = '';
+    $scope.column = 'col-xs-12 col-sm-12 col-md-12 col-lg-12';
+    $scope.loadList = '';
+    $scope.showForm = false;
+    $scope.loadForm = false;
 
-  $scope.items = {};
-  $scope.itemsSelectedAll = false;
+    $scope.items = {};
+    $scope.itemsSelectedAll = false;
 
-  $scope.errors = '';
-  $scope.message = '';
+    $scope.errors = '';
+    $scope.message = '';
 
-  $scope.token = '';
-  $scope.pagina = '';
-  $scope.entity = {};
-  $scope.animationsEnabled = true;
+    $scope.token = '';
+    $scope.pagina = '';
+    $scope.entity = {};
+    $scope.animationsEnabled = true;
 
     $scope.pageChanged = function (page) {
         list(page);
@@ -32,240 +32,239 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
             .then(function (result) {
                 $scope.items = result.data;
 
-                $scope.total = result.data.meta.pagination.total;
+                $scope.total = $scope.items.meta.pagination.total;
             })
         $scope.loadList = false;
     };
 
-  $scope.init = function () {
-    list(1);
-  }
-
-  $scope.getToken = function () {
-    ClientAPIService.getToken()
-      .then(function (data, status) {
-        $scope.token = data;
-      });
-  };
-
-  $scope.edit = function (check) {
-    $scope.showForm = check;
-
-    $scope.column = 'col-xs-12 col-sm-12 col-md-12 col-lg-12';
-
-    if (check) {
-      $scope.errors = '';
-
-      $scope.message = '';
-
-      $scope.column = 'col-xs-12 col-sm-12 col-md-6 col-lg-6';
-
-      $scope.getToken();
-
-      return;
+    $scope.init = function () {
+        list(1);
     }
-  };
 
-  $scope.new = function () {
-    $scope.title = 'Novo Registro';
-
-    $scope.edit(true);
-
-    $scope.entity = {
-      retranca: '',
-      titulo: '',
-      resumo: '',
-      link: '#',
-      imagem_destaque: '',
-      imagem_fundo: ''
+    $scope.getToken = function () {
+        ClientAPIService.getToken()
+            .then(function (data, status) {
+                $scope.token = data;
+            });
     };
-  };
 
-  $scope.load = function (entity) {
-    $scope.title = 'Alterar Registro #' + entity.id;
+    $scope.edit = function (check) {
+        $scope.showForm = check;
 
-    $log.info(entity);
+        $scope.column = 'col-xs-12 col-sm-12 col-md-12 col-lg-12';
 
-    $scope.entity = entity;
+        if (check) {
+            $scope.errors = '';
 
-    $scope.edit(true);
-  };
+            $scope.message = '';
 
-  $scope.closeMessage = function () {
-    $scope.message = '';
-  }
+            $scope.column = 'col-xs-12 col-sm-12 col-md-6 col-lg-6';
 
-  $scope.cancel = function (form) {
-    if (form) {
-      form.$setPristine();
-      form.$setUntouched();
-    }
-    $scope.entity = {};
-    $scope.errors = '';
-  };
+            $scope.getToken();
 
-  $scope.close = function (form) {
-    $scope.cancel(form);
-
-    $scope.edit(false);
-  };
-
-  $scope.checkAll = function () {
-    if ($scope.itemsSelectedAll) {
-      $scope.itemsSelectedAll = true;
-    } else {
-      $scope.itemsSelectedAll = false;
-    }
-
-    angular.forEach($scope.items.data, function (item) {
-      item.Selected = $scope.itemsSelectedAll;
-    });
-  };
-
-  $scope.delete = function (key, entity) {
-    var modulo = 'banner/remover';
-
-    var modalInstance = $uibModal.open({
-      animation: true,
-      ariaLabelledBy: 'modal-title',
-      ariaDescribedBy: 'modal-body',
-      templateUrl: 'modal.tpl.html',
-      controller: 'ModalService',
-      resolve: {
-        title: function () {
-          return 'Atenção';
-        },
-        message: function () {
-          return 'Deseja excluir o registro #' + entity.id;
-        },
-        entity: function () {
-          return entity;
+            return;
         }
-      }
-    });
+    };
 
-    modalInstance.result.then(function () {
-      var selected = [];
-      selected.push(entity.id);
-      ClientAPIService.getDelete(modulo, selected)
-        .then(function (data) {
-          $scope.loadList = true;
+    $scope.new = function () {
+        $scope.title = 'Novo Registro';
 
-          $scope.message = data.data;
-          $scope.items.data.splice(key, 1);
+        $scope.edit(true);
 
-          $scope.loadList = false;
+        $scope.entity = {
+            retranca: '',
+            titulo: '',
+            resumo: '',
+            link: '#',
+            imagem_destaque: '',
+            imagem_fundo: ''
+        };
+    };
 
-          if ($scope.items.data.length == 0) {
-            list($scope.items.data.meta.pagination.current_page);
-          }
+    $scope.load = function (entity) {
+        $scope.title = 'Alterar Registro #' + entity.id;
 
-          $scope.entity = {};
-        })
-        .then(function (data, status) {
-          if (status == 422) {
-            $scope.errors = data.data;
-          }
-        });
-    });
-  };
+        $log.info(entity);
 
-  $scope.deleteSelected = function () {
-    var modalInstance = $uibModal.open({
-      animation: true,
-      ariaLabelledBy: 'modal-title',
-      ariaDescribedBy: 'modal-body',
-      templateUrl: 'modal.tpl.html',
-      controller: 'ModalService',
-      resolve: {
-        title: function () {
-          return 'Atenção';
-        },
-        message: function () {
-          return 'Deseja confirmar a exclusão dos registros selecionados?';
-        },
-        entity: function () {
-          return {};
-        }
-      }
-    });
+        $scope.entity = entity;
 
-    modalInstance.result.then(function () {
-      $scope.message = '';
+        $scope.edit(true);
+    };
 
-      var selecteds = [];
-      angular.forEach($scope.items.data, function (item) {
-        if (item.Selected) {
-          selecteds.push(item.id);
-        }
-      });
-
-      if (selecteds.length > 0) {
-        ClientAPIService.getDelete('banner/remover', selecteds)
-          .then(function (data, status) {
-            $scope.itemsSelectedAll = false;
-            $scope.message = data.data;
-
-            list($scope.items.data.meta.pagination.current_page);
-          });
-      }
-    });
-  };
-
-  $scope.save = function (entity) {
-    $scope.loadForm = true;
-
-    if (entity.id) {
-      ClientAPIService.getPut('banner/atualizar/' + entity.id, entity)
-        .then(function (data, status) {
-          $scope.message = data.data;
-
-          $scope.entity = {};
-
-          $scope.edit(false);
-        })
-        .then(function (data, status) {
-          if (status == 422) {
-            $scope.errors = data;
-          }
-        });
-      $scope.loadForm = false;
-      return;
+    $scope.closeMessage = function () {
+        $scope.message = '';
     }
 
-    ClientAPIService.getPost('banner/salvar', entity)
-      .then(function (data, status) {
-        entity.id = data.id;
+    $scope.cancel = function (form) {
+        if (form) {
+            form.$setPristine();
+            form.$setUntouched();
+        }
+        $scope.entity = {};
+        $scope.errors = '';
+    };
 
-        $scope.message = data.data;
-
-        $scope.items.data.unshift(entity);
+    $scope.close = function (form) {
+        $scope.cancel(form);
 
         $scope.edit(false);
+    };
 
-        $scope.entity = {};
-      })
-      .then(function (data, status) {
-        if (status == 422) {
-          $scope.errors = data;
+    $scope.checkAll = function () {
+        if ($scope.itemsSelectedAll == false) {
+            $scope.itemsSelectedAll = true;
+        } else {
+            $scope.itemsSelectedAll = false;
         }
-      });
-    $scope.loadForm = false;
-    return;
-  };
 
-  $scope.upload = function (imagem, tipo) {
-    var fd = new FormData();
-    fd.append('file', imagem[0]);
+        angular.forEach($scope.items.data, function (item) {
+            item.Selected = $scope.itemsSelectedAll;
+        });
+    };
 
-    ImageService.post(fd, 'banner/upload')
-      .then(function (data) {
-        if (tipo === 1)
-        {
-          $scope.entity.imagem_destaque = data.data;
-          return ;
+    $scope.delete = function (key, entity) {
+        var modulo = 'banner/remover';
+
+        var modalInstance = $uibModal.open({
+            animation: true,
+            ariaLabelledBy: 'modal-title',
+            ariaDescribedBy: 'modal-body',
+            templateUrl: 'modal.tpl.html',
+            controller: 'ModalService',
+            resolve: {
+                title: function () {
+                    return 'Atenção';
+                },
+                message: function () {
+                    return 'Deseja excluir o registro #' + entity.id;
+                },
+                entity: function () {
+                    return entity;
+                }
+            }
+        });
+
+        modalInstance.result.then(function () {
+            var selected = [];
+            selected.push(entity.id);
+            ClientAPIService.getDelete(modulo, selected)
+                .then(function (data) {
+                    $scope.loadList = true;
+
+                    $scope.message = data.data;
+                    $scope.items.data.splice(key, 1);
+
+                    $scope.loadList = false;
+
+                    if ($scope.items.data.length == 0) {
+                        list($scope.items.meta.pagination.current_page);
+                    }
+
+                    $scope.entity = {};
+                })
+                .then(function (data, status) {
+                    if (status == 422) {
+                        $scope.errors = data.data;
+                    }
+                });
+        });
+    };
+
+    $scope.deleteSelected = function () {
+        var modalInstance = $uibModal.open({
+            animation: true,
+            ariaLabelledBy: 'modal-title',
+            ariaDescribedBy: 'modal-body',
+            templateUrl: 'modal.tpl.html',
+            controller: 'ModalService',
+            resolve: {
+                title: function () {
+                    return 'Atenção';
+                },
+                message: function () {
+                    return 'Deseja confirmar a exclusão dos registros selecionados?';
+                },
+                entity: function () {
+                    return {};
+                }
+            }
+        });
+
+        modalInstance.result.then(function () {
+            $scope.message = '';
+
+            var selecteds = [];
+            angular.forEach($scope.items.data, function (item) {
+                if (item.Selected) {
+                    selecteds.push(item.id);
+                }
+            });
+
+            if (selecteds.length > 0) {
+                ClientAPIService.getDelete('banner/remover', selecteds)
+                    .then(function (data, status) {
+                        $scope.itemsSelectedAll = false;
+                        $scope.message = data.data;
+
+                        list($scope.items.meta.pagination.current_page);
+                    });
+            }
+        });
+    };
+
+    $scope.save = function (entity) {
+        $scope.loadForm = true;
+
+        if (entity.id) {
+            ClientAPIService.getPut('banner/atualizar/' + entity.id, entity)
+                .then(function (data, status) {
+                    $scope.message = data.data;
+
+                    $scope.entity = {};
+
+                    $scope.edit(false);
+                })
+                .then(function (data, status) {
+                    if (status == 422) {
+                        $scope.errors = data;
+                    }
+                });
+            $scope.loadForm = false;
+            return;
         }
-        $scope.entity.imagem_fundo = data.data;
-      });
-  }
+
+        ClientAPIService.getPost('banner/salvar', entity)
+            .then(function (data, status) {
+                entity.id = data.id;
+
+                $scope.message = data.data;
+
+                $scope.items.data.unshift(entity);
+
+                $scope.edit(false);
+
+                $scope.entity = {};
+            })
+            .then(function (data, status) {
+                if (status == 422) {
+                    $scope.errors = data;
+                }
+            });
+        $scope.loadForm = false;
+        return;
+    };
+
+    $scope.upload = function (imagem, tipo) {
+        var fd = new FormData();
+        fd.append('file', imagem[0]);
+
+        ImageService.post(fd, 'banner/upload')
+            .then(function (data) {
+                if (tipo === 1) {
+                    $scope.entity.imagem_destaque = data.data;
+                    return;
+                }
+                $scope.entity.imagem_fundo = data.data;
+            });
+    }
 };

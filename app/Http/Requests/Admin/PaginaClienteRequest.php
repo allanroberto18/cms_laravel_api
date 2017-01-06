@@ -25,7 +25,6 @@ class PaginaClienteRequest extends FormRequest
     {
         return [
             'nome' => 'required',
-            'imagem' => 'mimes:jpeg,bmp,png',
         ];
     }
 
@@ -33,7 +32,6 @@ class PaginaClienteRequest extends FormRequest
     {
         return [
             'nome' => 'Nome',
-            'imagem' => 'Logomarca',
         ];
     }
 }
