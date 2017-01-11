@@ -18,6 +18,7 @@ class CreateSobreNosTable extends Migration
             $table->string('icone');
             $table->string('titulo', 50);
             $table->string('descricao', 130);
+            $table->integer('posicao')->default(1);
             $table->integer('status')->default(1);
             $table->timestamps();
 		});

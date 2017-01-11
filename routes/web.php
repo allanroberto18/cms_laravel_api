@@ -25,18 +25,20 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'namespace' => 'Admin', 'mi
 Auth::routes();
 
 Route::get('/', 'LandPageController@index')->name('home');
-Route::get('/i/{slug}', 'PaginaController@show')->name('pagina.show');
+Route::get('/i/{id}', 'PaginaController@show')->name('pagina.show');
 
 Route::get('/producao', 'LandPageController@producao')->name('producao');
 
+Route::get('/enviar-email', 'TesteController@enviar')->name('email.enviar');
+
 Route::group(['prefix' => 'n', 'as' => 'noticia.'], function(){
    Route::get('', 'NoticiaController@index')->name('index');
-   Route::get('{slug}', 'NoticiaController@show')->name('show');
+   Route::get('{id}', 'NoticiaController@show')->name('show');
 });
 
 Route::group(['prefix' => 'p', 'as' => 'produto.'], function(){
     Route::get('', 'PaginaProdutoController@index')->name('index');
-    Route::get('{slug}', 'PaginaProdutoController@show')->name('show');
+    Route::get('{id}', 'PaginaProdutoController@show')->name('show');
 });
 
 Route::get('/download', 'DownloadController@index')->name('downloads');

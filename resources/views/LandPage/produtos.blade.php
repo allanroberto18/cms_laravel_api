@@ -15,15 +15,15 @@
                         <div class="col-md-4">
                             <div class="single-blog">
                                 <div class="blog-image">
-                                    <a href="{{ route('produto.show', ['slug' => $item->slug]) }}">
+                                    <a href="{{ route('produto.show', ['id' => $item->id]) }}">
                                         <img src="/img/pagina/produto/{{ $item->imagem_capa }}" alt="{{ $item->titulo }}">
                                     </a>
                                 </div>
                                 <div class="blog-text">
                                     <h3>
-                                        <a href="{{ route('produto.show', ['slug' => $item->slug]) }}">{{ $item->titulo }}</a>
+                                        <a href="{{ route('produto.show', ['id' => $item->id]) }}">{{ $item->titulo }}</a>
                                     </h3>
-                                    <a href="{{ route('produto.show', ['slug' => $item->slug]) }}" class="blog-button">
+                                    <a href="{{ route('produto.show', ['id' => $item->id]) }}" class="blog-button">
                                         Leia Mais <i class="fa fa-caret-right"></i>
                                     </a>
                                 </div>

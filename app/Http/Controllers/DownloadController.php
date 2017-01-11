@@ -35,7 +35,7 @@ class DownloadController extends Controller
             }
 
             $menu = $this->menuRepository->scopeQuery(function($q) {
-                return $q->where(['status' => 1])->orderBy('posicao', 'ASC');
+                return $q->orderBy('posicao', 'ASC');
             })->findWhere(['tipo' => 1, 'status' => 1]);
 
             $downloads = $this->downloadRepository->scopeQuery(function($q){

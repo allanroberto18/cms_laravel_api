@@ -33,7 +33,7 @@
                         <i ng-class="{'fa fa-times-circle-o': form.telefone.$touched && form.telefone.$error.required }"></i>
                         Telefone:
                     </label>
-                    <input type="text" name="telefone" class="form-control" ng-model="entity.telefone" telefone required/>
+                    <input type="text" name="telefone" class="form-control" ng-model="entity.telefone" required/>
                     <div class="help-block" ng-show="form.$submitted || form.telefone.$touched">
                         <div ng-show="form.telefone.$error.required">
                             <i class="fa fa-exclamation-circle"></i> O campo Telefone é obrigatório
@@ -163,6 +163,10 @@
                 <button class="btn btn-warning btn-flat" ng-click="cancel(form)">
                     <i class="fa fa-eraser"></i>
                     Limpar Formulário
+                </button>
+                <button class="btn btn-default btn-flat" ng-click="close(form)">
+                    <i class="fa fa-close"></i>
+                    Cancelar Edição
                 </button>
             </div>
         </div>

@@ -4,7 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PaginaDepoimentoRequest extends FormRequest
+class FaleConoscoAssuntoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,7 @@ class PaginaDepoimentoRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,16 @@ class PaginaDepoimentoRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'titulo' => 'required',
+            'email' => 'required|email',
+        ];
+    }
+
+    public function attributes()
+    {
+        return [
+            'titulo' => 'Nome',
+            'email' => 'E-mail',
         ];
     }
 }

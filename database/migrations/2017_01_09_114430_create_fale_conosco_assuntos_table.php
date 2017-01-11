@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFaleConoscosTable extends Migration
+class CreateFaleConoscoAssuntosTable extends Migration
 {
 
 	/**
@@ -13,13 +13,10 @@ class CreateFaleConoscosTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('fale_conoscos', function(Blueprint $table) {
+		Schema::create('fale_conosco_assuntos', function(Blueprint $table) {
             $table->increments('id');
-            $table->string('assunto');
-            $table->string('nome');
-            $table->string('telefone');
+            $table->string('titulo');
             $table->string('email');
-            $table->text('mensagem');
             $table->integer('status')->default(1);
             $table->timestamps();
 		});
@@ -32,7 +29,7 @@ class CreateFaleConoscosTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::drop('fale_conoscos');
+		Schema::drop('fale_conosco_assuntos');
 	}
 
 }

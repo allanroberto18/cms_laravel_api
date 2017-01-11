@@ -37,8 +37,10 @@
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
             <alert-msg ng-show="message" ng-click="closeMessage()" title="Mensagem:">
-                {{ message }}
+                {{ message.data }}
             </alert-msg>
         </div>
+        <div ng-include="'js/app/templates/contato/form.tpl.html'"></div>
+        <div ng-include="'js/app/templates/contato/list.tpl.html'"></div>
     </div>
 </div>

@@ -11,6 +11,8 @@ $factory->define(App\Models\User::class, function (Faker\Generator $faker) {
     ];
 });
 
+
+
 $factory->define(App\Models\SobreNos::class, function (Faker\Generator $faker) {
     return [
         'titulo' => $faker->word,
@@ -126,3 +128,21 @@ $factory->define(\App\Models\PaginaCliente::class, function(Faker\Generator $fak
         'imagem' => 'logo.png',
     ];
 });
+
+$factory->define(App\Models\FaleConoscoAssunto::class, function (Faker\Generator $faker) {
+    return [
+        'titulo' => $faker->word,
+        'email' => $faker->email,
+    ];
+});
+
+$factory->define(App\Models\FaleConosco::class, function (Faker\Generator $faker) {
+    return [
+        'nome' => $faker->word,
+        'telefone' => $faker->phoneNumber,
+        'email' => $faker->email,
+        'mensagem' => $faker->sentence,
+        'status' => random_int(1, 2)
+    ];
+});
+

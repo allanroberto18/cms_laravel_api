@@ -68,20 +68,24 @@
                             </div>
                         </td>
                         <td>
-                            <h4><small>{{ item.retranca }}</small> {{ item.titulo }}</h4>
+                            <h4>
+                                <small>{{ item.retranca }}</small>
+                                {{ item.titulo }}
+                            </h4>
                             <p>
                                 {{ item.resumo }}
                                 <br>
-                                <strong>Link: </strong> /i/{{ item.slug }}
+                                <strong>Link: </strong> /i/{{ item.id }}
                             </p>
-                            <a href="/i/{{ item.slug }}" class="btn btn-default mb" target="_blank"><i class="fa fa-link"></i> Testar</a>
+                            <a href="/i/{{ item.id }}" class="btn btn-default mb" target="_blank"><i
+                                    class="fa fa-link"></i> Testar</a>
 
                             <!-- TAB NAVIGATION -->
                             <div class="nav-tabs-custom">
                                 <ul class="nav nav-tabs" role="tablist">
                                     <li class="active">
                                         <a href="#tab_{{ $index }}_1" role="tab" data-toggle="tab" target="_self">
-                                            <i class="fa fa-money"></i> Segmentos do Produto
+                                            <i class="fa fa-money"></i> Produtos
                                         </a>
                                     </li>
                                     <li>
@@ -102,16 +106,16 @@
                                 </ul>
                                 <!-- TAB CONTENT -->
                                 <div class="tab-content">
-                                    <div class="active tab-pane fade in" id="tab_{{ $index }}_1" >
+                                    <div class="active tab-pane fade in" id="tab_{{ $index }}_1">
                                         <div ng-include="'js/app/templates/pagina/produto/index.tpl.html'"></div>
                                     </div>
-                                    <div class="tab-pane fade in" id="tab_{{ $index }}_2" >
+                                    <div class="tab-pane fade in" id="tab_{{ $index }}_2">
                                         <div ng-include="'js/app/templates/pagina/cliente/index.tpl.html'"></div>
                                     </div>
-                                    <div class="tab-pane fade in" id="tab_{{ $index }}_3" >
+                                    <div class="tab-pane fade in" id="tab_{{ $index }}_3">
                                         <div ng-include="'js/app/templates/pagina/caracteristica/index.tpl.html'"></div>
                                     </div>
-                                    <div class="tab-pane fade in" id="tab_{{ $index }}_4" >
+                                    <div class="tab-pane fade in" id="tab_{{ $index }}_4">
                                         <div ng-include="'js/app/templates/pagina/video/index.tpl.html'"></div>
                                     </div>
                                 </div>

@@ -28,7 +28,7 @@
                                 <p>{{ $item->resumo }}</p>
                             </div>
                             <div class="col-md-4 mt mb">
-                                <a href="" class="btn btn-default btn-flat">
+                                <a href="{{ $item->link }}" class="btn btn-default btn-flat">
                                     <i class="fa fa-download"></i> Baixar Arquivo
                                 </a>
                             </div>

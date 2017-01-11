@@ -44,7 +44,7 @@ class NoticiaController extends Controller
             }
 
             $menu = $this->menuRepository->scopeQuery(function($q) {
-                return $q->where(['status' => 1])->orderBy('posicao', 'ASC');
+                return $q->orderBy('posicao', 'ASC');
             })->findWhere(['tipo' => 1, 'status' => 1]);
 
             $noticias = $this->noticiaRepository->scopeQuery(function($q){
@@ -58,7 +58,7 @@ class NoticiaController extends Controller
         }
     }
 
-    public function show($slug)
+    public function show($id)
     {
         try {
             $config = $this->configRepository->find(1);
@@ -68,10 +68,10 @@ class NoticiaController extends Controller
             }
 
             $menu = $this->menuRepository->scopeQuery(function($q) {
-                return $q->where(['status' => 1])->orderBy('posicao', 'ASC');
+                return $q->orderBy('posicao', 'ASC');
             })->findWhere(['tipo' => 1, 'status' => 1]);
 
-            $entity = $this->noticiaRepository->findByField('slug', $slug)->first();
+            $entity = $this->noticiaRepository->find($id);
 
             $noticias = $this->noticiaRepository->scopeQuery(function($q) use ($entity){
                 return $q->where('id', '<>', $entity->id)->where('status', 1)->orderBy('id', 'DESC');

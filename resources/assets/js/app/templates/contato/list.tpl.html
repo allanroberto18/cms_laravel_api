@@ -11,11 +11,7 @@
             </div>
         </div>
         <div class="box-body">
-            <button class="btn btn-primary btn-flat" ng-click="new()">
-                <i class="fa fa-plus"></i> Novo Registro
-            </button>
-
-            <div class="form-group has-feedback mt2">
+            <div class="form-group has-feedback">
                 <label for="search">Filtrar Items:</label>
                 <input type="text" name="search" class="form-control" ng-model="search.$"
                        placeholder="Informe o nome da categoria"
@@ -67,15 +63,15 @@
                             </div>
                         </td>
                         <td>
-                            <div ng-if="item.status === 0">
+                            <div ng-if="item.status === 1">
                                 <i class="fa fa-envelope"></i>
                             </div>
-                            <div ng-if="item.status === 1">
+                            <div ng-if="item.status === 2">
                                 <i class="fa fa-envelope-open"></i>
                             </div>
                         </td>
                         <td>
-                            <strong>Assunto: </strong> {{ item.assunto }} <br>
+                            <strong>Assunto: </strong> {{ item.assunto.data.titulo }} <br>
                             <strong>Nome: </strong> {{ item.nome }} <br>
                             <strong>Telefone: </strong> {{ item.telefone }} <br>
                             <strong>E-mail: </strong> {{ item.email }}

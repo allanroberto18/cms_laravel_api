@@ -26,6 +26,7 @@ class SobreNosTransformer extends TransformerAbstract
             'titulo' => (string)$model->titulo,
             'descricao' => (string)$model->descricao,
             'status' => (int)$model->status,
+            'posicao' => (int)$model->posicao,
             'created_at' => $model->created_at,
             'updated_at' => $model->updated_at
         ];

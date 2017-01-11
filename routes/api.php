@@ -31,10 +31,17 @@ Route::group(['prefix' => 'angular', 'middleware' => 'cors', 'as' => 'angular.',
         Route::post('salvar', 'DownloadController@create')->name('create');
         Route::put('atualizar/{id}', 'DownloadController@update')->name('update');
     });
+    Route::group(['prefix' => 'assunto', 'as' => 'assunto.'], function(){
+        Route::get('', 'FaleConoscoAssuntoController@index')->name('index');
+        Route::post('remover', 'FaleConoscoAssuntoController@removeSelected')->name('removeSelected');
+        Route::post('salvar', 'FaleConoscoAssuntoController@create')->name('create');
+        Route::put('atualizar/{id}', 'FaleConoscoAssuntoController@update')->name('update');
+    });
     Route::group(['prefix' => 'contato', 'as' => 'contato.'], function(){
         Route::get('', 'FaleConoscoController@index')->name('index');
         Route::post('remover', 'FaleConoscoController@removeSelected')->name('removeSelected');
         Route::post('salvar', 'FaleConoscoController@create')->name('create');
+        Route::get('assuntos', 'FaleConoscoController@assuntos')->name('assuntos');
         Route::put('atualizar/{id}', 'FaleConoscoController@update')->name('update');
     });
     Route::group(['prefix' => 'menu', 'as' => 'menu.'], function(){

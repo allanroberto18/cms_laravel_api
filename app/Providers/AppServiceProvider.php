@@ -83,6 +83,10 @@ class AppServiceProvider extends ServiceProvider
             FaleConoscoRepositoryEloquent::class
         );
         $this->app->bind(
+            FaleConoscoAssuntoRepository::class,
+            FaleConoscoAssuntoRepositoryEloquent::class
+        );
+        $this->app->bind(
             MenuRepository::class,
             MenuRepositoryEloquent::class
         );

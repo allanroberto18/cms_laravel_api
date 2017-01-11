@@ -7,18 +7,19 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService) {
 
     $scope.title = '';
     $scope.column = 'col-xs-12 col-sm-12 col-md-12 col-lg-12';
-    $scope.loadList = '';
-    $scope.showForm = false;
-    $scope.loadForm = false;
 
+    $scope.loadList;
+    $scope.showForm;
+    $scope.loadForm;
+    $scope.itemsSelectedAll;
+
+    $scope.assuntos = {};
     $scope.items = {};
     $scope.total = 0;
     $scope.perPage = 10;
     $scope.pagination = {
         current: 1
     };
-
-    $scope.itemsSelectedAll = false;
 
     $scope.errors = '';
     $scope.message = '';
@@ -43,8 +44,15 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService) {
         $scope.loadList = false;
     };
 
+    $scope.getAssuntos = function () {
+        ClientAPIService.getLoad('contato/assuntos')
+            .then(function (result, status) {
+                $scope.assuntos = result.data;
+            });
+    };
+
     $scope.init = function () {
-        $scope.getIcones();
+        $scope.getAssuntos();
     }
 
     $scope.getToken = function () {

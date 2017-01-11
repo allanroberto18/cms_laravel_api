@@ -29,6 +29,7 @@ var ClientAPIService = require('./services/ClientAPIService');
 var ConfigController = require('./controllers/ConfigController');
 var DownloadController = require('./controllers/DownloadController');
 var DashboardController = require('./controllers/DashboardController');
+var FaleConoscoAssuntoController = require('./controllers/FaleConoscoAssuntoController');
 var FaleConoscoController = require('./controllers/FaleConoscoController');
 var MenuController = require('./controllers/MenuController');
 var NoticiaController = require('./controllers/NoticiaController');
@@ -72,6 +73,17 @@ angular.module('app').config(function ($routeProvider) {
         })
         .when("/banner", {
             templateUrl: "/js/app/templates/banner/index.tpl.html",
+            resolve: {
+                // I will cause a 1 second delay
+                delay: function ($q, $timeout) {
+                    var delay = $q.defer();
+                    $timeout(delay.resolve, 1000);
+                    return delay.promise;
+                }
+            }
+        })
+        .when("/assunto", {
+            templateUrl: "/js/app/templates/assunto/index.tpl.html",
             resolve: {
                 // I will cause a 1 second delay
                 delay: function ($q, $timeout) {
@@ -192,6 +204,7 @@ angular.module('app').controller('ConfigController', ['$scope', '$log', '$uibMod
 angular.module('app').controller('DashboardController', ['$scope', '$log', '$uibModal', 'ClientAPIService', DashboardController]);
 angular.module('app').controller('DownloadController', ['$scope', '$log', '$uibModal', 'ClientAPIService', DownloadController]);
 angular.module('app').controller('FaleConoscoController', ['$scope', '$log', '$uibModal', 'ClientAPIService', FaleConoscoController]);
+angular.module('app').controller('FaleConoscoAssuntoController', ['$scope', '$log', '$uibModal', 'ClientAPIService', FaleConoscoAssuntoController]);
 angular.module('app').controller('MenuController', ['$scope', '$location', '$log', '$uibModal', 'ClientAPIService', MenuController]);
 angular.module('app').controller('NoticiaController', ['$scope', '$log', '$uibModal', 'ClientAPIService', 'ImageService', NoticiaController]);
 angular.module('app').controller('PaginaController', ['$scope', '$log', '$uibModal', 'ClientAPIService', 'ImageService', PaginaController]);

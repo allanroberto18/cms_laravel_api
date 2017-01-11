@@ -7,9 +7,12 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
 
     $scope.title = '';
     $scope.column = 'col-xs-12 col-sm-12 col-md-12 col-lg-12';
-    $scope.loadList = '';
-    $scope.showForm = false;
-    $scope.loadForm = false;
+
+    $scope.loadList;
+    $scope.showForm;
+    $scope.loadForm;
+    $scope.itemsSelectedAll = false;
+    $scope.animationsEnabled = true;
 
     $scope.items = {};
     $scope.total = 0;
@@ -18,15 +21,12 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
         current: 1
     };
 
-    $scope.itemsSelectedAll = false;
-
     $scope.errors = '';
     $scope.message = '';
 
     $scope.token = '';
     $scope.imagem = '';
     $scope.entity = {};
-    $scope.animationsEnabled = true;
 
     $scope.pageChanged = function (page) {
         list(page);

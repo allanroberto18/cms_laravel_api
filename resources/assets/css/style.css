@@ -1556,7 +1556,7 @@ footer {
 .video_box {
     position: relative;
     float: left;
-    margin: 0px;
+    margin: 0px 20px 20px 0px;
     padding: 0px;
     width: auto;
 }
@@ -1604,4 +1604,38 @@ footer {
 
 .single-feature-text > p {
     color: #888888;
+}
+.blog_feature {
+    position: relative;
+    float: right;
+    margin: 0px 0px 0px 30px;
+    padding: 0px;
+    width: auto;
+}
+
+.blog_feature .feature-list > h4
+{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: #959595 !important;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    border-bottom-color: #959595 ;
+}
+
+.blog_feature .single-feature > span {
+    display: inline-block;
+    float: left;
+    margin-right: 20px;
+    width: 20px;
+    color: #c9634c;
+}
+
+.feature-text {
+    color: #888888
+}
+
+.feature-text > h4 {
+    font-size: 20px;
+    color: #252830;
 }

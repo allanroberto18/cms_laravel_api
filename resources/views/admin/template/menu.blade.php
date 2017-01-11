@@ -30,6 +30,11 @@
                     <i class="fa fa-dashboard"></i> <span>Início</span>
                 </a>
             </li>
+            <li ng-class="{ active: isActive('/assunto')}">
+                <a ng-click="go('/assunto')">
+                    <i class="fa fa-comments-o"></i> <span>Assuntos/Contato</span>
+                </a>
+            </li>
             <li ng-class="{ active: isActive('/banner')}">
                 <a ng-click="go('/banner')">
                     <i class="fa fa-angellist"></i> <span>Banners</span>

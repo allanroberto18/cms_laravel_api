@@ -27,5 +27,6 @@ class DatabaseSeeder extends Seeder
 
         $this->call(SobreNosTableSeeder::class);
         $this->call(PaginaTableSeeder::class);
+        $this->call(ContatoTableSeeder::class);
     }
 }

@@ -69,7 +69,7 @@
                         <h2>{{ $destaque->titulo }}</h2>
                         {{--<h1>Features</h1>--}}
                         <p>{{ $destaque->resumo }}</p>
-                        <a href="{{ route('produto.show',[ 'slug' => $destaque->slug ]) }}" class="button">Leia Mais</a>
+                        <a href="{{ route('produto.show',[ 'id' => $destaque->id ]) }}" class="button">Leia Mais</a>
                     </div>
                 </div>
                 <div class="hidden-xs hidden-sm col-md-4 col-lg-4">

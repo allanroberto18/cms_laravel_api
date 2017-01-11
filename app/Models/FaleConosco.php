@@ -11,7 +11,12 @@ class FaleConosco extends Model implements Transformable
     use TransformableTrait;
 
     protected $fillable = [
-        'assunto', 'nome', 'telefone', 'email', 'mensagem', 'status'
+        'fale_conosco_assunto_id', 'nome', 'telefone', 'email', 'mensagem', 'resposta', 'status'
     ];
+
+    public function assunto()
+    {
+        return $this->belongsTo(FaleConoscoAssunto::class, 'fale_conosco_assunto_id', 'id');
+    }
 
 }

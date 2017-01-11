@@ -11,6 +11,6 @@ class SobreNos extends Model implements Transformable
     use TransformableTrait;
 
     protected $fillable = [
-        'icone', 'titulo', 'descricao', 'status'
+        'icone', 'titulo', 'descricao', 'posicao','status'
     ];
 }

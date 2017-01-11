@@ -1,7 +1,7 @@
 @extends('Front.Base.internas')
 @section('body')
     @if(count($produtos) > 0)
-        <div class="blog-area1 section-light-blog" id="blog" style="margin-top: 120px;">
+        <div class="blog-area1 section-light-blog mb6" id="blog" style="margin-top: 120px;">
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 text-center">
@@ -31,7 +31,7 @@
                                     {{ $item->titulo }}
                                 </h1>
                                 <p>{{ $item->resumo }}</p>
-                                <a href="{{ route('produto.show', [ 'slug' => $item->slug ]) }}"
+                                <a href="{{ route('produto.show', [ 'id' => $item->id ]) }}"
                                    class="button mt">
                                     Leia Mais <i class="fa fa-caret-right"></i>
                                 </a>

@@ -40,7 +40,7 @@ class PaginaProdutoController extends Controller
             }
 
             $menu = $this->menuRepository->scopeQuery(function($q) {
-                return $q->where(['status' => 1])->orderBy('posicao', 'ASC');
+                return $q->orderBy('posicao', 'ASC');
             })->findWhere(['tipo' => 1, 'status' => 1]);
 
             $produtos = $this->produtoRepository->scopeQuery(function($q){
@@ -54,7 +54,7 @@ class PaginaProdutoController extends Controller
         }
     }
 
-    public function show($slug)
+    public function show($id)
     {
         try {
             $config = $this->configRepository->find(1);
@@ -64,10 +64,10 @@ class PaginaProdutoController extends Controller
             }
 
             $menu = $this->menuRepository->scopeQuery(function($q) {
-                return $q->where(['status' => 1])->orderBy('posicao', 'ASC');
+                return $q->orderBy('posicao', 'ASC');
             })->findWhere(['tipo' => 1, 'status' => 1]);
 
-            $entity = $this->produtoRepository->findByField('slug', $slug)->first();
+            $entity = $this->produtoRepository->find($id);
 
             $produtos = $this->produtoRepository->scopeQuery(function($q) use ($entity){
                 return $q->where('id', '<>', $entity->id)->where('status', 1)->orderBy('id', 'DESC');

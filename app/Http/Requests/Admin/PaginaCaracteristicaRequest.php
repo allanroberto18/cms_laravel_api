@@ -27,6 +27,7 @@ class PaginaCaracteristicaRequest extends FormRequest
             'icone' => 'required',
             'titulo' => 'required|max:50',
             'descricao' => 'required|max:130',
+            'posicao' => 'required',
         ];
     }
 
@@ -37,6 +38,7 @@ class PaginaCaracteristicaRequest extends FormRequest
                 'icone' => 'Icone',
                 'titulo' => 'Título',
                 'descricao' => 'Nome',
+                'posicao' => 'Posição',
             ];
     }
 }

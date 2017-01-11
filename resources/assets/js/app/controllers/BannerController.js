@@ -7,12 +7,15 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
 
     $scope.title = '';
     $scope.column = 'col-xs-12 col-sm-12 col-md-12 col-lg-12';
-    $scope.loadList = '';
-    $scope.showForm = false;
-    $scope.loadForm = false;
+
+    $scope.loadList;
+    $scope.showForm;
+    $scope.loadForm;
+
+    $scope.itemsSelectedAll = false;
+    $scope.animationsEnabled = true;
 
     $scope.items = {};
-    $scope.itemsSelectedAll = false;
 
     $scope.errors = '';
     $scope.message = '';
@@ -20,7 +23,6 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
     $scope.token = '';
     $scope.pagina = '';
     $scope.entity = {};
-    $scope.animationsEnabled = true;
 
     $scope.pageChanged = function (page) {
         list(page);
@@ -83,8 +85,6 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
 
     $scope.load = function (entity) {
         $scope.title = 'Alterar Registro #' + entity.id;
-
-        $log.info(entity);
 
         $scope.entity = entity;
 
@@ -255,6 +255,8 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
     };
 
     $scope.upload = function (imagem, tipo) {
+        $scope.loadForm = true;
+
         var fd = new FormData();
         fd.append('file', imagem[0]);
 
@@ -262,9 +264,13 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
             .then(function (data) {
                 if (tipo === 1) {
                     $scope.entity.imagem_destaque = data.data;
+
+                    $scope.loadForm = false;
                     return;
                 }
                 $scope.entity.imagem_fundo = data.data;
+
+                $scope.loadForm = false;
             });
     }
 };

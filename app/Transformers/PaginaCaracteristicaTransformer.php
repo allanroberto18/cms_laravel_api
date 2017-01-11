@@ -26,6 +26,7 @@ class PaginaCaracteristicaTransformer extends TransformerAbstract
             'icone' => (string)$model->icone,
             'titulo' => (string)$model->titulo,
             'descricao' => (string)$model->descricao,
+            'posicao' => (int)$model->posicao,
             'status' => (int)$model->status,
             'created_at' => $model->created_at,
             'updated_at' => $model->updated_at

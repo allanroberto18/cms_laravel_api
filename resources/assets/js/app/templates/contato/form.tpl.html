@@ -13,14 +13,16 @@
             </div>
             <div class="box-body">
                 <input type="hidden" name="_token" value="{{ token }}"/>
-                <div class="form-group" ng-class="{'has-error': form.assunto.$touched && form.assunto.$error.required }">
-                    <label for="assunto">
-                        <i ng-class="{'fa fa-times-circle-o': form.assunto.$touched && form.assunto.$error.required }"></i>
-                        Assunto:
+                <div class="form-group" ng-class="{'has-error': form.fale_conosco_assunto_id.$touched && form.fale_conosco_assunto_id.$error.required }">
+                    <label for="fale_conosco_assunto_id">
+                        <i ng-class="{'fa fa-times-circle-o': form.fale_conosco_assunto_id.$touched && form.fale_conosco_assunto_id.$error.required}"></i>
+                        Assunto: <i class="fa" ng-class="entity.fale_conosco_assunto_id"></i> 
                     </label>
-                    <input type="text" name="assunto" class="form-control" ng-model="entity.assunto" required/>
-                    <div class="help-block" ng-show="form.$submitted || form.assunto.$touched">
-                        <div ng-show="form.assunto.$error.required">
+                    <select name="fale_conosco_assunto_id" class="form-control" ng-options="item.id as item.titulo for item in assuntos" ng-model="entity.fale_conosco_assunto_id" required disabled="true" >
+                        <option value="">Selecionar Assunto</option>
+                    </select>
+                    <div class="help-block" ng-show="form.$submitted || form.fale_conosco_assunto_id.$touched">
+                        <div ng-show="form.fale_conosco_assunto_id.$error.required">
                             <i class="fa fa-exclamation-circle"></i> O campo Assunto é obrigatório
                         </div>
                     </div>
@@ -30,7 +32,7 @@
                         <i ng-class="{'fa fa-times-circle-o': form.nome.$touched && form.nome.$error.required }"></i>
                         Nome:
                     </label>
-                    <input type="text" name="nome" class="form-control" ng-model="entity.nome" required/>
+                    <input type="text" name="nome" class="form-control" ng-model="entity.nome" required readonly="true"/>
                     <div class="help-block" ng-show="form.$submitted || form.nome.$touched">
                         <div ng-show="form.nome.$error.required">
                             <i class="fa fa-exclamation-circle"></i> O campo Nome é obrigatório
@@ -42,7 +44,7 @@
                         <i ng-class="{'fa fa-times-circle-o': form.telefone.$touched && form.telefone.$error.required }"></i>
                         Telefone:
                     </label>
-                    <input type="text" name="telefone" class="form-control" ng-model="entity.telefone" telefone required/>
+                    <input type="text" name="telefone" class="form-control" ng-model="entity.telefone" telefone required readonly="true"/>
                     <div class="help-block" ng-show="form.$submitted || form.telefone.$touched">
                         <div ng-show="form.telefone.$error.required">
                             <i class="fa fa-exclamation-circle"></i> O campo Telefone é obrigatório
@@ -54,7 +56,7 @@
                         <i ng-class="{'fa fa-times-circle-o': form.email.$touched && form.email.$error.required }"></i>
                         E-mail:
                     </label>
-                    <input type="email" name="email" class="form-control" ng-model="entity.email" required/>
+                    <input type="email" name="email" class="form-control" ng-model="entity.email" required required readonly="true"/>
                     <div class="help-block" ng-show="form.$submitted || form.email.$touched">
                         <div ng-show="form.email.$error.required">
                             <i class="fa fa-exclamation-circle"></i> O campo E-mail é obrigatório
@@ -66,13 +68,26 @@
                         <i ng-class="{'fa fa-times-circle-o': form.mensagem.$touched && form.mensagem.$error.required}"></i> 
                         Mensagem:
                     </label>
-                    <textarea name="mensagem" class="form-control" maxlength="133" rows="3" ng-model="entity.mensagem" required></textarea>
+                    <textarea name="mensagem" class="form-control" maxlength="133" rows="3" ng-model="entity.mensagem" required readonly="true"></textarea>
                     <div class="help-block" ng-show="form.$submitted || form.mensagem.$touched">
                         <div ng-show="form.mensagem.$error.required">
                             <i class="fa fa-exclamation-circle"></i> O campo Mensagem é obrigatório
                         </div>
                     </div>
                 </div>
+                <div class="form-group" ng-class="{'has-error': form.resposta.$touched && form.resposta.$error.required}">
+                    <label for="resposta">
+                        <i ng-class="{'fa fa-times-circle-o': form.resposta.$touched && form.resposta.$error.required}"></i>
+                        Resposta:
+                    </label>
+                    <textarea name="resposta" class="form-control" maxlength="133" rows="10" ng-model="entity.resposta" required></textarea>
+                    <div class="help-block" ng-show="form.$submitted || form.resposta.$touched">
+                        <div ng-show="form.resposta.$error.required">
+                            <i class="fa fa-exclamation-circle"></i> O campo Resposta é obrigatório
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" name="status" value="2" />
             </div>
             <div class="overlay" ng-show="loadForm">
                 <i class="fa fa-refresh fa-spin"></i>
@@ -85,6 +100,10 @@
                 <button class="btn btn-warning btn-flat" ng-click="cancel(form)">
                     <i class="fa fa-eraser"></i>
                     Limpar Formulário
+                </button>
+                <button class="btn btn-default btn-flat" ng-click="close(form)">
+                    <i class="fa fa-close"></i>
+                    Cancelar Edição
                 </button>
             </div>
         </div>

@@ -74,7 +74,7 @@ class PaginaController extends Controller
         $this->clienteRepository = $clienteRepository;
     }
 
-    public function show($slug)
+    public function show($id)
     {
         try {
             $config = $this->configRepository->find(1);
@@ -84,7 +84,7 @@ class PaginaController extends Controller
             }
 
             $menu = $this->menuRepository->scopeQuery(function($q) {
-                return $q->where(['status' => 1])->orderBy('posicao', 'ASC');
+                return $q->orderBy('posicao', 'ASC');
             })->findWhere(['tipo' => 1, 'status' => 1]);
 
             $sobreNos = $this->sobreNosRepository->scopeQuery(function ($q) {
@@ -93,16 +93,16 @@ class PaginaController extends Controller
 
             $pagina = $this->paginaRepository->scopeQuery(function($q){
                 return $q->where(['status' => 1]);
-            })->findByField('slug', $slug)->first();
+            })->find($id);
 
             $caracteristicas = $this->makeSlider($this->processCaracteristicas($pagina));
 
-            $video = $this->videoRepository->findByField('pagina_id', $pagina->id)->last();
+            $video = $this->videoRepository->findWhere(['pagina_id' => $pagina->id, 'status' => 1])->last();
 
-            $destaque = $this->paginaProdutoRepository->findWhere(['pagina_id' => $pagina->id, 'destaque' => 1])->last();
+            $destaque = $this->paginaProdutoRepository->findWhere(['pagina_id' => $pagina->id, 'destaque' => 1, 'status' => 1])->last();
 
             $produtos = $this->paginaProdutoRepository->scopeQuery(function ($q) use ($pagina) {
-                return $q->where(['pagina_id' => $pagina->id, 'destaque' => 0])->orderBy('created_at', 'DESC');
+                return $q->where(['pagina_id' => $pagina->id, 'destaque' => 0, 'status' => 1])->orderBy('created_at', 'DESC');
             })->paginate(3);
 
             $clientes = $this->clienteRepository->findWhere(['status' => 1]);

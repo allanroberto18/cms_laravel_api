@@ -7,6 +7,7 @@ use App\Repositories\FaleConoscoAssuntoRepository;
 use Illuminate\Http\Request;
 use App\Repositories\FaleConoscoRepository;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Response;
 
 class FaleConoscoController extends Controller
@@ -31,7 +32,9 @@ class FaleConoscoController extends Controller
 
     public function index(Request $request)
     {
-        return $this->repository->skipPresenter(false)->paginate(10);
+        return $this->repository->scopeQuery(function($q) {
+            return $q->orderBy('status', 'desc');
+        })->skipPresenter(false)->paginate(10);
     }
 
     public function remove($id)
@@ -56,6 +59,20 @@ class FaleConoscoController extends Controller
         $data = $request->all();
 
         $this->repository->update($data, $entity->id);
+
+        $title = 'teste de e-mail';
+        $content = 'teste feito com sucesso';
+
+        Mail::send('email.send', ['title' => $entity->fale_conosco_assunto_id->title, 'content' => $entity], function ($message) use ($entity)
+        {
+            $message->from($entity->fale_conosco_assunto_id->email, 'Sied Sistemas');
+            $message->to($entity->email);
+        });
+        Mail::send('email.send', ['title' => $entity->fale_conosco_assunto_id->title, 'content' => $entity], function ($message) use ($entity)
+        {
+            $message->from($entity->email, $entity->nome);
+            $message->to($entity->fale_conosco_assunto_id->email);
+        });
 
         return Response::json(
             [
@@ -110,6 +127,6 @@ class FaleConoscoController extends Controller
 
     public function assuntos()
     {
-        return $this->assuntoRepository->lists('titulo', 'id');
+        return $this->assuntoRepository->all();
     }
 }

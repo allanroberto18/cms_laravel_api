@@ -1,6 +1,6 @@
 <header>
     <!--Mainmenu Start-->
-    <div id="main-menu" class="sticker layout-two-menu">
+    <div id="main-menu" class="layout-two-menu stick slideDown">
         <div class="container">
             <div class="row">
                 <div class="col-sm-3 hidden-sm hidden-xs">

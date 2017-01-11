@@ -57,7 +57,7 @@
             <td>
                 <i class='fa' ng-class="item.icone"></i> {{ item.titulo }}
                 <br>
-                <strong>Link: </strong> /p/{{ item.slug }}
+                <strong>Link: </strong> /p/{{ item.id }}
                 <div ng-controller="PaginaProdutoCaracteristicaController" ng-init="init(item.id)">
                     <button class="btn btn-primary btn-flat mt mb" ng-click="new()">
                         <i class="fa fa-plus"></i> Nova Característica
