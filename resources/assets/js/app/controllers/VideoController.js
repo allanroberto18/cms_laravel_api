@@ -27,6 +27,7 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
     $scope.token = '';
     $scope.imagem = '';
     $scope.entity = {};
+    $scope.categorias = {};
 
     $scope.pageChanged = function (page) {
         list(page);
@@ -34,18 +35,29 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
 
     var list = function (page) {
         $scope.loadList = true;
+
         ClientAPIService.getList('video', page)
             .then(function (result) {
                 $scope.items = result.data;
 
                 $scope.total = $scope.items.meta.pagination.total;
-            })
-        $scope.loadList = false;
+
+                $scope.loadList = false;
+            });
     };
 
     $scope.init = function () {
         list(1);
+
+        $scope.getCategorias();
     }
+
+    $scope.getCategorias = function () {
+        ClientAPIService.getLoad('video/categorias')
+            .then(function (result, status) {
+                $scope.categorias = result.data;
+            });
+    };
 
     $scope.getToken = function () {
         ClientAPIService.getToken()
@@ -79,12 +91,14 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
         $scope.edit(true);
 
         $scope.entity = {
-            retranca: '',
+            video_categoria_id: '',
             titulo: '',
             resumo: '',
-            texto: '',
-            credito: 'Divulgação',
-            legenda: ''
+            link: '',
+            largura: 560,
+            altura: 315,
+            posicao: '',
+            status: 1
         };
     };
 

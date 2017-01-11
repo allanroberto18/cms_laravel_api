@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Prettus\Repository\Contracts\Transformable;
 use Prettus\Repository\Traits\TransformableTrait;
 
-class Noticia extends Model implements Transformable
+class VideoCategoria extends Model implements Transformable
 {
     use TransformableTrait, Sluggable;
 
@@ -26,6 +26,11 @@ class Noticia extends Model implements Transformable
     }
 
     protected $fillable = [
-        'retranca', 'titulo', 'slug', 'resumo', 'texto', 'credito', 'imagem', 'legenda', 'status'
+        'titulo', 'slug', 'resumo', 'posicao', 'status'
     ];
+
+    public function videos()
+    {
+        return $this->hasMany(Video::class, 'video_categoria_id', 'id');
+    }
 }

@@ -11,7 +11,7 @@ class PaginaCliente extends Model implements Transformable
     use TransformableTrait;
 
     protected $fillable = [
-        'pagina_id', 'nome', 'imagem', 'status'
+        'pagina_id', 'nome', 'cidade', 'imagem', 'status'
     ];
 
     public function pagina()

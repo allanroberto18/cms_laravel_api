@@ -35,14 +35,14 @@
                         </th>
                         <th width="30%">Opções</th>
                         <th width="30%">Posição</th>
-                        <th width="30%">Titulo</th>
+                        <th width="30%">Nome</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr dir-paginate="item in items.data | filter: search | itemsPerPage:perPage">
+                    <tr dir-paginate="item in items.data | filter: search | itemsPerPage:perPage" total-items="total" current-page="pagination.current">
                         <td>
                             <label>
-                                <input type="checkbox" ng-model="item.Selected"/>
+                                <input type="checkbox" ng-model="item.Selected" />
                             </label>
                         </td>
                         <td>
@@ -70,10 +70,7 @@
                             {{ item.posicao }}
                         </td>
                         <td>
-                            <div class="embed-responsive embed-responsive-16by9">
-                                <h3>{{ item.titulo }}</h3>
-                                <img src="https://img.youtube.com/vi/{{ item.link }}/0.jpg" />
-                            </div>
+                            {{ item.titulo }}
                         </td>
                     </tr>
                     </tbody>

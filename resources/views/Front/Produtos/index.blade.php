@@ -6,7 +6,7 @@
                 <div class="row">
                     <div class="col-md-12 text-center">
                         <div class="section-title light">
-                            <h1 class="text-uppercase">Todas <span>Notícias</span></h1>
+                            <h1 class="text-uppercase">Todos os <span>Produtos</span></h1>
                             <img src="/img/icon/title-bg.png" alt="">
                         </div>
                     </div>

@@ -13,6 +13,39 @@
             </div>
             <div class="box-body">
                 <input type="hidden" name="_token" value="{{ token }}"/>
+                <div class="form-group" ng-class="{'has-error': form.video_categoria_id.$touched && form.video_categoria_id.$error.required }">
+                    <label for="video_categoria_id">
+                        <i ng-class="{'fa fa-times-circle-o': form.video_categoria_id.$touched && form.video_categoria_id.$error.required}"></i>
+                        Categoria: <i class="fa" ng-class="entity.video_categoria_id"></i>
+                    </label>
+                    <select name="video_categoria_id" class="form-control" ng-options="item.id as item.titulo for item in categorias" ng-model="entity.video_categoria_id" required >
+                        <option value="">Selecionar Categoria</option>
+                    </select>
+                    <div class="help-block" ng-show="form.$submitted || form.video_categoria_id.$touched">
+                        <div ng-show="form.video_categoria_id.$error.required">
+                            <i class="fa fa-exclamation-circle"></i> O campo Categoria é obrigatório
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{'has-error': form.titulo.$touched && form.titulo.$error.required }">
+                    <label for="titulo">
+                        <i ng-class="{'fa fa-times-circle-o': form.titulo.$touched && form.titulo.$error.required }"></i>
+                        Nome:
+                    </label>
+                    <input type="text" name="titulo" class="form-control" ng-model="entity.titulo" required/>
+                    <div class="help-block" ng-show="form.$submitted || form.titulo.$touched">
+                        <div ng-show="form.titulo.$error.required">
+                            <i class="fa fa-exclamation-circle"></i> O campo Nome é obrigatório
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="resumo">
+                        Resumo:
+                    </label>
+                    <textarea name="resumo" class="form-control" maxlength="133" rows="3"
+                              ng-model="entity.resumo"></textarea>
+                </div>
                 <div class="form-group" ng-class="{'has-error': form.link.$touched && form.link.$error.required }">
                     <label for="link">
                         <i ng-class="{'fa fa-times-circle-o': form.link.$touched && form.link.$error.required }"></i>
@@ -49,8 +82,17 @@
                         </div>
                     </div>
                 </div>
-                <div class="embed-responsive embed-responsive-16by9">
-                    <youtube-video class="embed-responsive-item" video-url="entity.link" player-width="'entity.largura'" player-height="'entity.largura'"></youtube-video>
+                <div class="form-group" ng-class="{'has-error': form.posicao.$touched && form.posicao.$error.required }">
+                    <label for="posicao">
+                        <i ng-class="{'fa fa-times-circle-o': form.posicao.$touched && form.posicao.$error.required }"></i>
+                        Posição:
+                    </label>
+                    <input type="number" name="posicao" class="form-control" ng-model="entity.posicao" required/>
+                    <div class="help-block" ng-show="form.$submitted || form.posicao.$touched">
+                        <div ng-show="form.posicao.$error.required">
+                            <i class="fa fa-exclamation-circle"></i> O campo Posição é obrigatório
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="overlay" ng-show="loadForm">

@@ -35,18 +35,20 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
 
     var list = function (page) {
         $scope.loadList = true;
+
         ClientAPIService.getList('config', page)
             .then(function (result) {
                 $scope.items = result.data;
 
                 $scope.total = $scope.items.meta.pagination.total;
-            })
-        $scope.loadList = false;
+
+                $scope.loadList = false;
+            });
     };
 
     $scope.init = function () {
         list(1);
-    }
+    };
 
     $scope.getToken = function () {
         ClientAPIService.getToken()
@@ -107,7 +109,7 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
 
     $scope.closeMessage = function () {
         $scope.message = '';
-    }
+    };
 
     $scope.cancel = function (form) {
         if (form) {
@@ -163,13 +165,11 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
 
             selected.push(entity.id);
 
+            $scope.loadList = true;
+
             ClientAPIService.getPost(modulo, selected)
                 .then(function (data) {
-                    $scope.loadList = true;
-
                     $scope.message = data.data;
-
-                    $scope.loadList = false;
 
                     switch (entity.status) {
                         case 0:
@@ -181,11 +181,14 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
                     }
 
                     $scope.entity = {};
+
+                    $scope.loadList = false;
                 })
                 .then(function (data, status) {
                     if (status == 422) {
                         $scope.errors = data.data;
                     }
+                    $scope.loadList = false;
                 });
         });
     };
@@ -214,6 +217,7 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
             $scope.message = '';
 
             var selecteds = [];
+
             angular.forEach($scope.items.data, function (item) {
                 if (item.Selected) {
                     selecteds.push(item.id);
@@ -224,6 +228,7 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
                 ClientAPIService.getDelete('config/remover', selecteds)
                     .then(function (data, status) {
                         $scope.itemsSelectedAll = false;
+
                         $scope.message = data.data;
 
                         list($scope.items.meta.pagination.current_page);
@@ -245,13 +250,15 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
                     $scope.entity = {};
 
                     $scope.edit(false);
+
+                    $scope.loadForm = false;
                 })
                 .then(function (data, status) {
                     if (status == 422) {
                         $scope.errors = data;
                     }
+                    $scope.loadForm = false;
                 });
-            $scope.loadForm = false;
             return;
         }
 
@@ -266,13 +273,16 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
                 $scope.edit(false);
 
                 $scope.entity = {};
+
+                $scope.loadForm = false;
             })
             .then(function (data, status) {
                 if (status == 422) {
                     $scope.errors = data;
                 }
+                $scope.loadForm = false;
             });
-        $scope.loadForm = false;
+
         return;
     };
 
@@ -288,9 +298,10 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
 
                 $scope.loadForm = false;
             });
-    }
+    };
 
     $scope.getCep = function (value) {
+        $scope.loadForm = true;
 
         $http.get('https://viacep.com.br/ws/' + value + '/json/')
             .then(function (result, status) {
@@ -300,6 +311,8 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
                 $scope.entity.bairro = result.data.bairro;
                 $scope.entity.localidade = result.data.localidade;
                 $scope.entity.uf = result.data.uf;
+
+                $scope.loadForm = false;
             });
     }
 };

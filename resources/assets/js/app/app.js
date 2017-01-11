@@ -30,7 +30,6 @@ var ConfigController = require('./controllers/ConfigController');
 var DownloadController = require('./controllers/DownloadController');
 var DashboardController = require('./controllers/DashboardController');
 var FaleConoscoAssuntoController = require('./controllers/FaleConoscoAssuntoController');
-var FaleConoscoController = require('./controllers/FaleConoscoController');
 var MenuController = require('./controllers/MenuController');
 var NoticiaController = require('./controllers/NoticiaController');
 var PaginaController = require('./controllers/PaginaController');
@@ -41,6 +40,7 @@ var PaginaProdutoCaracteristicaController = require('./controllers/PaginaProduto
 var PaginaVideoController = require('./controllers/PaginaVideoController');
 var SobreNosController = require('./controllers/SobreNosController');
 var VideoController = require('./controllers/VideoController');
+var VideoCategoriaController = require('./controllers/VideoCategoriaController');
 
 angular.module('app', [
     'angularUtils.directives.dirPagination',
@@ -95,17 +95,6 @@ angular.module('app').config(function ($routeProvider) {
         })
         .when("/config", {
             templateUrl: "/js/app/templates/config/index.tpl.html",
-            resolve: {
-                // I will cause a 1 second delay
-                delay: function ($q, $timeout) {
-                    var delay = $q.defer();
-                    $timeout(delay.resolve, 1000);
-                    return delay.promise;
-                }
-            }
-        })
-        .when("/contato", {
-            templateUrl: "/js/app/templates/contato/index.tpl.html",
             resolve: {
                 // I will cause a 1 second delay
                 delay: function ($q, $timeout) {
@@ -170,6 +159,17 @@ angular.module('app').config(function ($routeProvider) {
                 }
             }
         })
+        .when("/video_categoria", {
+            templateUrl: "/js/app/templates/video_categoria/index.tpl.html",
+            resolve: {
+                // I will cause a 1 second delay
+                delay: function ($q, $timeout) {
+                    var delay = $q.defer();
+                    $timeout(delay.resolve, 1000);
+                    return delay.promise;
+                }
+            }
+        })
         .when("/video", {
             templateUrl: "/js/app/templates/video/index.tpl.html",
             resolve: {
@@ -203,7 +203,6 @@ angular.module('app').controller('BannerController', ['$scope', '$log', '$uibMod
 angular.module('app').controller('ConfigController', ['$scope', '$log', '$uibModal', 'ClientAPIService', 'ImageService', '$http', ConfigController]);
 angular.module('app').controller('DashboardController', ['$scope', '$log', '$uibModal', 'ClientAPIService', DashboardController]);
 angular.module('app').controller('DownloadController', ['$scope', '$log', '$uibModal', 'ClientAPIService', DownloadController]);
-angular.module('app').controller('FaleConoscoController', ['$scope', '$log', '$uibModal', 'ClientAPIService', FaleConoscoController]);
 angular.module('app').controller('FaleConoscoAssuntoController', ['$scope', '$log', '$uibModal', 'ClientAPIService', FaleConoscoAssuntoController]);
 angular.module('app').controller('MenuController', ['$scope', '$location', '$log', '$uibModal', 'ClientAPIService', MenuController]);
 angular.module('app').controller('NoticiaController', ['$scope', '$log', '$uibModal', 'ClientAPIService', 'ImageService', NoticiaController]);
@@ -215,6 +214,7 @@ angular.module('app').controller('PaginaProdutoCaracteristicaController', ['$sco
 angular.module('app').controller('PaginaVideoController', ['$scope', '$log', '$uibModal', 'ClientAPIService', PaginaVideoController]);
 angular.module('app').controller('SobreNosController', ['$scope', '$log', '$uibModal', 'ClientAPIService', SobreNosController]);
 angular.module('app').controller('VideoController', ['$scope', '$log', '$uibModal', 'ClientAPIService', VideoController]);
+angular.module('app').controller('VideoCategoriaController', ['$scope', '$log', '$uibModal', 'ClientAPIService', VideoCategoriaController]);
 
 
 

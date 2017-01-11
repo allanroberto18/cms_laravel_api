@@ -125,6 +125,7 @@ $factory->define(\App\Models\Menu::class, function(Faker\Generator $faker){
 $factory->define(\App\Models\PaginaCliente::class, function(Faker\Generator $faker){
     return [
         'nome' => $faker->word,
+        'cidade' => $faker->city,
         'imagem' => 'logo.png',
     ];
 });

@@ -34,13 +34,15 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService) {
 
     var list = function (page) {
         $scope.loadList = true;
+
         ClientAPIService.getList('sobre_nos', page)
             .then(function (result) {
                 $scope.items = result.data;
 
                 $scope.total = $scope.items.meta.pagination.total;
+
+                $scope.loadList = false;
             });
-        $scope.loadList = false;
     };
 
     $scope.getIcones = function () {
@@ -84,6 +86,16 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService) {
         $scope.title = 'Novo Registro';
 
         $scope.edit(true);
+
+        $scope.entity = {
+            retranca: '',
+            titulo: '',
+            resumo: '',
+            texto: '',
+            credito: 'Divulgação',
+            legenda: '',
+            status: 1
+        };
     };
 
     $scope.load = function (entity) {

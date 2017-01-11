@@ -38,6 +38,8 @@ use App\Repositories\SobreNosRepository;
 use App\Repositories\SobreNosRepositoryEloquent;
 use App\Repositories\UserRepository;
 use App\Repositories\UserRepositoryEloquent;
+use App\Repositories\VideoCategoriaRepository;
+use App\Repositories\VideoCategoriaRepositoryEloquent;
 use App\Repositories\VideoRepository;
 use App\Repositories\VideoRepositoryEloquent;
 use Illuminate\Support\ServiceProvider;
@@ -125,6 +127,10 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(
             PaginaVideoRepository::class,
             PaginaVideoRepositoryEloquent::class
+        );
+        $this->app->bind(
+            VideoCategoriaRepository::class,
+            VideoCategoriaRepositoryEloquent::class
         );
         $this->app->bind(
             VideoRepository::class,

@@ -1,8 +1,8 @@
-module.exports = function ($scope, $log, $uibModal, ClientAPIService) {
+module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageService) {
 
     $scope.modulo = {
         title: 'Gerenciar Módulo',
-        subtitle: 'Fale Conosco'
+        subtitle: 'Categorias dos Videos'
     };
 
     $scope.title = '';
@@ -11,9 +11,9 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService) {
     $scope.loadList;
     $scope.showForm;
     $scope.loadForm;
-    $scope.itemsSelectedAll;
+    $scope.itemsSelectedAll = false;
+    $scope.animationsEnabled = true;
 
-    $scope.assuntos = {};
     $scope.items = {};
     $scope.total = 0;
     $scope.perPage = 10;
@@ -25,9 +25,8 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService) {
     $scope.message = '';
 
     $scope.token = '';
-    $scope.icones = {};
+    $scope.imagem = '';
     $scope.entity = {};
-    $scope.animationsEnabled = true;
 
     $scope.pageChanged = function (page) {
         list(page);
@@ -35,24 +34,19 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService) {
 
     var list = function (page) {
         $scope.loadList = true;
-        ClientAPIService.getList('contato', page)
+
+        ClientAPIService.getList('video/categoria', page)
             .then(function (result) {
                 $scope.items = result.data;
 
                 $scope.total = $scope.items.meta.pagination.total;
-            });
-        $scope.loadList = false;
-    };
 
-    $scope.getAssuntos = function () {
-        ClientAPIService.getLoad('contato/assuntos')
-            .then(function (result, status) {
-                $scope.assuntos = result.data;
+                $scope.loadList = false;
             });
     };
 
     $scope.init = function () {
-        $scope.getAssuntos();
+        list(1);
     }
 
     $scope.getToken = function () {
@@ -75,15 +69,23 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService) {
             $scope.column = 'col-xs-12 col-sm-12 col-md-6 col-lg-6';
 
             $scope.getToken();
-        }
 
-        return;
+            return;
+        }
+        $scope.imagem = '';
     };
 
     $scope.new = function () {
         $scope.title = 'Novo Registro';
 
         $scope.edit(true);
+
+        $scope.entity = {
+            titulo: '',
+            resumo: '',
+            posicao: '',
+            status: 1
+        };
     };
 
     $scope.load = function (entity) {
@@ -92,6 +94,8 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService) {
         $scope.entity = entity;
 
         $scope.edit(true);
+
+        $scope.imagem = entity.imagem;
     };
 
     $scope.closeMessage = function () {
@@ -126,7 +130,7 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService) {
     };
 
     $scope.delete = function (key, entity) {
-        var modulo = 'contato/remover';
+        var modulo = 'video/categoria/remover';
 
         var modalInstance = $uibModal.open({
             animation: true,
@@ -166,11 +170,10 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService) {
                     $scope.entity = {};
                 })
                 .then(function (data, status) {
-                        if (status == 422) {
-                            $scope.errors = data.data;
-                        }
+                    if (status == 422) {
+                        $scope.errors = data.data;
                     }
-                );
+                });
         });
     };
 
@@ -205,7 +208,7 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService) {
             });
 
             if (selecteds.length > 0) {
-                ClientAPIService.getDelete('contato/remover', selecteds)
+                ClientAPIService.getDelete('video/categoria/remover', selecteds)
                     .then(function (data, status) {
                         $scope.itemsSelectedAll = false;
                         $scope.message = data.data;
@@ -219,8 +222,10 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService) {
     $scope.save = function (entity) {
         $scope.loadForm = true;
 
+        entity.imagem = $scope.imagem;
+
         if (entity.id) {
-            ClientAPIService.getPut('contato/atualizar/' + entity.id, entity)
+            ClientAPIService.getPut('video/categoria/atualizar/' + entity.id, entity)
                 .then(function (data, status) {
                     $scope.message = data.data;
 
@@ -236,7 +241,8 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService) {
             $scope.loadForm = false;
             return;
         }
-        ClientAPIService.getPost('contato/salvar', entity)
+
+        ClientAPIService.getPost('video/categoria/salvar', entity)
             .then(function (data, status) {
                 entity.id = data.id;
 

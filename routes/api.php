@@ -116,6 +116,13 @@ Route::group(['prefix' => 'angular', 'middleware' => 'cors', 'as' => 'angular.',
         Route::post('remover', 'VideoController@removeSelected')->name('removeSelected');
         Route::post('salvar', 'VideoController@create')->name('create');
         Route::put('atualizar/{id}', 'VideoController@update')->name('update');
+        Route::get('categorias', 'VideoController@categorias')->name('assuntos');
+    });
+    Route::group(['prefix' => 'video/categoria', 'as' => 'video_categoria.'], function(){
+        Route::get('', 'VideoCategoriaController@index')->name('index');
+        Route::post('remover', 'VideoCategoriaController@removeSelected')->name('removeSelected');
+        Route::post('salvar', 'VideoCategoriaController@create')->name('create');
+        Route::put('atualizar/{id}', 'VideoCategoriaController@update')->name('update');
     });
 
     Route::group(['prefix' => 'sobre_nos', 'as' => 'sobre_nos.'], function(){

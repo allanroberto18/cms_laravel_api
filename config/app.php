@@ -176,6 +176,7 @@ return [
         Prettus\Repository\Providers\RepositoryServiceProvider::class,
         Barryvdh\Cors\ServiceProvider::class,
         Laravel\Passport\PassportServiceProvider::class,
+        Cviebrock\EloquentSluggable\ServiceProvider::class,
         //
 
         /*

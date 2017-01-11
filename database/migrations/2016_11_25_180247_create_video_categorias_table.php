@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePaginaClientesTable extends Migration
+class CreateVideoCategoriasTable extends Migration
 {
 
 	/**
@@ -13,13 +13,11 @@ class CreatePaginaClientesTable extends Migration
 	 */
 	public function up()
 	{
-		Schema::create('pagina_clientes', function(Blueprint $table) {
+		Schema::create('video_categorias', function(Blueprint $table) {
             $table->increments('id');
-            $table->integer('pagina_id')->unsigned();
-            $table->foreign('pagina_id')->references('id')->on('paginas');
-            $table->string('nome', 75);
-            $table->string('cidade');
-            $table->string('imagem');
+            $table->string('titulo');
+            $table->string('slug');
+            $table->text('resumo')->nullable();
             $table->integer('posicao')->default(1);
             $table->integer('status')->default(1);
             $table->timestamps();
@@ -33,7 +31,7 @@ class CreatePaginaClientesTable extends Migration
 	 */
 	public function down()
 	{
-		Schema::drop('pagina_clientes');
+		Schema::drop('video_categorias');
 	}
 
 }

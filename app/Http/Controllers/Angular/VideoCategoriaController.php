@@ -2,40 +2,30 @@
 
 namespace App\Http\Controllers\Angular;
 
-use App\Http\Requests\Admin\VideoRequest;
-use App\Repositories\VideoCategoriaRepository;
+use App\Http\Requests\Admin\VideoCategoriaRequest;
 use Illuminate\Http\Request;
-use App\Repositories\VideoRepository;
+use App\Repositories\VideoCategoriaRepository;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Response;
 
-class VideoController extends Controller
+class VideoCategoriaController extends Controller
 {
-    /**
-     * @var VideoRepository
-     */
-    private $repository;
     /**
      * @var VideoCategoriaRepository
      */
-    private $categoriaRepository;
+    private $repository;
 
     /**
-     * VideoController constructor.
+     * VideoCategoriaController constructor.
      */
-    public function __construct(VideoRepository $repository, VideoCategoriaRepository $categoriaRepository)
+    public function __construct(VideoCategoriaRepository $repository)
     {
         $this->repository = $repository;
-        $this->categoriaRepository = $categoriaRepository;
     }
 
     public function index(Request $request)
     {
-        return $this->repository->skipPresenter(false)->scopeQuery(function ($q) {
-            return $q->where([
-                'status' => 1
-            ])->orderBy('id', 'desc');
-        })->paginate(10);
+        return $this->repository->skipPresenter(false)->paginate(10);
     }
 
     public function remove($id)
@@ -53,7 +43,7 @@ class VideoController extends Controller
         );
     }
 
-    public function update(VideoRequest $request, $id)
+    public function update(VideoCategoriaRequest $request, $id)
     {
         $entity = $this->repository->find($id);
 
@@ -69,7 +59,7 @@ class VideoController extends Controller
         );
     }
 
-    public function create(VideoRequest $request)
+    public function create(VideoCategoriaRequest $request)
     {
         $data = $request->all();
 
@@ -110,10 +100,5 @@ class VideoController extends Controller
                 "data" => "Os registros foram excluídos com sucesso."
             ]
         );
-    }
-
-    public function categorias()
-    {
-        return $this->categoriaRepository->all();
     }
 }

@@ -70,6 +70,16 @@
                     <i class="fa fa-file-text-o"></i> <span>Páginas dos Segmentos</span>
                 </a>
             </li>
+            <li ng-class="{ active: isActive('/video_categoria')}">
+                <a ng-click="go('/video_categoria')">
+                    <i class="fa fa-tag"></i> <span>Categorias dos Videos</span>
+                </a>
+            </li>
+            <li ng-class="{ active: isActive('/video')}">
+                <a ng-click="go('/video')">
+                    <i class="fa fa-video-camera"></i> <span>Videos</span>
+                </a>
+            </li>
             <li>
                 <a href="/admin/logout">
                     <i class="fa fa-sign-out"></i> <span>Sair</span>

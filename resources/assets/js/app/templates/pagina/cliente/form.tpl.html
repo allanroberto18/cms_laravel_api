@@ -26,6 +26,18 @@
                         </div>
                     </div>
                 </div>
+                <div class="form-group" ng-class="{'has-error': form.cidade.$touched && form.cidade.$error.required }">
+                    <label for="cidade">
+                        <i ng-class="{'fa fa-times-circle-o': form.cidade.$touched && form.cidade.$error.required }"></i>
+                        Cidade:
+                    </label>
+                    <input type="text" name="cidade" class="form-control" ng-model="entity.cidade" required/>
+                    <div class="help-block" ng-show="form.$submitted || form.cidade.$touched">
+                        <div ng-show="form.cidade.$error.required">
+                            <i class="fa fa-exclamation-circle"></i> O campo Cidade é obrigatório
+                        </div>
+                    </div>
+                </div>
                 <div class="form-group" ng-class="{'has-error': errors.imagem[0] }">
                     <label for="imagem">
                         <i ng-class="{'fa fa-times-circle-o': errors.imagem[0] }"></i>
@@ -38,6 +50,18 @@
                     <div class="help-block" ng-show="errors.imagem[0]">
                         <div ng-show="errors.imagem[0]">
                             <i class="fa fa-exclamation-circle"></i> {{ errors.imagem[0] }}
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{'has-error': form.posicao.$touched && form.posicao.$error.required }">
+                    <label for="posicao">
+                        <i ng-class="{'fa fa-times-circle-o': form.posicao.$touched && form.posicao.$error.required }"></i>
+                        Posição:
+                    </label>
+                    <input type="number" name="posicao" class="form-control" ng-model="entity.posicao" required/>
+                    <div class="help-block" ng-show="form.$submitted || form.posicao.$touched">
+                        <div ng-show="form.posicao.$error.required">
+                            <i class="fa fa-exclamation-circle"></i> O campo Posição é obrigatório
                         </div>
                     </div>
                 </div>

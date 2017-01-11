@@ -34,18 +34,20 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService) {
 
     var list = function (page) {
         $scope.loadList = true;
+
         ClientAPIService.getList('assunto', page)
             .then(function (result) {
                 $scope.items = result.data;
 
                 $scope.total = $scope.items.meta.pagination.total;
+
+                $scope.loadList = false;
             });
-        $scope.loadList = false;
     };
 
     $scope.init = function () {
         list(1);
-    }
+    };
 
     $scope.getToken = function () {
         ClientAPIService.getToken()
@@ -76,6 +78,12 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService) {
         $scope.title = 'Novo Registro';
 
         $scope.edit(true);
+
+        $scope.entity = {
+            titulo: '',
+            email: '',
+            status: 1
+        }
     };
 
     $scope.load = function (entity) {
@@ -88,7 +96,7 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService) {
 
     $scope.closeMessage = function () {
         $scope.message = '';
-    }
+    };
 
     $scope.cancel = function (form) {
         if (form) {
@@ -141,26 +149,30 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService) {
 
         modalInstance.result.then(function () {
             var selected = [];
+
             selected.push(entity.id);
+
+            $scope.loadList = true;
+
             ClientAPIService.getDelete(modulo, selected)
                 .then(function (data) {
-                    $scope.loadList = true;
-
                     $scope.message = data.data;
-                    $scope.items.data.splice(key, 1);
 
-                    $scope.loadList = false;
+                    $scope.items.data.splice(key, 1);
 
                     if ($scope.items.data.length == 0) {
                         list($scope.items.meta.pagination.current_page);
                     }
 
                     $scope.entity = {};
+
+                    $scope.loadList = false;
                 })
                 .then(function (data, status) {
                         if (status == 422) {
                             $scope.errors = data.data;
                         }
+                        $scope.loadList = false;
                     }
                 );
         });
@@ -190,6 +202,7 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService) {
             $scope.message = '';
 
             var selecteds = [];
+
             angular.forEach($scope.items.data, function (item) {
                 if (item.Selected) {
                     selecteds.push(item.id);
@@ -200,6 +213,7 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService) {
                 ClientAPIService.getDelete('assunto/remover', selecteds)
                     .then(function (data, status) {
                         $scope.itemsSelectedAll = false;
+
                         $scope.message = data.data;
 
                         list($scope.items.meta.pagination.current_page);
@@ -219,13 +233,15 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService) {
                     $scope.entity = {};
 
                     $scope.edit(false);
+
+                    $scope.loadForm = false;
                 })
                 .then(function (data, status) {
                     if (status == 422) {
                         $scope.errors = data;
                     }
+                    $scope.loadForm = false;
                 });
-            $scope.loadForm = false;
             return;
         }
         ClientAPIService.getPost('assunto/salvar', entity)
@@ -239,13 +255,15 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService) {
                 $scope.edit(false);
 
                 $scope.entity = {};
+
+                $scope.loadForm = false;
             })
             .then(function (data, status) {
                 if (status == 422) {
                     $scope.errors = data;
                 }
+                $scope.loadForm = false;
             });
-        $scope.loadForm = false;
         return;
     };
 };

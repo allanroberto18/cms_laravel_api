@@ -4,7 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class PaginaClienteRequest extends FormRequest
+class VideoCategoriaRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,7 @@ class PaginaClienteRequest extends FormRequest
     public function rules()
     {
         return [
-            'nome' => 'required',
-            'cidade' => 'required',
+            'titulo' => 'required',
             'posicao' => 'required',
         ];
     }
@@ -33,8 +32,7 @@ class PaginaClienteRequest extends FormRequest
     public function attributes()
     {
         return [
-            'nome' => 'Nome',
-            'cidade' => 'Cidade',
+            'titulo' => 'Nome',
             'posicao' => 'Posição',
         ];
     }

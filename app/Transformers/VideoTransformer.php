@@ -22,12 +22,24 @@ class VideoTransformer extends TransformerAbstract
     {
         return [
             'id'         => (int) $model->id,
+            'titulo'         => (string) $model->titulo,
+            'resumo'         => (string) $model->resumo,
             'link'         => (string) $model->link,
             'altura'         => (int) $model->altura,
             'largura'         => (int) $model->largura,
+            'posicao'         => (int) $model->posicao,
             'status'         => (int) $model->status,
             'created_at' => $model->created_at,
             'updated_at' => $model->updated_at
         ];
+    }
+
+    public function includeCategoria(Video $model)
+    {
+        if (!$model->categoria)
+        {
+            return null;
+        }
+        return $this->item($model->categoria, new VideoCategoriaTransformer());
     }
 }
