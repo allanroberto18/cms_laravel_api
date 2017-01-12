@@ -36,6 +36,11 @@ Route::group(['prefix' => 'n', 'as' => 'noticia.'], function(){
    Route::get('{id}', 'NoticiaController@show')->name('show');
 });
 
+Route::group(['prefix' => 'v', 'as' => 'video.'], function(){
+    Route::get('', 'VideoController@index')->name('index');
+    Route::get('{slug}', 'VideoController@show')->name('show');
+});
+
 Route::group(['prefix' => 'p', 'as' => 'produto.'], function(){
     Route::get('', 'PaginaProdutoController@index')->name('index');
     Route::get('{id}', 'PaginaProdutoController@show')->name('show');

@@ -105,7 +105,9 @@ class PaginaController extends Controller
                 return $q->where(['pagina_id' => $pagina->id, 'destaque' => 0, 'status' => 1])->orderBy('created_at', 'DESC');
             })->paginate(3);
 
-            $clientes = $this->clienteRepository->findWhere(['status' => 1]);
+            $clientes = $this->clienteRepository->scopeQuery(function($q) {
+                return $q->orderBy('posicao', 'ASC');
+            })->findWhere(['status' => 1]);
 
             $noticias = $this->noticiaRepository->scopeQuery(function($q) use ($pagina) {
                 return $q->where(['status' => 1])->orderBy('created_at', 'DESC');

@@ -46,6 +46,10 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
             });
     };
 
+    $scope.loadPage = function() {
+        list(1);
+    };
+
     $scope.init = function () {
         list(1);
     };

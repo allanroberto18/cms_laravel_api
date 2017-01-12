@@ -24,6 +24,10 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
     $scope.pagina = '';
     $scope.entity = {};
 
+    $scope.loadPage = function() {
+        list(1);
+    };
+
     $scope.pageChanged = function (page) {
         list(page);
     };

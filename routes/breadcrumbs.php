@@ -31,7 +31,7 @@ Breadcrumbs::register('noticias', function($breadcrumbs)
 Breadcrumbs::register('noticia', function($breadcrumbs, $entity)
 {
     $breadcrumbs->parent('noticias');
-    $breadcrumbs->push($entity->titulo, route('noticia.show', ['slug' => $entity->slug ]));
+    $breadcrumbs->push($entity->titulo, route('noticia.show', ['id' => $entity->id ]));
 });
 
 
@@ -44,5 +44,17 @@ Breadcrumbs::register('produtos', function($breadcrumbs)
 Breadcrumbs::register('produto', function($breadcrumbs, $entity)
 {
     $breadcrumbs->parent('produtos');
-    $breadcrumbs->push($entity->titulo, route('produto.show', ['slug' => $entity->slug ]));
+    $breadcrumbs->push($entity->titulo, route('produto.show', ['id' => $entity->id ]));
+});
+
+Breadcrumbs::register('videos', function($breadcrumbs)
+{
+    $breadcrumbs->parent('home');
+    $breadcrumbs->push('Videos', route('video.index'));
+});
+
+Breadcrumbs::register('video', function($breadcrumbs, $entity)
+{
+    $breadcrumbs->parent('videos');
+    $breadcrumbs->push($entity->titulo, route('video.show', ['slug' => $entity->slug ]));
 });

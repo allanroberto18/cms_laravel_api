@@ -14,7 +14,9 @@
             <button class="btn btn-primary btn-flat" ng-click="new()">
                 <i class="fa fa-plus"></i> Novo Registro
             </button>
-
+            <button class="btn btn-primary btn-flat" ng-click="list(1)">
+                <i class="fa fa-th-list"></i> Carregar Registros
+            </button>
             <div class="form-group has-feedback mt2">
                 <label for="search">Filtrar Items:</label>
                 <input type="text" name="search" class="form-control" ng-model="search.$"
@@ -91,6 +93,9 @@
         </div>
         <div class="overlay" ng-show="loadList">
             <i class="fa fa-refresh fa-spin"></i>
+        </div>
+        <div class="box-footer">
+            <dir-pagination-controls on-page-change="pageChanged(newPageNumber)"></dir-pagination-controls>
         </div>
     </div>
 </div>

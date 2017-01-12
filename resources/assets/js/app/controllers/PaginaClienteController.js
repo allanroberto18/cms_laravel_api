@@ -15,6 +15,12 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
     $scope.animationsEnabled = true;
 
     $scope.items = {};
+    $scope.total = 0;
+    $scope.perPage = 10;
+    $scope.pagination = {
+        current: 1
+    };
+
     $scope.errors = '';
     $scope.message = '';
 
@@ -22,21 +28,31 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
     $scope.pagina = '';
     $scope.entity = {};
 
-    var list = function () {
+    $scope.pageChanged = function (page) {
+        list(page);
+    };
+
+    var list = function (page) {
         $scope.loadList = true;
 
-        ClientAPIService.getLoad('pagina/cliente/' + $scope.pagina)
+        ClientAPIService.getList('pagina/cliente/' + $scope.pagina, page)
             .then(function (result) {
                 $scope.items = result.data;
+
+                $scope.total = $scope.items.meta.pagination.total;
 
                 $scope.loadList = false;
             });
     };
 
+    $scope.loadPage = function() {
+        list(1);
+    };
+
     $scope.init = function (pagina) {
         $scope.pagina = pagina;
 
-        list();
+        list(1);
     };
 
     $scope.getToken = function () {

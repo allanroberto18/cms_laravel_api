@@ -24,14 +24,14 @@ class PaginaClienteController extends Controller
         $this->repository = $repository;
     }
 
-    public function index($paginaId)
+    public function index(Request $request, $paginaId)
     {
-        return $this->repository->scopeQuery(function ($q) use ($paginaId) {
+        return $this->repository->skipPresenter(false)->scopeQuery(function ($q) use ($paginaId) {
             return $q->where([
                 'pagina_id' => $paginaId,
                 'status' => 1
-            ])->orderBy('id', 'desc');
-        })->skipPresenter(false)->all();
+            ])->orderBy('posicao', 'desc');
+        })->paginate(10);
     }
 
     public function remove($id)

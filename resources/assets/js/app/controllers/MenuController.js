@@ -27,6 +27,10 @@ module.exports = function ($scope, $location, $log, $uibModal, ClientAPIService)
     $scope.token = '';
     $scope.entity = {};
 
+    $scope.loadPage = function() {
+        list(1);
+    };
+
     $scope.pageChanged = function (page) {
         list(page);
     };

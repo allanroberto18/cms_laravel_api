@@ -23,6 +23,10 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService) {
     $scope.icones = {};
     $scope.entity = {};
 
+    $scope.loadPage = function() {
+        list();
+    };
+
     var list = function () {
         $scope.loadList = true;
 
@@ -167,7 +171,7 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService) {
                     $scope.items.data.splice(key, 1);
 
                     if ($scope.items.data.length == 0) {
-                        list($scope.items.meta.pagination.current_page);
+                        list();
                     }
 
                     $scope.entity = {};
@@ -222,7 +226,7 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService) {
 
                         $scope.message = data.data;
 
-                        list($scope.items.meta.pagination.current_page);
+                        list();
                     });
             }
         });

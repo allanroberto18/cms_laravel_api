@@ -26,7 +26,8 @@ class PaginaClienteTransformer extends TransformerAbstract
             'nome'       => (string) $model->nome,
             'cidade'       => (string) $model->cidade,
             'imagem'     => (string) $model->imagem,
-            'status'     => (int) $model->imagem,
+            'posicao'     => (int) $model->posicao,
+            'status'     => (int) $model->status,
             /* place your other model properties here */
 
             'created_at' => $model->created_at,

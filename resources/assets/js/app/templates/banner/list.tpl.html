@@ -14,7 +14,9 @@
             <button class="btn btn-primary btn-flat" ng-click="new()">
                 <i class="fa fa-plus"></i> Novo Registro
             </button>
-
+            <button class="btn btn-primary btn-flat" ng-click="list(1)">
+                <i class="fa fa-th-list"></i> Carregar Registros
+            </button>
             <div class="form-group has-feedback mt2">
                 <label for="search">Filtrar Items:</label>
                 <input type="text" name="search" class="form-control" ng-model="search.$"
@@ -31,8 +33,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr dir-paginate="item in items.data | filter: search | itemsPerPage:perPage" total-items="total"
-                        current-page="pagination.current">
+                    <tr dir-paginate="item in items.data | filter: search | itemsPerPage:perPage" total-items="total" current-page="pagination.current">
                         <td>
                             <div class="dropdown">
                                 <button class="btn btn-default btn-flat dropdown-toggle" type="button"

@@ -28,6 +28,10 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService) {
     $scope.entity = {};
     $scope.animationsEnabled = true;
 
+    $scope.loadPage = function() {
+        list(1);
+    };
+
     $scope.pageChanged = function (page) {
         list(page);
     };

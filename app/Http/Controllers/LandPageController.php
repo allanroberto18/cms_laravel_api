@@ -65,7 +65,9 @@ class LandPageController extends Controller
 
             $destaque = $this->paginaProdutoRepository->findWhere(['pagina_id' => $pagina->id, 'destaque' => 1, 'status' => 1])->last();
 
-            $clientes = $this->clienteRepository->findWhere(['status' => 1]);
+            $clientes = $this->clienteRepository->scopeQuery(function($q) {
+                return $q->orderBy('posicao', 'ASC');
+            })->findWhere(['status' => 1]);
 
             $produtos = $this->paginaProdutoRepository->scopeQuery(function ($q) use ($pagina) {
                 return $q->where(['pagina_id' => $pagina->id, 'destaque' => 0, 'status' => 1])->orderBy('created_at', 'DESC');
@@ -116,7 +118,9 @@ class LandPageController extends Controller
 
             $destaque = $this->paginaProdutoRepository->findWhere(['pagina_id' => $pagina->id, 'destaque' => 1, 'status' => 1])->last();
 
-            $clientes = $this->clienteRepository->findWhere(['status' => 1]);
+            $clientes = $this->clienteRepository->scopeQuery(function($q) {
+                return $q->orderBy('posicao', 'ASC');
+            })->findWhere(['status' => 1]);
 
             $produtos = $this->paginaProdutoRepository->scopeQuery(function ($q) use ($pagina) {
                 return $q->where(['pagina_id' => $pagina->id, 'destaque' => 0, 'status' => 1])->orderBy('created_at', 'DESC');
