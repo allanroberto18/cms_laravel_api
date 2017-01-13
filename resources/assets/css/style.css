@@ -1141,9 +1141,9 @@ a.blog-button i {
     border: 1px solid #ebebeb;
     border-radius: 25px;
     box-shadow: none;
-    color: #898989;
+    color: #000;
     font-family: "Segoe UI Light";
-    font-size: 14px;
+    font-size: 17px;
     height: 46px;
     line-height: 46px;
     margin-bottom: 6px;
