@@ -5,17 +5,21 @@
     <img src="http://www.siedsistemas.com.br/img/config/6300.png" alt="">
 </a>
 
-<h1>{{$title}}</h1>
+<h3>Assunto: {{$title}}</h3>
 <p>
     {{ $content->mensagem }}
 </p>
-
 
 @if($content->status == 2)
     <hr>
     <h3>Resposta</h3>
     <p>
         {{ $content->resposta }}
+    </p>
+    <p>
+        {{ $content->nome }} <br>
+        {{ $content->email }} <br>
+        {{ $content->telefone }}
     </p>
 @endif
 

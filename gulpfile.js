@@ -92,9 +92,14 @@ elixir(function (mix) {
     mix.copy(assets + 'js/tema/vendor/modernizr-2.8.3.min.js', 'public/js/modernizr-2.8.3.min.js');
 
     mix.copy(assets + 'js/app/templates', 'public/js/app/templates');
+
     mix.browserify(assets + 'js/app/app.js', './public/js/app/app.js').webpack(
         assets + 'js/app/app.js',
         './public/js/app'
+    );
+    mix.browserify(assets + 'js/front/app.js', './public/js/front/app.js').webpack(
+        assets + 'js/front/app.js',
+        './public/js/front'
     );
 
     mix.sass('app.scss')

@@ -24,7 +24,7 @@ class FaleConoscoRequest extends FormRequest
     public function rules()
     {
         return [
-            'assunto' => 'required',
+            'fale_conosco_assunto_id' => 'required',
             'nome' => 'required',
             'telefone' => 'required',
             'email' => 'required|email',
@@ -35,7 +35,7 @@ class FaleConoscoRequest extends FormRequest
     public function attributes()
     {
         return [
-            'assunto' => 'Assunto',
+            'fale_conosco_assunto_id' => 'Assunto',
             'nome' => 'Nome',
             'telefone' => 'Telefone',
             'email' => 'E-mail',

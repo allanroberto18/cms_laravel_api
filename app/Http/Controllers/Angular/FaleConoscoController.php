@@ -33,7 +33,7 @@ class FaleConoscoController extends Controller
     public function index(Request $request)
     {
         return $this->repository->scopeQuery(function($q) {
-            return $q->orderBy('status', 'desc');
+            return $q->orderBy('created_at', 'desc');
         })->skipPresenter(false)->paginate(10);
     }
 
@@ -60,19 +60,16 @@ class FaleConoscoController extends Controller
 
         $this->repository->update($data, $entity->id);
 
-        $title = 'teste de e-mail';
-        $content = 'teste feito com sucesso';
+        $entity->status = 2;
+        $entity->save();
 
-        Mail::send('email.send', ['title' => $entity->fale_conosco_assunto_id->title, 'content' => $entity], function ($message) use ($entity)
+        Mail::send('email.send', ['title' => $entity->assunto->titulo, 'content' => $entity], function ($message) use ($entity)
         {
-            $message->from($entity->fale_conosco_assunto_id->email, 'Sied Sistemas');
+            $message->from($entity->assunto->email, 'Sied Sistemas');
             $message->to($entity->email);
+            $message->subject('Resposta do Sied Sistemas');
         });
-        Mail::send('email.send', ['title' => $entity->fale_conosco_assunto_id->title, 'content' => $entity], function ($message) use ($entity)
-        {
-            $message->from($entity->email, $entity->nome);
-            $message->to($entity->fale_conosco_assunto_id->email);
-        });
+
 
         return Response::json(
             [
@@ -87,6 +84,13 @@ class FaleConoscoController extends Controller
         $data = $request->all();
 
         $entity = $this->repository->create($data);
+
+        Mail::send('email.send', ['title' => $entity->assunto->titulo, 'content' => $entity], function ($message) use ($entity)
+        {
+            $message->from('contato@siedsistemas.com.br', $entity->nome);
+            $message->to($entity->assunto->email);
+            $message->subject('Contato através do fale conosco');
+        });
 
         return Response::json(
             [

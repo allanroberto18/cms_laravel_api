@@ -30,7 +30,7 @@
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
-
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Google Fonts
     ============================================ -->
     <link href='https://fonts.googleapis.com/css?family=Neuton:400,800,700,400italic,300,200' rel='stylesheet'

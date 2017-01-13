@@ -1136,7 +1136,7 @@ a.blog-button i {
     top: 11px;
 }
 
-#contact-form input, .yourmessage {
+#contact-form input, #contact-form select, .yourmessage {
     background: #ffffff none repeat scroll 0 0;
     border: 1px solid #ebebeb;
     border-radius: 25px;
