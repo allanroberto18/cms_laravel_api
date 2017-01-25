@@ -12,7 +12,7 @@
             <div class="row">
                 @foreach($clientes as $item)
                     <div class="col-md-3 mt text-center">
-                        <img src="img/pagina/cliente/{{ $item->imagem }}" alt="{{ $item->nome }}" style="height: 180px;"/>
+                        <img src="/img/pagina/cliente/{{ $item->imagem }}" alt="{{ $item->nome }}" style="height: 180px;"/>
                         <h4 class="mt" style="color: #888888">{{ $item->nome }}</h4>
                         <h5 style="color: #888888">{{ $item->cidade }}</h5>
                     </div>

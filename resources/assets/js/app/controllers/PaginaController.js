@@ -257,7 +257,11 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
                 .then(function (data, status) {
                     $scope.message = data.data;
 
-                    $scope.cancel();
+                    $scope.entity = {};
+
+                    $scope.edit(false);
+
+                    $scope.loadForm = false;
                 })
                 .then(function (data, status) {
                     if (status == 422) {
@@ -276,7 +280,11 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
 
                 $scope.items.data.unshift(entity);
 
-                $scope.cancel();
+                $scope.edit(false);
+
+                $scope.entity = {};
+
+                $scope.loadForm = false;
             })
             .then(function (data, status) {
                 if (status == 422) {
