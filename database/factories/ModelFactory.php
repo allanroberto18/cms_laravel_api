@@ -25,6 +25,7 @@ $factory->define(App\Models\SobreNos::class, function (Faker\Generator $faker) {
 $factory->define(App\Models\Pagina::class, function (Faker\Generator $faker) {
     $titulo = $faker->sentence;
     return [
+        'tipo' => 1,
         'retranca' => $faker->word,
         'titulo' => $titulo,
         'slug' => str_slug($titulo),

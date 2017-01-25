@@ -25,7 +25,9 @@ class VideoCategoriaController extends Controller
 
     public function index(Request $request)
     {
-        return $this->repository->skipPresenter(false)->paginate(10);
+        return $this->repository->scopeQuery(function($q) {
+            return $q->where('status', 1)->orderBy('posicao', 'asc');
+        })->skipPresenter(false)->paginate(10);
     }
 
     public function remove($id)

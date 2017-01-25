@@ -109,7 +109,14 @@ module.exports = function ($scope, $location, $log, $uibModal, ClientAPIService)
             form.$setPristine();
             form.$setUntouched();
         }
-        $scope.entity = {};
+        $scope.entity = {
+            parent_id: 0,
+            tipo: 1,
+            nome: '',
+            link: '',
+            posicao: '',
+            status: 1
+        }
         $scope.errors = '';
     };
 
@@ -226,7 +233,8 @@ module.exports = function ($scope, $location, $log, $uibModal, ClientAPIService)
         });
     };
 
-    $scope.save = function (entity) {
+    $scope.save = function (entity, form) {
+        form.$setPristine();
         $scope.loadForm = true;
 
         if (entity.id) {

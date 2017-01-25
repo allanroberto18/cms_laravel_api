@@ -1,5 +1,5 @@
 <div ng-class="column" ng-show="showForm">
-    <form name="form" novalidate ng-submit="form.$valid && save(entity)" enctype="multipart/form-data">
+    <form name="form" novalidate ng-submit="form.$valid && save(entity, form)" enctype="multipart/form-data">
         <div class="box box-primary">
             <div class="box-header with-border">
                 <h3 class="box-title">
@@ -135,6 +135,12 @@
                     <input type="file" name="file" onchange="angular.element(this).scope().upload(files)" accept="image/*"/>
                     <div class="mt mb" ng-if="imagem" ng-class="thumbnail">
                         <img src="img/config/{{imagem}}" class="img-responsive">
+                        <div ng-if="entity.logo">
+                            <button class="btn btn-warning btn-flat" ng-click="entity.logo = ''">
+                                <i class="fa fa-eraser"></i>
+                                Excluir Logomarca
+                            </button>
+                        </div>
                     </div>
                     <div class="help-block" ng-show="errors.imagem[0]">
                         <div ng-show="errors.imagem[0]">
@@ -145,10 +151,10 @@
                 <div class="form-group">
                     <label for="status">Situação do Site:</label>
                     <div class="radio">
-                        <label><input type="radio" name="status" value="0" ng-model="entity.status">Manutenção</label>
+                        <label><input type="radio" name="status" ng-value="0" ng-model="entity.status">Manutenção</label>
                     </div>
                     <div class="radio">
-                        <label><input type="radio" name="status" value="1" ng-model="entity.status">Liberado</label>
+                        <label><input type="radio" name="status" ng-value="1" ng-model="entity.status">Liberado</label>
                     </div>
                 </div>
             </div>

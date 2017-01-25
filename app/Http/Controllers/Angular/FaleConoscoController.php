@@ -33,7 +33,7 @@ class FaleConoscoController extends Controller
     public function index(Request $request)
     {
         return $this->repository->scopeQuery(function($q) {
-            return $q->orderBy('created_at', 'desc');
+            return $q->where('status', '>', '0')->orderBy('created_at', 'desc');
         })->skipPresenter(false)->paginate(10);
     }
 

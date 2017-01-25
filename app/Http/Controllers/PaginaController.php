@@ -101,9 +101,7 @@ class PaginaController extends Controller
 
             $destaque = $this->paginaProdutoRepository->findWhere(['pagina_id' => $pagina->id, 'destaque' => 1, 'status' => 1])->last();
 
-            $produtos = $this->paginaProdutoRepository->scopeQuery(function ($q) use ($pagina) {
-                return $q->where(['pagina_id' => $pagina->id, 'destaque' => 0, 'status' => 1])->orderBy('created_at', 'DESC');
-            })->paginate(3);
+
 
             $clientes = $this->clienteRepository->scopeQuery(function($q) {
                 return $q->orderBy('posicao', 'ASC');
@@ -115,11 +113,27 @@ class PaginaController extends Controller
 
             $banners = $this->bannerRepository->findWhere(['status' => 1]);
 
+            if ($pagina->tipo == 2)
+            {
+                $produtos = $this->paginaProdutoRepository->scopeQuery(function ($q) use ($pagina) {
+                    return $q->where(['destaque' => 0, 'status' => 1])->orderBy('created_at', 'DESC');
+                })->paginate(3);
+
+                return view('Front.Paginas.show', compact(
+                    'sobreNos', 'config', 'pagina', 'caracteristicas', 'destaque', 'produtos', 'noticias',
+                    'video', 'menu', 'banners', 'clientes'
+                ));
+            }
+            $produtos = $this->paginaProdutoRepository->scopeQuery(function ($q) use ($pagina) {
+                return $q->where(['pagina_id' => $pagina->id, 'destaque' => 0, 'status' => 1])->orderBy('created_at', 'DESC');
+            })->paginate(3);
+
             return view('LandPage.index', compact(
                 'sobreNos', 'config', 'pagina', 'caracteristicas', 'destaque', 'produtos', 'noticias',
                 'video', 'menu', 'banners', 'clientes'
             ));
         } catch (\Exception $ex) {
+            return $ex->getMessage();
             return view('LandPage.construcao');
         }
     }

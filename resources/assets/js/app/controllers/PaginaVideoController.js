@@ -103,7 +103,13 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
             form.$setPristine();
             form.$setUntouched();
         }
-        $scope.entity = {};
+        $scope.entity = {
+            pagina_id: $scope.pagina,
+            link: '',
+            largura: 1280,
+            altura: 720,
+            status: 1
+        };
         $scope.errors = '';
     };
 
@@ -220,7 +226,8 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
         });
     };
 
-    $scope.save = function (entity) {
+    $scope.save = function (entity, form) {
+        form.$setPristine();
         $scope.loadForm = true;
 
         if (entity.id) {

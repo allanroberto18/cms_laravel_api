@@ -99,8 +99,8 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
             titulo: '',
             resumo: '',
             link: '',
-            largura: 560,
-            altura: 315,
+            largura: 853,
+            altura: 480,
             posicao: '',
             status: 1
         };
@@ -125,7 +125,16 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
             form.$setPristine();
             form.$setUntouched();
         }
-        $scope.entity = {};
+        $scope.entity = {
+            video_categoria_id: '',
+            titulo: '',
+            resumo: '',
+            link: '',
+            largura: 853,
+            altura: 480,
+            posicao: '',
+            status: 1
+        };
         $scope.errors = '';
     };
 
@@ -237,7 +246,8 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
         });
     };
 
-    $scope.save = function (entity) {
+    $scope.save = function (entity, form) {
+        form.$setPristine();
         $scope.loadForm = true;
 
         entity.imagem = $scope.imagem;

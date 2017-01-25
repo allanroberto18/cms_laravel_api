@@ -85,6 +85,9 @@
             </table>
         </div>
     </div>
+    <div class="overlay" ng-show="loadList">
+        <i class="fa fa-refresh fa-spin"></i>
+    </div>
     <div class="box-footer">
         <dir-pagination-controls on-page-change="pageChanged(newPageNumber)" pagination-id="list.id"></dir-pagination-controls>
     </div>

@@ -15,6 +15,7 @@ class CreatePaginasTable extends Migration
 	{
 		Schema::create('paginas', function(Blueprint $table) {
             $table->increments('id');
+            $table->integer('tipo')->default(1);
             $table->string('retranca', 50)->nullable();
             $table->string('titulo', 150);
             $table->string('slug', 150);

@@ -120,7 +120,20 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
             form.$setPristine();
             form.$setUntouched();
         }
-        $scope.entity = {};
+        $scope.entity = {
+            nome: '',
+            telefone: '',
+            email: '',
+            cep: '',
+            logradouro: '',
+            complemento: '',
+            numero: '',
+            bairro: '',
+            localidade: '',
+            uf: '',
+            logo: '',
+            status: 1
+        };
         $scope.errors = '';
     };
 
@@ -241,7 +254,8 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
         });
     };
 
-    $scope.save = function (entity) {
+    $scope.save = function (entity, form) {
+        form.$setPristine();
         $scope.loadForm = true;
 
         entity.logo = $scope.imagem;

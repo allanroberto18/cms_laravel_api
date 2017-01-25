@@ -15,11 +15,9 @@ class CreateBannersTable extends Migration
 	{
 		Schema::create('banners', function(Blueprint $table) {
             $table->increments('id');
-            $table->integer('pagina_id')->unsigned();
-            $table->foreign('pagina_id')->references('id')->on('paginas');
             $table->string('retranca', 50);
             $table->string('titulo', 150);
-            $table->string('resumo', 300);
+            $table->string('resumo', 300)->nullable();
             $table->string('link', 255);
             $table->string('imagem_destaque', 255);
             $table->string('imagem_fundo', 255);

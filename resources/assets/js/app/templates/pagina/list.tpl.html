@@ -36,7 +36,8 @@
                             </div>
                         </th>
                         <th width="30%">Opções</th>
-                        <th width="60%">Titulo</th>
+                        <th width="10%">Tipo</th>
+                        <th width="50%">Titulo</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -69,6 +70,14 @@
                             </div>
                         </td>
                         <td>
+                            <div ng-show="item.tipo == 1">
+                                <span class="label label-info">Segmento (Página Principal)</span>
+                            </div>
+                            <div ng-show="item.tipo == 2">
+                                <span class="label label-success">Institucional (Página de Conteúdo/Notícia)</span>
+                            </div>
+                        </td>
+                        <td>
                             <h4>
                                 <small>{{ item.retranca }}</small>
                                 {{ item.titulo }}
@@ -78,8 +87,9 @@
                                 <br>
                                 <strong>Link: </strong> /i/{{ item.id }}
                             </p>
-                            <a href="/i/{{ item.id }}" class="btn btn-default mb" target="_blank"><i
-                                    class="fa fa-link"></i> Testar</a>
+                            <a href="/i/{{ item.id }}" class="btn btn-default mb" target="_blank">
+                                <i class="fa fa-link"></i> Testar
+                            </a>
 
                             <!-- TAB NAVIGATION -->
                             <div class="nav-tabs-custom">
@@ -141,7 +151,7 @@
             <i class="fa fa-refresh fa-spin"></i>
         </div>
         <div class="box-footer">
-            <!--<dir-pagination-controls on-page-change="pageChanged(newPageNumber)"></dir-pagination-controls>-->
+            <dir-pagination-controls on-page-change="pageChanged(newPageNumber)"></dir-pagination-controls>
         </div>
     </div>
 </div>

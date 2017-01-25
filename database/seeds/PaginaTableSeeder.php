@@ -22,9 +22,7 @@ class PaginaTableSeeder extends Seeder
             'pagina_id' => $pagina->id
         ]);
 
-        factory(\App\Models\Banner::class)->create([
-            'pagina_id' => $pagina->id
-        ]);
+        factory(\App\Models\Banner::class)->create();
 
         factory(\App\Models\PaginaVideo::class)->create([
             'pagina_id' => $pagina->id

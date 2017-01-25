@@ -23,6 +23,7 @@ class PaginaTransformer extends TransformerAbstract
     {
         return [
             'id' => (int)$model->id,
+            'tipo' => (int)$model->tipo,
             'retranca' => (string)$model->retranca,
             'titulo' => (string)$model->titulo,
             'slug' => (string)$model->slug,

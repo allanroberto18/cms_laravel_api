@@ -26,7 +26,7 @@ class Pagina extends Model implements Transformable
     }
 
     protected $fillable = [
-        'retranca', 'titulo', 'slug', 'resumo', 'texto', 'credito', 'imagem', 'legenda', 'status'
+        'tipo', 'retranca', 'titulo', 'slug', 'resumo', 'texto', 'credito', 'imagem', 'legenda', 'status'
     ];
 
     public function caracteristicas()

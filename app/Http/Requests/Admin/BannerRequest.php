@@ -26,7 +26,6 @@ class BannerRequest extends FormRequest
         return [
             'retranca' => 'required',
             'titulo' => 'required',
-            'resumo' => 'required',
             'link' => 'required',
         ];
     }
@@ -36,7 +35,6 @@ class BannerRequest extends FormRequest
         return [
             'retranca' => 'Retranca',
             'titulo' => 'Título',
-            'resumo' => 'Resumo',
             'link' => 'Texto',
         ];
     }

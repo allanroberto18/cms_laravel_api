@@ -24,7 +24,7 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
     $scope.pagina = '';
     $scope.entity = {};
 
-    $scope.loadPage = function() {
+    $scope.loadPage = function () {
         list(1);
     };
 
@@ -107,7 +107,15 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
             form.$setPristine();
             form.$setUntouched();
         }
-        $scope.entity = {};
+        $scope.entity = {
+            retranca: '',
+            titulo: '',
+            resumo: '',
+            link: '#',
+            imagem_destaque: '',
+            imagem_fundo: '',
+            status: 1
+        };
         $scope.errors = '';
     };
 
@@ -225,7 +233,8 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
         });
     };
 
-    $scope.save = function (entity) {
+    $scope.save = function (entity, form) {
+        form.$setPristine();
         $scope.loadForm = true;
 
         if (entity.id) {
@@ -245,6 +254,7 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
                     }
                     $scope.loadForm = false;
                 });
+
             return;
         }
 
@@ -265,9 +275,8 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
             .then(function (data, status) {
                 if (status == 422) {
                     $scope.errors = data;
-
-                    $scope.loadForm = false;
                 }
+                $scope.loadForm = false;
             });
         return;
     };

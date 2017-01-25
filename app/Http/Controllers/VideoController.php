@@ -78,10 +78,10 @@ class VideoController extends Controller
                     ->where('video_categoria_id', $entity->video_categoria_id)
                     ->where('status', 1)
                     ->orderBy('posicao', 'ASC');
-            })->paginate(3);
+            })->all();
 
             $videos = $this->videoRepository->scopeQuery(function($q) use ($entity){
-                return $q->where('id', '<>', $entity->id)->where('status', 1)->orderBy('id', 'DESC');
+                return $q->where('status', 1)->orderBy('id', 'DESC');
             })->paginate(3);
 
             return view('Front.Videos.show', compact('entity', 'config', 'menu', 'videos', 'playlist'));

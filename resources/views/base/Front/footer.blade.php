@@ -38,9 +38,9 @@
                         <div ng-show="showErrors">
                             <div class="alert alert-warning alert-dismissible" role="alert">
                                 <strong>Atenção!</strong> Corrija as informações abaixo.
-                                <ol ng-repeat="item in erros">
+                                <ul ng-repeat="item in erros">
                                     <li>@{{ item[0] }}</li>
-                                </ol>
+                                </ul>
                             </div>
                         </div>
                     </div>

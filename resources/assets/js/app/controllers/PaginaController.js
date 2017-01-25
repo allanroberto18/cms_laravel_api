@@ -84,7 +84,9 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
 
         $scope.edit(true);
 
+        $scope.imagem = '';
         $scope.entity = {
+            tipo: 1,
             retranca: '',
             titulo: '',
             resumo: '',
@@ -115,7 +117,18 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
             form.$setPristine();
             form.$setUntouched();
         }
-        $scope.entity = {};
+        $scope.imagem = '';
+        $scope.entity = {
+            tipo: 1,
+            retranca: '',
+            titulo: '',
+            resumo: '',
+            texto: '',
+            credito: 'Divulgação',
+            imagem: '',
+            legenda: '',
+            status: 1
+        };
         $scope.errors = '';
     };
 
@@ -233,7 +246,8 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
         });
     };
 
-    $scope.save = function (entity) {
+    $scope.save = function (entity, form) {
+        form.$setPristine();
         $scope.loadForm = true;
 
         entity.imagem = $scope.imagem;
@@ -243,11 +257,7 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
                 .then(function (data, status) {
                     $scope.message = data.data;
 
-                    $scope.entity = {};
-
-                    $scope.edit(false);
-
-                    $scope.loadForm = false;
+                    $scope.cancel();
                 })
                 .then(function (data, status) {
                     if (status == 422) {
@@ -266,11 +276,7 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
 
                 $scope.items.data.unshift(entity);
 
-                $scope.edit(false);
-
-                $scope.entity = {};
-
-                $scope.loadForm = false;
+                $scope.cancel();
             })
             .then(function (data, status) {
                 if (status == 422) {

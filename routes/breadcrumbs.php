@@ -16,6 +16,12 @@ Breadcrumbs::register('home', function($breadcrumbs)
     $breadcrumbs->push('Home', route('home'));
 });
 
+Breadcrumbs::register('pagina', function($breadcrumbs, $entity)
+{
+    $breadcrumbs->push('Home', route('admin.dashboard'));
+    $breadcrumbs->push($entity->titulo, route('pagina.show', [ 'id' => $entity->id ]));
+});
+
 Breadcrumbs::register('downloads', function($breadcrumbs)
 {
     $breadcrumbs->parent('home');

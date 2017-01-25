@@ -115,7 +115,16 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
             form.$setPristine();
             form.$setUntouched();
         }
-        $scope.entity = {};
+        $scope.entity = {
+            retranca: '',
+            titulo: '',
+            resumo: '',
+            texto: '',
+            credito: 'Divulgação',
+            imagem: '',
+            legenda: '',
+            status: 1
+        };
         $scope.errors = '';
     };
 
@@ -233,7 +242,8 @@ module.exports = function ($scope, $log, $uibModal, ClientAPIService, ImageServi
         });
     };
 
-    $scope.save = function (entity) {
+    $scope.save = function (entity, form) {
+        form.$setPristine();
         $scope.loadForm = true;
 
         entity.imagem = $scope.imagem;

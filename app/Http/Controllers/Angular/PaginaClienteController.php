@@ -30,7 +30,7 @@ class PaginaClienteController extends Controller
             return $q->where([
                 'pagina_id' => $paginaId,
                 'status' => 1
-            ])->orderBy('posicao', 'desc');
+            ])->orderBy('posicao', 'asc');
         })->paginate(10);
     }
 
